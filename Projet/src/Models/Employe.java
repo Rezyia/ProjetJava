@@ -21,6 +21,7 @@ public class Employe {
 	private int overtime;
 	//Temps en surplus de l'employé (temps ou il a travaillé plus qu'il n'était prévu par son planning)
 	//Peut être négatif (alors cela représente du temps ou il n'a pas travaillé)
+	//Type peut être inexact, à changer en cas de besoin.
 	
 	public Employe(Departement dpt, String str1, String str2) {
 		id = nbEmploye;
@@ -42,6 +43,10 @@ public class Employe {
 	
 	public int getOvertime() {
 		return  overtime;
+	}
+	
+	public LocalDateTime[] LocalDateTime(String day) {
+		return planning.get(day);
 	}
 	
 	
