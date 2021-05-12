@@ -3,25 +3,25 @@ import java.time.*;
 import java.util.*;
 
 public class Employe {
-	//Le nombre d'employé dans l'entreprise
+	//Le nombre d'employÃ© dans l'entreprise
 	private static int nbEmploye = 0;
-	private int id;					//L'ID de l'employé								
-	private String name;			//Le nom de l'employé
-	private String firstname;		//Le prénom de l'employé
-	private Departement departement;//Le département de l'employé
+	private int id;					//L'ID de l'employÃ©								
+	private String name;			//Le nom de l'employÃ©
+	private String firstname;		//Le prÃ©nom de l'employÃ©
+	private Departement departement;//Le dÃ©partement de l'employÃ©
 	
-	private boolean isWorking;		//Booléen qui indique si l'employé est en train de travailler ou pas
+	private boolean isWorking;		//BoolÃ©en qui indique si l'employÃ© est en train de travailler ou pas
 	
-	private HashMap<String, LocalDateTime[]> planning;
-	//La clé représente la journée (lundi, mardi, etc.)
+	private HashMap<String, LocalTime[]> planning;
+	//La clÃ© reprÃ©sente la journÃ©e (lundi, mardi, etc.)
 	//La valeur est un tableau de LocalDateTime de 2 case
-	//[0] -> Début de journée prévu par le planning pour l'employé
-	//[1] -> Fin de journée prévu par le planning pour l'employé
+	//[0] -> DÃ©but de journÃ©e prÃ©vu par le planning pour l'employÃ©
+	//[1] -> Fin de journÃ©e prÃ©vu par le planning pour l'employÃ©
 	
 	private int overtime;
-	//Temps en surplus de l'employé (temps ou il a travaillé plus qu'il n'était prévu par son planning)
-	//Peut être négatif (alors cela représente du temps ou il n'a pas travaillé)
-	//Type peut être inexact, à changer en cas de besoin.
+	//Temps en surplus de l'employÃ© (temps ou il a travaillÃ© plus qu'il n'Ã©tait prÃ©vu par son planning)
+	//Peut Ãªtre nÃ©gatif (alors cela reprÃ©sente du temps ou il n'a pas travaillÃ©)
+	//Type peut Ãªtre inexact, Ã  changer en cas de besoin.
 	
 	public Employe(Departement dpt, String str1, String str2) {
 		id = nbEmploye;
@@ -31,16 +31,18 @@ public class Employe {
 		firstname = str2;
 		isWorking = false;
 		overtime = 0;
-		planning = new HashMap<String, LocalDateTime[]>(5);
-		planning.put("Lundi", null);
-		planning.put("Mardi", null);
-		planning.put("Mercredi", null);
-		planning.put("Jeudi", null);
-		planning.put("Vendredi", null);
+		planning = new HashMap<String, LocalTime[]>(5);
+		LocalTime midnight =  LocalTime.of(0,0); 
+		LocalTime tabtime[] = {midnight,midnight};
+		planning.put("monday", tabtime);
+		planning.put("tuesday", tabtime);
+		planning.put("wednesday", tabtime);
+		planning.put("thursday", tabtime);
+		planning.put("friday", tabtime);
 	}
 	
 	public String toString() {
-		return "Employé "+id+" : "+firstname+" "+name;
+		return "EmployÃ© "+id+" : "+firstname+" "+name;
 	}
 	
 	public boolean isWorking() {
@@ -51,8 +53,20 @@ public class Employe {
 		return  overtime;
 	}
 	
-	public LocalDateTime[] LocalDateTime(String day) {
+	public LocalDateTime[] getPlanningDay(String day) {
 		return planning.get(day);
+	}
+	
+	public void setplanning(int hourBegin , int hourFinish, int minBegin, int minFinish, String day) {
+		if(day != "monday" || day != "tuesday" || day != "wednesday" || day != "thursday" || day != "friday" ) { //attention Ã  gÃ©rer les exceptions
+			if(	(hourBegin < 24 && hourBegin >= 0) || (hourFinish < 24 && hourFinish >= 0) || 
+				(minBegin < 60 && minBegin >= 0) || (minBegin < 60 && minBegin >= 0) ) {
+				if(hourBegin*60 +minBegin <hourFinish*60 + minFinish) {
+					LocalTime tabtime[] = {LocalTime.of(hourBegin,minBegin),LocalTime.of(hourFinish,minFinish)};
+					planning.put(day,tabtime);
+				}
+			}
+		}
 	}
 	
 	
