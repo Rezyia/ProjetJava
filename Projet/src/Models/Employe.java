@@ -31,6 +31,12 @@ public class Employe {
 		firstname = str2;
 		isWorking = false;
 		overtime = 0;
+		planning = new HashMap<String, LocalDateTime[]>(5);
+		planning.put("Lundi", null);
+		planning.put("Mardi", null);
+		planning.put("Mercredi", null);
+		planning.put("Jeudi", null);
+		planning.put("Vendredi", null);
 	}
 	
 	public String toString() {
