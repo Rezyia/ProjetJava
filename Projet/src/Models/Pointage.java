@@ -8,10 +8,10 @@ public class Pointage {
 	
 	public Pointage(int i) {
 		idEmp = i;
-		time = arrondiQuartHeure(LocalDateTime.now());
+		time = roundToNearestQuarter(LocalDateTime.now());
 	}
 	
-	public LocalDateTime arrondiQuartHeure(LocalDateTime t) {
+	public LocalDateTime roundToNearestQuarter(LocalDateTime t) {
 		int diff = t.getMinute()%15;
 		LocalDateTime tqh = null;
 		if(diff < 8) {
