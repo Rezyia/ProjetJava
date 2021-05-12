@@ -2,10 +2,14 @@ package Models;
 
 public class Departement {
 	
-	private int idDep;
+
 	private String nameDep;
 	
 	
+	
+	Departement(String Sarg){
+		nameDep = Sarg;
+	}
 	
 	public String getnameDep() {
 		return nameDep;
