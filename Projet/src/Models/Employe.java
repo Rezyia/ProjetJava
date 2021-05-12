@@ -42,7 +42,7 @@ public class Employe {
 	}
 	
 	public String toString() {
-		return "EmployÃ© "+id+" : "+firstname+" "+name;
+		return "Employé "+id+" : "+firstname+" "+name;
 	}
 	
 	public boolean isWorking() {
@@ -69,5 +69,10 @@ public class Employe {
 		}
 	}
 	
-	
+	public static void main(String[] args) {
+		Departement dpt = new Departement("Dpt");
+		for(int i = 0 ; i < 5 ; i++) {
+			System.out.println(new Employe(dpt, "Nom", "Sans"));
+		}
+	}
 }
