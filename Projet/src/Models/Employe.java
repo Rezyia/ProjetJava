@@ -53,7 +53,7 @@ public class Employe {
 		return  overtime;
 	}
 	
-	public LocalDateTime[] getPlanningDay(String day) {
+	public LocalTime[] getPlanningDay(String day) {
 		return planning.get(day);
 	}
 	
