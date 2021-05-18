@@ -2,10 +2,7 @@ package Models;
 
 public class Departement {
 	
-
 	private String nameDep;
-	
-	
 	
 	Departement(String Sarg){
 		nameDep = Sarg;
