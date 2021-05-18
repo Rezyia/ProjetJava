@@ -1,6 +1,10 @@
 package Controlers;
 
+import java.io.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class Principale {
@@ -11,7 +15,8 @@ public class Principale {
 	 *  - In : String containing title of the button
 	 *  - Out : JButton created with style for header 
 	 */
-	private static JButton createHeaderButton(String title) {
+	private static JButton createHeaderButton(String title, Function<Void, Void> function) {
+		
 		JButton b = new JButton(title);
 		
 		//b.setBorderPainted(false);
@@ -24,7 +29,14 @@ public class Principale {
 		return b;
 	}
 	
-	public static void main(String[] args) {
+	private static void goToDoc() throws IOException {
+		/*
+		 * Il faut reussir a faire ouvrir la doc grace a cette fonction
+		 */
+		Desktop.getDesktop().open(new File(""));
+	}
+	
+	public static void main(String[] args) throws IOException{
 		JFrame f = new JFrame();
 		f.setSize(1920,1080);
 		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -57,10 +69,28 @@ public class Principale {
 		 * 		-> ajoute le JPanel correspondant dans/à la place du main
 		 */
 		
-		header.add(createHeaderButton("Pointages"));
-		header.add(createHeaderButton("Employees"));
-		header.add(createHeaderButton("Settings"));
-		header.add(createHeaderButton("ALED"));
+		
+		JButton bHeaderPointages = createHeaderButton("Pointages");
+		JButton bHeaderEmployees = createHeaderButton("Employees");
+		JButton bHeaderSettings = createHeaderButton("Settings");
+		JButton bHeaderDocumentation= createHeaderButton("ALED");
+		
+		// Ajout 
+		bHeaderDocumentation.addActionListener(e ->
+		{
+			try {
+				goToDoc();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+
+		
+		header.add(bHeaderPointages);
+		header.add(bHeaderEmployees);
+		header.add(bHeaderSettings);
+		header.add(bHeaderDocumentation);
 		
 		f.add(header);
 		f.add(main);
