@@ -2,21 +2,23 @@ package Controlers;
 
 import java.io.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.*;
+import Views.WindowPointings;
 
+
+/**
+ * Class to control the main application
+ */
 public class Principale {
 
 	// Attributes :
-	private static int headerHeight = 40;
+	public static int headerHeight = 40;
 	private static JFrame f;
 	
 	
-	/* Function to create a new button for the header
-	 *  - In : String containing title of the button
-	 *  - Out : JButton created with style for header 
+	/** Function to create a new button for the header
+	 * @param	title 	String containing title of the button
+	 * @return 		JButton created with style for header 
 	 */
 	private static JButton createHeaderButton(String title) {
 		
@@ -33,17 +35,15 @@ public class Principale {
 	}
 	
 	
-	/* Function to create the header
-	 *  - Out : JPanel of the header
+	/** Function to create the header
+	 *  @return			JPanel of the header
 	 */
 	private static JPanel createHeader() {
 		JPanel header = new JPanel();
 		header.setBounds(0, 0, Principale.f.getWidth(), headerHeight);
-		header.setBackground(new Color(200, 200, 200)); // Pour faire la distinction pour l'instant
+		header.setBackground(new Color(200, 200, 200));
 		header.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		/* header layout (FlowLayout) :
-		 * Left to Right -> boutons de selection pour chaque sous-fenetre 
-		 */
+		
 		JButton bHeaderPointages = createHeaderButton("Pointages");
 		JButton bHeaderEmployees = createHeaderButton("Employees");
 		JButton bHeaderSettings = createHeaderButton("Settings");
@@ -68,9 +68,8 @@ public class Principale {
 		bHeaderDocumentation.addActionListener(e ->
 		{
 			try {
-				goToDoc();
+				goToDoc("");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
@@ -83,8 +82,9 @@ public class Principale {
 		return header;
 	}
 	
-	/* Function to load a new content for the main panel
-	 *  - In : new JPanel to display 
+	/**
+	 *  Function to load a new content for the main panel
+	 *  @param	panel	new JPanel to display
 	 */
 	private static void loadMainWindowContent(JPanel panel) {
 		//System.out.println("Nb elems : " + Principale.f.getComponentCount());
@@ -93,23 +93,32 @@ public class Principale {
 		Principale.f.add(createHeader());
 	}
 	
-	// Fonction pour ouvrir la doc
-	private static void goToDoc() throws IOException {
+	
+	/**
+	 * Function to open the javadoc
+	 * @param path Path to javadoc index
+	 * @throws IOException
+	 */
+	private static void goToDoc(String path) throws IOException {
 		/*
 		 * Il faut reussir a faire ouvrir la doc grace a cette fonction
 		 */
-		Desktop.getDesktop().open(new File(""));
+		Desktop.getDesktop().open(new File(path));
 	}
 	
 	
-	
+	/**
+	 * Main program
+	 * @param args	String Array for called arguments
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException{
 		Principale.f = new JFrame();
 		Principale.f.setSize(1920,1080);
 		Principale.f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		
-		
+		/*
 		JPanel main = new JPanel();
 		main.setBounds(0, 40, Principale.f.getWidth(), Principale.f.getHeight()-headerHeight);
 		main.setLayout(new BorderLayout());
@@ -129,7 +138,11 @@ public class Principale {
 		 */
 		
 		Principale.f.add(createHeader());
-		//Principale.f.add(main);
+		
+		// Test ajout pointages :
+		WindowPointings pointings = new WindowPointings(Principale.f);
+		Principale.f.add(pointings.panel);
+		
 		Principale.f.setLayout(null);
 		Principale.f.setVisible(true);
 	}
