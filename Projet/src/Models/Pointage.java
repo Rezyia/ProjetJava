@@ -1,8 +1,14 @@
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Pointage {
+public class Pointage implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int idEmp;
 	private LocalDateTime time;
 	
