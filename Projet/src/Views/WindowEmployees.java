@@ -1,4 +1,4 @@
-package views;
+package Views;
 
 import javax.swing.*;
 
@@ -9,6 +9,6 @@ import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class FenetreEmploye{
+public class WindowEmployees{
 
 }

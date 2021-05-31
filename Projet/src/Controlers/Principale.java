@@ -1,14 +1,9 @@
 package Controlers;
 
 import java.io.*;
-<<<<<<< HEAD
-=======
 import java.net.*;
-import java.awt.*;
-import javax.swing.*;
 
 import Models.Pointage;
->>>>>>> b5de0d1ad14ee53e5676efa7bf564b43a9033ce2
 import Views.FenetrePrincipale;
 
 
@@ -19,14 +14,15 @@ public class Principale {
 
 	private static FenetrePrincipale f = new FenetrePrincipale();
 	
-<<<<<<< HEAD
+	public Socket s = null;
+	public ServerSocket ss = null;
+	public InetSocketAddress isA = null;
+	
+	
 	
 	public static void updateContent(String[] items) {
-		f.getPointings().updateList(items);;
-=======
-	Socket s = null;
-	ServerSocket ss = null;
-	InetSocketAddress isA = null;
+		f.getPointings().updateList(items);
+	}
 	
 	private void setSocket() throws IOException {
         isA = new InetSocketAddress("localhost", 8085);
@@ -54,7 +50,6 @@ public class Principale {
             System.out.println("Exception TCP : receivePointing()");
         }
 		return null;
->>>>>>> b5de0d1ad14ee53e5676efa7bf564b43a9033ce2
 	}
 	
 	/**
