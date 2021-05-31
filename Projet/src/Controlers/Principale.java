@@ -33,6 +33,7 @@ public class Principale {
 	/**
 	 * Méthode pour recevoir un objet de la classe Pointage via l'émulateur
 	 * @return Un pointeur crée et envoyé par l'émulateur
+	 * @throws IOException si les sockets sont pas/mal initialisés
 	 */
 	public Pointage receivePointing() {
 		try{

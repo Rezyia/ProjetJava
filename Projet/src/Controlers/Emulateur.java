@@ -17,6 +17,12 @@ public class Emulateur {
         s = new Socket(isA.getHostName(), isA.getPort());
     }
     
+    /**
+     * Méthode pour créer et envoyer à l'application principale des pointages
+     * @param idEmp Identifiant de l'employé qui crée le pointage
+     * @param time Date et heure à laquel le poinatge a été fait
+     * @throws IOException si les sockets sont pas/mal initialisés
+     */
     public void sendPointing(int idEmp, LocalDateTime time) {
     	try{
             System.out.println("TCPClientObjet launched...");
