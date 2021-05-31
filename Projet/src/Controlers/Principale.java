@@ -1,11 +1,7 @@
 package Controlers;
 
 import java.io.*;
-import java.awt.*;
-import javax.swing.*;
-
 import Views.FenetrePrincipale;
-import Views.WindowPointings;
 
 
 /**
@@ -15,6 +11,11 @@ public class Principale {
 
 	private static FenetrePrincipale f = new FenetrePrincipale();
 	
+	
+	public static void updateContent(String[] items) {
+		f.getPointings().updateList(items);;
+	}
+	
 	/**
 	 * Main program
 	 * @param args	String Array for called arguments
@@ -22,8 +23,14 @@ public class Principale {
 	 */
 	public static void main(String[] args) throws IOException{
 		
-		JFrame frame = f.getWindow();
-		String[] items = {"test"};
-		f.getWindow().updateList(items);
+		String[] items = {
+				"test",
+				"gaonpfzji",
+				"paoeg",
+				"oqinerh",
+				"oqigha^rog"
+				
+		};
+		updateContent(items);
 	}
 }

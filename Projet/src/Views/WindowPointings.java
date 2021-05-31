@@ -2,12 +2,7 @@ package Views;
 
 import javax.swing.*;
 
-import Controlers.Principale;
-import Models.Pointage;
-
-import java.io.*;
 import java.awt.*;
-import javax.swing.*;
 
 
 /**
@@ -46,7 +41,7 @@ public class WindowPointings {
 	public WindowPointings(JFrame frame) {
 		panel = new JPanel();
 		panel.setBounds(0, 40, frame.getWidth(), frame.getHeight()-FenetrePrincipale.headerHeight);
-
+	
 		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		panel.setBackground(new Color(120, 120, 120));
 		

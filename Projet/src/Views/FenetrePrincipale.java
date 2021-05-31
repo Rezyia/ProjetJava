@@ -12,21 +12,23 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Controlers.Principale;
-
 public class FenetrePrincipale {
 	// Attributes :
 		public static int headerHeight = 40;
-		private static JFrame f;
+		public static int DefaultHeight = 1080;
+		public static int DefaultWidth = 1920;
+		
+		private JFrame f;
+		private WindowPointings pointings = new WindowPointings();
 		
 		
 		public FenetrePrincipale() {
 			f = new JFrame();
-			f.setSize(1920,1080);
+			f.setSize(DefaultWidth,DefaultHeight);
 			f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			
 			f.add(createHeader());
-			WindowPointings pointings = new WindowPointings(f);
+			pointings = new WindowPointings(f);
 			f.add(pointings.panel);
 			
 			f.setLayout(null);
@@ -38,7 +40,7 @@ public class FenetrePrincipale {
 		 * @param	title 	String containing title of the button
 		 * @return 		JButton created with style for header 
 		 */
-		private static JButton createHeaderButton(String title) {
+		private JButton createHeaderButton(String title) {
 			
 			JButton b = new JButton(title);
 			
@@ -56,9 +58,9 @@ public class FenetrePrincipale {
 		/** Function to create the header
 		 *  @return			JPanel of the header
 		 */
-		private static JPanel createHeader() {
+		private JPanel createHeader() {
 			JPanel header = new JPanel();
-			header.setBounds(0, 0, FenetrePrincipale.f.getWidth(), headerHeight);
+			header.setBounds(0, 0, DefaultWidth, headerHeight);
 			header.setBackground(new Color(200, 200, 200));
 			header.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 			
@@ -70,17 +72,17 @@ public class FenetrePrincipale {
 			// Ajout actions des boutons : 
 			bHeaderPointages.addActionListener(e ->
 			{
-				FenetrePrincipale.loadMainWindowContent(new JPanel());
+				loadMainWindowContent(new JPanel());
 			});
 			
 			bHeaderEmployees.addActionListener(e ->
 			{
-				FenetrePrincipale.loadMainWindowContent(new JPanel());
+				loadMainWindowContent(new JPanel());
 			});
 			
 			bHeaderSettings.addActionListener(e ->
 			{
-				FenetrePrincipale.loadMainWindowContent(new JPanel());
+				loadMainWindowContent(new JPanel());
 			});
 			
 			bHeaderDocumentation.addActionListener(e ->
@@ -104,11 +106,9 @@ public class FenetrePrincipale {
 		 *  Function to load a new content for the main panel
 		 *  @param	panel	new JPanel to display
 		 */
-		private static void loadMainWindowContent(JPanel panel) {
-			//System.out.println("Nb elems : " + Principale.f.getComponentCount());
-			//Principale.f.getComponent(0).setBackground(new Color(10, 10, 10));
-			//Principale.f.removeAll();
-			FenetrePrincipale.f.add(createHeader());
+		private void loadMainWindowContent(JPanel panel) {
+			f.add(createHeader());
+			f.add(panel);
 		}
 		
 		
@@ -117,7 +117,7 @@ public class FenetrePrincipale {
 		 * @param path Path to javadoc index
 		 * @throws IOException
 		 */
-		private static void goToDoc(String path) throws IOException {
+		private void goToDoc(String path) throws IOException {
 			/*
 			 * Il faut reussir a faire ouvrir la doc grace a cette fonction
 			 */
@@ -125,6 +125,10 @@ public class FenetrePrincipale {
 		}
 		
 		public JFrame getWindow() {
-			return FenetrePrincipale.f;
+			return f;
+		}
+		
+		public WindowPointings getPointings() {
+			return pointings;
 		}
 }
