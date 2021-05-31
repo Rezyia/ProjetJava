@@ -21,7 +21,7 @@ public class WindowPointings {
 	
 	private static int defaultLabelHeight = 30;
 	
-	private DefaultListModel<String> dlmPointage;
+	private String[] pointages = {"None"};
 
 	public JPanel panel;
 	
@@ -35,9 +35,7 @@ public class WindowPointings {
 
 		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		
-		dlmPointage = new DefaultListModel<String>();
-		
-		panel.add(createList(dlmPointage));
+		panel.add(createList(pointages));
 		panel.add(createPointingDetails());
 	}
 	
@@ -47,16 +45,12 @@ public class WindowPointings {
 	 */
 	public WindowPointings(JFrame frame) {
 		panel = new JPanel();
-		panel.setBounds(0, 40, frame.getWidth(), frame.getHeight()-Principale.headerHeight);
+		panel.setBounds(0, 40, frame.getWidth(), frame.getHeight()-FenetrePrincipale.headerHeight);
 
 		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		panel.setBackground(new Color(120, 120, 120));
 		
-		dlmPointage = new DefaultListModel<String>();
-		dlmPointage.addElement("un");
-		dlmPointage.addElement("deux");
-		
-		panel.add(createList(dlmPointage));
+		panel.add(createList(pointages));
 		panel.add(createPointingDetails());
 		
 		System.out.println(panel.getWidth() + " - " + panel.getHeight());
@@ -68,8 +62,8 @@ public class WindowPointings {
 	 * Creates the list view for the Pointings.
 	 * @return	JList<Pointage> of the list.
 	 */
-	public JList<String> createList(DefaultListModel<String> dlm) {
-		JList<String> list = new JList<String>();
+	public JList<String> createList(String[] items) {
+		JList<String> list = new JList<String>(items);
 		
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setLayoutOrientation(JList.VERTICAL);
@@ -86,9 +80,9 @@ public class WindowPointings {
 	 * Updates the list with the DefaultListModel used.
 	 * @param dlm {@link DefaultListModel} with the list elements.
 	 */
-	public void updateList(DefaultListModel<String> dlm) {
+	public void updateList(String[] items) {
 		panel.remove(0);
-		panel.add(createList(dlm));
+		panel.add(createList(items));
 	}
 	
 	/**
