@@ -14,25 +14,12 @@ public class Pointage implements Serializable{
 	
 	public Pointage(int i) {
 		idEmp = i;
-		time = roundToNearestQuarter(LocalDateTime.now());
+		time = LocalDateTime.now();
 	}
 	
 	public Pointage(int i, LocalDateTime time) {
 		idEmp = i;
 		this.time = time;
-	}
-	
-	public LocalDateTime roundToNearestQuarter(LocalDateTime t) {
-		int diff = t.getMinute()%15;
-		LocalDateTime tqh = null;
-		if(diff < 8) {
-			tqh = t.minusMinutes(diff);
-		}else if(diff >= 8) {
-			tqh = t.plusMinutes(15-diff);
-		}
-		tqh = tqh.minusSeconds(tqh.getSecond());
-		tqh = tqh.minusNanos(tqh.getNano());
-		return tqh;
 	}
 	
 	public LocalDateTime getTime() {
