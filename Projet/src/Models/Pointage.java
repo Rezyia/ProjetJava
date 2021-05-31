@@ -17,6 +17,11 @@ public class Pointage implements Serializable{
 		time = roundToNearestQuarter(LocalDateTime.now());
 	}
 	
+	public Pointage(int i, LocalDateTime time) {
+		idEmp = i;
+		this.time = time;
+	}
+	
 	public LocalDateTime roundToNearestQuarter(LocalDateTime t) {
 		int diff = t.getMinute()%15;
 		LocalDateTime tqh = null;
