@@ -41,6 +41,10 @@ public class Employe {
 		planning.put("friday", tabtime);
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
 	public String toString() {
 		return "Employé "+id+" : "+firstname+" "+name;
 	}

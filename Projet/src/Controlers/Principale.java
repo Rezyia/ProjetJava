@@ -2,8 +2,9 @@ package Controlers;
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
 
-import Models.Pointage;
+import Models.*;
 import Views.FenetrePrincipale;
 
 
@@ -14,11 +15,11 @@ public class Principale {
 
 	private static FenetrePrincipale f = new FenetrePrincipale();
 	
-	public Socket s = null;
-	public ServerSocket ss = null;
-	public InetSocketAddress isA = null;
+	private Socket s = null;
+	private ServerSocket ss = null;
+	private InetSocketAddress isA = null;
 	
-	
+	private ArrayList<Employe> employees = new ArrayList<Employe>();
 	
 	public static void updateContent(String[] items) {
 		f.getPointings().updateList(items);
@@ -29,6 +30,27 @@ public class Principale {
         ss = new ServerSocket(isA.getPort());
         s = ss.accept();
     }
+	
+	//-------------------------------------------------------------Méthode pour employees
+	
+	public void addEmploye(Employe e) {
+		employees.add(e);
+	}
+	
+	public void rmEmploye(Employe e) {
+		employees.remove(e);
+	}
+	
+	public boolean isEmployeExist(int idEmp) {
+		boolean find = false;
+		Iterator<Employe> i = employees.iterator();
+		while(i.hasNext()) {
+			if(i.next().getId() == idEmp) {
+				find = true;
+			}
+		}
+		return find;
+	}
 	
 	/**
 	 * Méthode pour recevoir un objet de la classe Pointage via l'émulateur
