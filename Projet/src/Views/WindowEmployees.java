@@ -17,7 +17,7 @@ public class WindowEmployees{
 	private static int defaultLabelHeight = 30;
 	
 	private DefaultListModel<String> dlmEmployees;
-  
+  /*
   public WindowEmployees() {
 		panel = new JPanel();
 		panel.setBounds(0, 40, defaultWidth, defaultHeight);
@@ -42,5 +42,5 @@ public class WindowEmployees{
 		
 		System.out.println(panel.getWidth() + " - " + panel.getHeight());
 
-	}
+	}*/
 }
