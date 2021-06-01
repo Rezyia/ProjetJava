@@ -3,7 +3,7 @@ package Models;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Pointage implements Serializable{
+public class Pointing implements Serializable{
 	/**
 	 * 
 	 */
@@ -12,12 +12,12 @@ public class Pointage implements Serializable{
 	private int idEmp;
 	private LocalDateTime time;
 	
-	public Pointage(int i) {
+	public Pointing(int i) {
 		idEmp = i;
 		time = LocalDateTime.now();
 	}
 	
-	public Pointage(int i, LocalDateTime time) {
+	public Pointing(int i, LocalDateTime time) {
 		idEmp = i;
 		this.time = time;
 	}
@@ -35,6 +35,6 @@ public class Pointage implements Serializable{
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(new Pointage(0));
+		System.out.println(new Pointing(0));
 	}
 }

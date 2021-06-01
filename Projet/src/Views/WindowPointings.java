@@ -41,7 +41,7 @@ public class WindowPointings {
 	 */
 	public WindowPointings(JFrame frame) {
 		panel = new JPanel();
-		panel.setBounds(0, 40, frame.getWidth(), frame.getHeight()-FenetrePrincipale.headerHeight);
+		panel.setBounds(0, 40, frame.getWidth(), frame.getHeight()-WindowMain.headerHeight);
 	
 		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		panel.setBackground(new Color(120, 120, 120));

@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class FenetrePrincipale {
+public class WindowMain {
 	// Attributes :
 		public static int headerHeight = 40;
 		public static int DefaultHeight = 1080;
@@ -22,7 +22,7 @@ public class FenetrePrincipale {
 		private WindowPointings pointings = new WindowPointings();
 		
 		
-		public FenetrePrincipale() {
+		public WindowMain() {
 			f = new JFrame();
 			f.setSize(DefaultWidth,DefaultHeight);
 			f.setExtendedState(JFrame.MAXIMIZED_BOTH);

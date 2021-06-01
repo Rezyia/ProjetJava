@@ -2,13 +2,13 @@ package Models;
 import java.time.*;
 import java.util.*;
 
-public class Employe {
+public class Employee {
 	//Le nombre d'employé dans l'entreprise
 	private static int nbEmploye = 0;
 	private int id;					//L'ID de l'employé								
 	private String name;			//Le nom de l'employé
 	private String firstname;		//Le prénom de l'employé
-	private Departement departement;//Le département de l'employé
+	private Department departement;//Le département de l'employé
 	
 	private boolean isWorking;		//Booléen qui indique si l'employé est en train de travailler ou pas
 	
@@ -23,7 +23,7 @@ public class Employe {
 	//Peut être négatif (alors cela représente du temps ou il n'a pas travaillé)
 	//Type peut être inexact, à changer en cas de besoin.
 	
-	public Employe(Departement dpt, String str1, String str2) {
+	public Employee(Department dpt, String str1, String str2) {
 		id = nbEmploye;
 		nbEmploye++;
 		departement = dpt;
@@ -74,9 +74,9 @@ public class Employe {
 	}
 	
 	public static void main(String[] args) {
-		Departement dpt = new Departement("Dpt");
+		Department dpt = new Department("Dpt");
 		for(int i = 0 ; i < 5 ; i++) {
-			System.out.println(new Employe(dpt, "Nom", "Sans"));
+			System.out.println(new Employee(dpt, "Nom", "Sans"));
 		}
 	}
 }

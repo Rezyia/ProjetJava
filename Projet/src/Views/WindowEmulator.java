@@ -9,7 +9,7 @@ import javax.swing.*;
 import Controlers.*;
 
 
-public class FenetreEmulateur {
+public class WindowEmulator {
 	private static JFrame f;
 	public static JLabel labelId;
 	public static JLabel labelTime;

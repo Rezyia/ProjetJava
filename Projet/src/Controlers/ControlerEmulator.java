@@ -5,9 +5,9 @@ import java.io.ObjectOutputStream;
 import java.net.*;
 import java.time.LocalDateTime;
 
-import Models.Pointage;
+import Models.Pointing;
 
-public class Emulateur {
+public class ControlerEmulator {
 
 	Socket s = null;
     InetSocketAddress isA = null;
@@ -30,7 +30,7 @@ public class Emulateur {
             System.out.println("TCPClientObjet launched...");
             setSocket();
             System.out.println("Hello, the client is connected");
-            Pointage pt = new Pointage(idEmp, Toolbox.roundToNearestQuarter(time));
+            Pointing pt = new Pointing(idEmp, Toolbox.roundToNearestQuarter(time));
             ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
             out.writeObject(pt);
             out.flush();

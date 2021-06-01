@@ -1,10 +1,10 @@
 package Models;
 
-public class Departement {
+public class Department {
 	
 	private String nameDep;
 	
-	Departement(String Sarg){
+	Department(String Sarg){
 		nameDep = Sarg;
 	}
 	

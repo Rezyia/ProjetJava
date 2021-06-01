@@ -2,8 +2,8 @@ package Views;
 
 import javax.swing.*;
 
-import Controlers.Principale;
-import Models.Pointage;
+import Controlers.ControlerMain;
+import Models.Pointing;
 
 import java.io.*;
 import java.awt.*;

@@ -5,21 +5,21 @@ import java.net.*;
 import java.util.*;
 
 import Models.*;
-import Views.FenetrePrincipale;
+import Views.WindowMain;
 
 
 /**
  * Class to control the main application
  */
-public class Principale {
+public class ControlerMain {
 
-	private static FenetrePrincipale f = new FenetrePrincipale();
+	private static WindowMain f = new WindowMain();
 	
 	private Socket s = null;
 	private ServerSocket ss = null;
 	private InetSocketAddress isA = null;
 	
-	private ArrayList<Employe> employees = new ArrayList<Employe>();
+	private ArrayList<Employee> employees = new ArrayList<Employee>();
 	
 	public static void updateContent(String[] items) {
 		f.getPointings().updateList(items);
@@ -33,17 +33,17 @@ public class Principale {
 	
 	//-------------------------------------------------------------Méthode pour employees
 	
-	public void addEmploye(Employe e) {
+	public void addEmploye(Employee e) {
 		employees.add(e);
 	}
 	
-	public void rmEmploye(Employe e) {
+	public void rmEmploye(Employee e) {
 		employees.remove(e);
 	}
 	
 	public boolean isEmployeExist(int idEmp) {
 		boolean find = false;
-		Iterator<Employe> i = employees.iterator();
+		Iterator<Employee> i = employees.iterator();
 		while(i.hasNext()) {
 			if(i.next().getId() == idEmp) {
 				find = true;
@@ -57,13 +57,13 @@ public class Principale {
 	 * @return Un pointeur crée et envoyé par l'émulateur
 	 * @throws IOException si les sockets sont pas/mal initialisés
 	 */
-	public Pointage receivePointing() {
+	public Pointing receivePointing() {
 		try{
             System.out.println("TCPServerHello launched...");
             setSocket();
             System.out.println("Hello, the server is on");
             ObjectInputStream in = new ObjectInputStream(s.getInputStream());
-            Pointage pt = (Pointage) in.readObject();
+            Pointing pt = (Pointing) in.readObject();
             //System.out.println(pt);
             in.close();
             s.close();
