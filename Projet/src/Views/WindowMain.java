@@ -19,7 +19,7 @@ public class WindowMain {
 		public static int DefaultWidth = 1920;
 		
 		private JFrame f;
-		private WindowPointings pointings = new WindowPointings();
+		private WindowPointings pointings;
 		
 		
 		public WindowMain() {

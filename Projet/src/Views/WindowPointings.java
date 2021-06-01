@@ -41,7 +41,9 @@ public class WindowPointings {
 	 */
 	public WindowPointings(JFrame frame) {
 		panel = new JPanel();
-		panel.setBounds(0, 40, frame.getWidth(), frame.getHeight()-WindowMain.headerHeight);
+		
+		panel.setBounds(0, WindowMain.headerHeight, frame.getWidth(), frame.getHeight()-WindowMain.headerHeight);
+		panel.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()-WindowMain.headerHeight*2));
 	
 		panel.setLayout(new BorderLayout());
 		panel.setBackground(new Color(120, 120, 120));
@@ -56,21 +58,21 @@ public class WindowPointings {
 	 * Creates the list view for the Pointings.
 	 * @return	JList<Pointage> of the list.
 	 */
-	public JList<String> createList(String[] items) {
+	public JScrollPane createList(String[] items) {
 		JList<String> list = new JList<String>(items);
 		
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setLayoutOrientation(JList.VERTICAL);
-		list.setVisibleRowCount(-1);
-		list.setPreferredSize(new Dimension(panel.getWidth()/2, panel.getHeight()));
 		
+		list.setPreferredSize(new Dimension(panel.getWidth()/2, panel.getHeight()));
+		list.setLayoutOrientation(JList.VERTICAL);
+		
+		list.setVisibleRowCount(-1);
 		
 		JScrollPane scroll = new JScrollPane(list);
+		scroll.setViewportView(list);
 		
-		//JScrollPane scroller = new JScrollPane(list);
-		//scroller.setPreferredSize(new Dimension());
 		
-		return list;
+		return scroll;
 	}
 	
 	
