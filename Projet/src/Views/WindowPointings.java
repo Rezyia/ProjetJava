@@ -31,8 +31,8 @@ public class WindowPointings {
 		//panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		panel.setLayout(new BorderLayout());
 		
-		panel.add(createList(pointages), BorderLayout.LINE_START);
-		panel.add(createPointingDetails(), BorderLayout.LINE_END);
+		panel.add(createList(pointages), BorderLayout.WEST);
+		panel.add(createPointingDetails(), BorderLayout.EAST);
 	}
 	
 	/**
@@ -43,14 +43,12 @@ public class WindowPointings {
 		panel = new JPanel();
 		panel.setBounds(0, 40, frame.getWidth(), frame.getHeight()-WindowMain.headerHeight);
 	
-		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		panel.setLayout(new BorderLayout());
 		panel.setBackground(new Color(120, 120, 120));
 		
-		panel.add(createList(pointages));
-		panel.add(createPointingDetails());
-		
-		System.out.println(panel.getWidth() + " - " + panel.getHeight());
-
+		//panel.add(createList(pointages));
+		panel.add(createList(pointages), BorderLayout.WEST);
+		panel.add(createPointingDetails(), BorderLayout.EAST);
 	}
 
 	
@@ -64,6 +62,10 @@ public class WindowPointings {
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
+		list.setPreferredSize(new Dimension(panel.getWidth()/2, panel.getHeight()));
+		
+		
+		JScrollPane scroll = new JScrollPane(list);
 		
 		//JScrollPane scroller = new JScrollPane(list);
 		//scroller.setPreferredSize(new Dimension());
@@ -81,39 +83,30 @@ public class WindowPointings {
 		panel.add(createList(items));
 	}
 	
+	
+	
 	/**
 	 * Creates the details view for the selected Pointing.
 	 * @return JPanel of the details
 	 */
 	public JPanel createPointingDetails() {
 		JPanel detail = new JPanel();
-		detail.setBounds(panel.getWidth()/2, 0, panel.getWidth()/2, panel.getHeight());
-		GroupLayout layout = new GroupLayout(detail);
-		detail.setLayout(layout);
+		detail.setBackground(new Color(240,240,240));
+		detail.setBounds(10, 10, panel.getWidth()-20, panel.getHeight()-20);
+		detail.setPreferredSize(new Dimension(panel.getWidth()/2, panel.getHeight()));
 
-		detail.setBackground(new Color(0,120,0));
-		
+		detail.setLayout(new GridLayout(0,2));
+
+		// "name" + SelectedEmployee.name, ...
 		JLabel l1 = createLabel("First name : ", 10, 50 + (WindowPointings.defaultLabelHeight)*0);
 		JLabel l2 = createLabel("Last name : ", 10, 50 + (WindowPointings.defaultLabelHeight)*1);
 		JLabel l3 = createLabel("ID : ", 10, 50 + (WindowPointings.defaultLabelHeight)*2);
 		
-		layout.setVerticalGroup(
-			layout.createSequentialGroup()
-				.addComponent(l1)
-				.addComponent(l2)
-				.addComponent(l3)
-		);
-		layout.setHorizontalGroup(
-				layout.createSequentialGroup()
-					.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-							.addComponent(l1)
-							.addComponent(l2)
-							.addComponent(l3)
-		));
 		
 		detail.add(l1);
 		detail.add(l2);
 		detail.add(l3);
+		
 		
 		return detail;
 	}
@@ -129,7 +122,8 @@ public class WindowPointings {
 	public JLabel createLabel(String text, int x, int y) {
 		JLabel label = new JLabel(text);
 		
-		label.setBounds(x, y, panel.getWidth()/2-2*x, WindowPointings.defaultLabelHeight);
+		label.setBounds(x, y, panel.getWidth()/2-2*x, WindowPointings.defaultLabelHeight-2*y);
+		label.setPreferredSize(new Dimension(panel.getWidth()/2-2*x, WindowPointings.defaultLabelHeight-2*y));
 		
 		return label;
 	}
