@@ -4,9 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import Controlers.Toolbox;
 
 import javax.swing.*;
-import Controlers.*;
+
 
 
 public class WindowEmulator {
@@ -28,19 +29,20 @@ public class WindowEmulator {
 		int MinPoint = Today.getMinute();
 		labelTime.setText(DayPoint+"/"+MonthPoint+" "+HourPoint+"h"+MinPoint+"m");
 		
-		/*
-		 * LocalDateTime ldtRound = roundToNearestQuarter(Today);
+
+		LocalDateTime ldtRound; 
+		ldtRound = Toolbox.roundToNearestQuarter(Today);
 		int MonthPointRound = ldtRound.getMonthValue();
 		int DayPointRound = ldtRound.getDayOfMonth();
 		int HourPointRound = ldtRound.getHour();
 		int MinPointRound = ldtRound.getMinute();
-		labelTimeRound.setText(DayPointRound+"/"+MonthPointRound+" "+HourPointRound+"h"+MinPointRound+"m");
+		labelTimeRound.setText(DayPointRound+"/"+MonthPointRound+" "+HourPointRound+"h"+MinPointRound+"m arrondi au quart d'heure près");
 
-		 * */
+		
 		
 	}
 	
-	//Fonction type pour créer un champs pour taper l'id 
+	//Fonction type pour crÃ©er un champs pour taper l'id 
 	public static JTextField CreateTextField() {
 		final JTextField tf=new JTextField();  
 	    tf.setBounds(50,50, 150,20);  
@@ -48,7 +50,7 @@ public class WindowEmulator {
 	    return tf;
 	}
 	
-	//création de bouton
+	//crÃ©ation de bouton
 	public static JButton CreateButton(){
 		
 	    JButton b=new JButton("Click Here");
@@ -63,7 +65,7 @@ public class WindowEmulator {
 	    return b;
 	}
 	
-	//Fonction test pour essayer de récuper l'id
+	//Fonction test pour essayer de rÃ©cuper l'id
 	public int catchId( JTextField tf) {
 		
 		String Sid = tf.getText();
@@ -80,14 +82,14 @@ public class WindowEmulator {
 		f.setSize(1920,1080);
 		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
-		//texte s'affichant quand on récupère l'id
+		//texte s'affichant quand on rÃ©cupÃ¨re l'id
 		labelId = new JLabel(); 
 		labelId.setBounds(50,100, 150,20);  
 		
 		labelTime = new JLabel(); 
 		labelTime.setBounds(50,150, 150,20); 
 		labelTimeRound = new JLabel(); 
-		labelTimeRound.setBounds(50,200, 150,20);
+		labelTimeRound.setBounds(50,200, 300,20);
 
 		ShowTime(LocalDateTime.now());
 		
@@ -98,7 +100,7 @@ public class WindowEmulator {
 		
 		bpoint = CreateButton();
 		 
-	    f.add(bpoint);f.add(tfId); f.add(labelId) ;f.add(labelTime);
+	    f.add(bpoint);f.add(tfId); f.add(labelId) ;f.add(labelTime);f.add(labelTimeRound);
 		
 		f.setLayout(null);//using no layout managers  
 		f.setVisible(true);//making the frame visible  
