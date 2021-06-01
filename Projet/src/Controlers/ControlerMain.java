@@ -20,6 +20,8 @@ public class ControlerMain {
 	private InetSocketAddress isA = null;
 	
 	private ArrayList<Employee> employees = new ArrayList<Employee>();
+	private ArrayList<Department> departments = new ArrayList<Department>();
+	private ArrayList<Pointing> pointings = new ArrayList<Pointing>();
 	
 	public static void updateContent(String[] items) {
 		f.getPointings().updateList(items);
@@ -44,12 +46,43 @@ public class ControlerMain {
 	public boolean isEmployeExist(int idEmp) {
 		boolean find = false;
 		Iterator<Employee> i = employees.iterator();
-		while(i.hasNext()) {
+		while(i.hasNext() && !find) {
 			if(i.next().getId() == idEmp) {
 				find = true;
 			}
 		}
 		return find;
+	}
+	
+	//-------------------------------------------------------------Méthode pour departments
+	
+	public void addDepartment(Department d) {
+		departments.add(d);
+	}
+	
+	public void rmDepartment(Department d) {
+		departments.remove(d);
+	}
+	
+	public boolean isDepartmentExist(String str) {
+		boolean find = false;
+		Iterator<Department> i = departments.iterator();
+		while(i.hasNext() && !find) {
+			if(i.next().getnameDep().equals(str)) {
+				find = true;
+			}
+		}
+		return find;
+	}
+	
+	//-------------------------------------------------------------Méthode pour pointings
+	
+	public void addPointing(Pointing p) {
+		pointings.add(p);
+	}
+	
+	public void rmPointing(Pointing p) {
+		pointings.remove(p);
 	}
 	
 	/**
@@ -64,6 +97,7 @@ public class ControlerMain {
             System.out.println("Hello, the server is on");
             ObjectInputStream in = new ObjectInputStream(s.getInputStream());
             Pointing pt = (Pointing) in.readObject();
+            addPointing(pt);
             //System.out.println(pt);
             in.close();
             s.close();
