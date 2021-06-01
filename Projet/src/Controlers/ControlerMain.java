@@ -11,13 +11,13 @@ import Views.WindowMain;
 /**
  * Class to control the main application
  */
-public class ControlerMain {
+public class ControlerMain extends ControlerNetwork{
 
 	private static WindowMain f = new WindowMain();
 	
-	private Socket s = null;
+	
 	private ServerSocket ss = null;
-	private InetSocketAddress isA = null;
+	
 	
 	private ArrayList<Employee> employees = new ArrayList<Employee>();
 	private ArrayList<Department> departments = new ArrayList<Department>();
@@ -28,7 +28,7 @@ public class ControlerMain {
 	}
 	
 	private void setSocket() throws IOException {
-        isA = new InetSocketAddress("localhost", 8085);
+        isA = new InetSocketAddress(address, port);
         ss = new ServerSocket(isA.getPort());
         s = ss.accept();
     }
@@ -97,8 +97,6 @@ public class ControlerMain {
             System.out.println("Hello, the server is on");
             ObjectInputStream in = new ObjectInputStream(s.getInputStream());
             Pointing pt = (Pointing) in.readObject();
-            addPointing(pt);
-            //System.out.println(pt);
             in.close();
             s.close();
             ss.close();
