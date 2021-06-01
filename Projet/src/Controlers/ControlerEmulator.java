@@ -7,15 +7,10 @@ import java.time.LocalDateTime;
 
 import Models.Pointing;
 
-public class ControlerEmulator {
-
-	Socket s = null;
-    InetSocketAddress isA = null;
-    
-    
+public class ControlerEmulator extends ControlerNetwork{
     
     private void setSocket() throws IOException{
-    	isA = new InetSocketAddress("localhost", 8085);
+    	isA = new InetSocketAddress(address, port);
         s = new Socket(isA.getHostName(), isA.getPort());
     }
     
