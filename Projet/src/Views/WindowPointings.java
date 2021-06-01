@@ -28,10 +28,11 @@ public class WindowPointings {
 		panel = new JPanel();
 		panel.setBounds(0, 40, defaultWidth, defaultHeight);
 
-		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		//panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		panel.setLayout(new BorderLayout());
 		
-		panel.add(createList(pointages));
-		panel.add(createPointingDetails());
+		panel.add(createList(pointages), BorderLayout.LINE_START);
+		panel.add(createPointingDetails(), BorderLayout.LINE_END);
 	}
 	
 	/**
