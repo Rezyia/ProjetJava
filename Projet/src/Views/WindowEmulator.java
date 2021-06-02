@@ -10,6 +10,7 @@ import javax.swing.*;
 
 
 
+
 public class WindowEmulator {
 	private static JFrame f;
 	public static JLabel labelId;
@@ -57,9 +58,16 @@ public class WindowEmulator {
 	    b.setBounds(200,50,95,20);
 	    b.addActionListener(new ActionListener(){  
 		    public void actionPerformed(ActionEvent e){  
-		    		String Sid = tfId.getText();
-		    		labelId.setText(Sid);
-		    		ShowTime(LocalDateTime.now());
+		    		LocalDateTime LDTnow = LocalDateTime.now();
+		    		try {
+			    		Integer id = Integer.parseInt(tfId.getText());
+			    		labelId.setText("employé avec l'ID : "+id+" a été pointé");
+		    		}
+		    		catch(NumberFormatException e1) {
+		    			labelId.setText("veuillez rentrer un ID valide");
+		    		}
+		    		
+		    		ShowTime(LDTnow);
 		        }  
 		    }); 
 	    return b;
@@ -84,7 +92,7 @@ public class WindowEmulator {
 		
 		//texte s'affichant quand on rÃ©cupÃ¨re l'id
 		labelId = new JLabel(); 
-		labelId.setBounds(50,100, 150,20);  
+		labelId.setBounds(50,100, 300,20);  
 		
 		labelTime = new JLabel(); 
 		labelTime.setBounds(50,150, 150,20); 
