@@ -58,12 +58,12 @@ public class WindowNetwork {
 	    return b;
 	}
 	
-	public static void main(String[] args) {
+	public void setWindow(ControlerNetwork cn) {
+		this.cn = cn;
+		
 		f = new JFrame("Option réseau");
 		f.setSize(1920,1080);
 		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
-		cn = new ControlerNetwork();
 		
 		lAddress = new JLabel("Adresse");
 		lAddress.setBounds(50,50, 150,20);
@@ -86,5 +86,10 @@ public class WindowNetwork {
 		
 		f.setLayout(null);//using no layout managers  
 		f.setVisible(true);//making the frame visible
+	}
+	
+	public static void main(String[] args) {
+		WindowNetwork wn = new WindowNetwork();
+		wn.setWindow(new ControlerNetwork());
 	}
 }

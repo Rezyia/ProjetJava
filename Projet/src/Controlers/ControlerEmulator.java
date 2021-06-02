@@ -4,10 +4,22 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import Models.Pointing;
 
 public class ControlerEmulator extends ControlerNetwork{
+	
+	private ArrayList<Pointing> pointings;
+	
+	public void addPointing(Pointing p) {
+		pointings.add(p);
+	}
+	
+	public void rmPointing(Pointing p) {
+		pointings.remove(p);
+	}
     
     private void setSocket() throws IOException{
     	isA = new InetSocketAddress(address, port);
@@ -26,9 +38,15 @@ public class ControlerEmulator extends ControlerNetwork{
             setSocket();
             System.out.println("Hello, the client is connected");
             Pointing pt = new Pointing(idEmp, Toolbox.roundToNearestQuarter(time));
+            addPointing(pt);
             ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
-            out.writeObject(pt);
-            out.flush();
+            Iterator<Pointing> i = pointings.iterator();
+            while(s.isConnected() && i.hasNext()) {
+            	Pointing p = i.next();
+            	out.writeObject(p);
+            	out.flush();
+            	rmPointing(p);
+            }
             out.close();
             s.close();
         }catch(IOException e){
