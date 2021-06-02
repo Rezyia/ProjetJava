@@ -60,7 +60,9 @@ public class WindowEmulator {
 		    public void actionPerformed(ActionEvent e){  
 		    		LocalDateTime LDTnow = LocalDateTime.now();
 		    		try {
-			    		Integer id = Integer.parseInt(tfId.getText());
+					int id = Integer.parseInt(tfId.getText());
+			    		//CtrlEmu = new ControlerEmulator();
+			    		//CtrlEmu.sendPointing(id, LDTnow);
 			    		labelId.setText("employé avec l'ID : "+id+" a été pointé");
 		    		}
 		    		catch(NumberFormatException e1) {
