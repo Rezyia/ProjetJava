@@ -10,6 +10,7 @@ import javax.swing.*;
 
 
 
+
 public class WindowEmulator {
 	private static JFrame f;
 	public static JLabel labelId;
@@ -36,7 +37,7 @@ public class WindowEmulator {
 		int DayPointRound = ldtRound.getDayOfMonth();
 		int HourPointRound = ldtRound.getHour();
 		int MinPointRound = ldtRound.getMinute();
-		labelTimeRound.setText(DayPointRound+"/"+MonthPointRound+" "+HourPointRound+"h"+MinPointRound+"m arrondi au quart d'heure près");
+		labelTimeRound.setText(DayPointRound+"/"+MonthPointRound+" "+HourPointRound+"h"+MinPointRound+"m arrondi au quart d'heure pr\u00e8s");
 
 		
 		
@@ -57,9 +58,18 @@ public class WindowEmulator {
 	    b.setBounds(200,50,95,20);
 	    b.addActionListener(new ActionListener(){  
 		    public void actionPerformed(ActionEvent e){  
-		    		String Sid = tfId.getText();
-		    		labelId.setText(Sid);
-		    		ShowTime(LocalDateTime.now());
+		    		LocalDateTime LDTnow = LocalDateTime.now();
+		    		try {
+					int id = Integer.parseInt(tfId.getText());
+			    		//CtrlEmu = new ControlerEmulator();
+			    		//CtrlEmu.sendPointing(id, LDTnow);
+			    		labelId.setText("employ\u00e9 avec l'ID : "+id+" a \u00e9t\u00e9 point\u00e9");
+		    		}
+		    		catch(NumberFormatException e1) {
+		    			labelId.setText("veuillez rentrer un ID valide");
+		    		}
+		    		
+		    		ShowTime(LDTnow);
 		        }  
 		    }); 
 	    return b;
@@ -84,7 +94,7 @@ public class WindowEmulator {
 		
 		//texte s'affichant quand on rÃ©cupÃ¨re l'id
 		labelId = new JLabel(); 
-		labelId.setBounds(50,100, 150,20);  
+		labelId.setBounds(50,100, 300,20);  
 		
 		labelTime = new JLabel(); 
 		labelTime.setBounds(50,150, 150,20); 
