@@ -12,6 +12,7 @@ public class WindowNetwork {
 	public static JTextField tfAddress;
 	public static JLabel lPort;
 	public static JLabel lAddress;
+	public static JLabel lUpdate;
 	public static JButton bUpdate;
 	public static JButton bCancel;
 	
@@ -41,6 +42,7 @@ public class WindowNetwork {
 		    public void actionPerformed(ActionEvent e){  
 		    		tfAddress.setText(cn.getAddress());
 		    		tfPort.setText(cn.getPort()+"");
+		    		lUpdate.setText("Valeurs r\u00e9initialis\u00e9es");
 		        }  
 		    }); 
 	    return b;
@@ -53,6 +55,7 @@ public class WindowNetwork {
 		    public void actionPerformed(ActionEvent e){  
 		    		cn.setAddress(tfAddress.getText());
 		    		cn.setPort(Integer.parseInt(tfPort.getText()));
+		    		lUpdate.setText("Mise à jour r\u00e9ussie");
 		        }  
 		    }); 
 	    return b;
@@ -71,6 +74,9 @@ public class WindowNetwork {
 		lPort = new JLabel("Port");
 		lPort.setBounds(50,100, 150,20);
 		
+		lUpdate = new JLabel("");
+		lUpdate.setBounds(50,125,300,20);
+		
 		tfAddress = createTextFieldAddress();
 		tfPort = createTextFieldPort();
 		
@@ -81,6 +87,7 @@ public class WindowNetwork {
 		f.add(lPort);
 		f.add(tfAddress);
 		f.add(tfPort);
+		f.add(lUpdate);
 		f.add(bUpdate);
 		f.add(bCancel);
 		
