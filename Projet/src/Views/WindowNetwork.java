@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import Controlers.ControlerNetwork;
 
-public class WindowOption {
+public class WindowNetwork {
 	private static JFrame f;
 	public static JTextField tfPort;
 	public static JTextField tfAddress;
@@ -14,22 +14,25 @@ public class WindowOption {
 	public static JLabel lAddress;
 	public static JButton bUpdate;
 	public static JButton bCancel;
+	
 	private static ControlerNetwork cn;
 	
-	//Fonction type pour créer un champs pour taper l'id 
-	public static JTextField createTextField() {
+	//Fonction type pour créer un champs pour taper l'adresse
+	public static JTextField createTextFieldAddress() {
 		final JTextField tf=new JTextField();  
-	    tf.setBounds(50,50, 150,20);  
+	    tf.setText(cn.getAddress());
+	    tf.setBounds(100,50, 150,20);
 	    return tf;
 	}
-		
-	//Fonction test pour essayer de récuper l'id
-	public int catchPort( JTextField tf) {
-		String sPort = tf.getText();
-		int port=Integer.parseInt(sPort);  
-		return port;
-	}
 	
+	//Fonction type pour créer un champs pour taper le port
+		public static JTextField createTextFieldPort() {
+			final JTextField tf=new JTextField();  
+		    tf.setText(cn.getPort()+"");
+		    tf.setBounds(100,100, 150,20);
+		    return tf;
+		}
+
 	//création de boutons
 	public static JButton createCancelButton(){
 	    JButton b=new JButton("Cancel");
@@ -68,13 +71,8 @@ public class WindowOption {
 		lPort = new JLabel("Port");
 		lPort.setBounds(50,100, 150,20);
 		
-		tfAddress = createTextField();
-		tfAddress.setText(cn.getAddress());
-		tfAddress.setBounds(100,50, 150,20);
-		
-		tfPort = createTextField();
-		tfPort.setText(cn.getPort()+"");
-		tfPort.setBounds(100,100, 150,20);
+		tfAddress = createTextFieldAddress();
+		tfPort = createTextFieldPort();
 		
 		bCancel = createCancelButton();
 		bUpdate = createUpdateButton();
