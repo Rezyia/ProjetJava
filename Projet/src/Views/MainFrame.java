@@ -44,14 +44,16 @@ public class MainFrame extends javax.swing.JFrame {
         setExtendedState(1);
         setPreferredSize(new java.awt.Dimension(720, 480));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(238, 238, 238));
+        jPanel1.setForeground(new java.awt.Color(238, 238, 238));
         jPanel1.setPreferredSize(new java.awt.Dimension(572, 40));
         jPanel1.setLayout(new java.awt.GridLayout());
 
+        bPointings.setBackground(new java.awt.Color(238, 238, 238));
         bPointings.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bPointings.setText("Pointings");
         bPointings.setBorderPainted(false);
+        bPointings.setFocusPainted(false);
         bPointings.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bPointings.setMargin(new java.awt.Insets(0, 0, 0, 0));
         bPointings.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -70,6 +72,7 @@ public class MainFrame extends javax.swing.JFrame {
         bEmployees.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bEmployees.setForeground(new java.awt.Color(255, 255, 255));
         bEmployees.setBorderPainted(false);
+        bEmployees.setFocusPainted(false);
         bEmployees.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bEmployees.setLabel("Employees");
         bEmployees.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -88,6 +91,7 @@ public class MainFrame extends javax.swing.JFrame {
         bSettings.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bSettings.setForeground(new java.awt.Color(255, 255, 255));
         bSettings.setBorderPainted(false);
+        bSettings.setFocusPainted(false);
         bSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bSettings.setLabel("Settings");
         bSettings.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -106,6 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
         bHelp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bHelp.setForeground(new java.awt.Color(255, 255, 255));
         bHelp.setBorderPainted(false);
+        bHelp.setFocusPainted(false);
         bHelp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bHelp.setLabel("Documentation");
         bHelp.addActionListener(new java.awt.event.ActionListener() {
@@ -165,6 +170,7 @@ public class MainFrame extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+    	/*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -181,7 +187,7 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        //</editor-fold>*/
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

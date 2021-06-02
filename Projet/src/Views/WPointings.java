@@ -5,6 +5,8 @@
  */
 package Views;
 
+import java.awt.Panel;
+
 /**
  *
  * @author Rezyia
