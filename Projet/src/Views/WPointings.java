@@ -8,6 +8,9 @@ package Views;
 import java.awt.Panel;
 
 import javax.swing.JFrame;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -106,8 +109,17 @@ public class WPointings extends javax.swing.JPanel {
             public String getElementAt(int i) { return items[i]; }
         });
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        
+        ListSelectionModel selectionModel = jList1.getSelectionModel();
+        selectionModel.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+		        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+		        int index = lsm.getSelectedIndices()[0];
+		        jLabel4.setText("Pointing " + jList1.getSelectedValue() + " - <Date>");
+			}
+		});
+        
         jScrollPane2.setViewportView(jList1);
-
         jPanel1.add(jScrollPane2, java.awt.BorderLayout.CENTER);
     }
     
