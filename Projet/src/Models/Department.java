@@ -4,7 +4,7 @@ public class Department {
 	
 	private String nameDep;
 	
-	Department(String Sarg){
+	public Department(String Sarg){
 		nameDep = Sarg;
 	}
 	
