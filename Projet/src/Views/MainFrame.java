@@ -5,20 +5,24 @@
  */
 package Views;
 
+import Controlers.ControlerMain;
+
 /**
  *
  * @author Rezyia
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	/**
-     * Creates new form MainFrame
-     */
+	private static ControlerMain controler;
+	
+	
     public MainFrame() {
+        initComponents();
+    }
+    
+    public MainFrame(ControlerMain c) {
+    	controler = c;
         initComponents();
     }
 
@@ -37,7 +41,7 @@ public class MainFrame extends javax.swing.JFrame {
         bSettings = new javax.swing.JButton();
         bHelp = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        windowPointings = new WPointings();
+        windowPointings = new WPointings(controler);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

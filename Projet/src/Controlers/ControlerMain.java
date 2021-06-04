@@ -121,13 +121,20 @@ public class ControlerMain extends ControlerNetwork{
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException{
+
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ControlerMain.f = new MainFrame();
-    			f.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        		ControlerMain controler = new ControlerMain();
+                ControlerMain.f = new MainFrame(controler);
+                
+        		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 f.setVisible(true);
+                
+                
                 updatePointings(Toolbox.getRandomString());
             }
         });
+        
 	}
 }

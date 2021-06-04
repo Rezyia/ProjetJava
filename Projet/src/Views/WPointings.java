@@ -12,23 +12,27 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import Controlers.ControlerMain;
+
 /**
  *
  * @author Rezyia
  */
 public class WPointings extends javax.swing.JPanel {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	/**
-     * Creates new form Pointings
-     */
-    public WPointings() {
+	private static ControlerMain controler;
+	
+
+	public WPointings() {
         initComponents();
     }
-
+    
+	
+    public WPointings(ControlerMain c) {
+    	controler = c;
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
