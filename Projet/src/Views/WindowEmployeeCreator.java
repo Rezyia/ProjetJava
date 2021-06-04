@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import Controlers.ControlerMain;
+import Models.Department;
 import Models.*;
 
 public class WindowEmployeeCreator {
@@ -20,7 +21,7 @@ public class WindowEmployeeCreator {
 	public static JButton bCreateDepartment;
 	public static JButton bCancel;
 	
-	public static ControlerMain cm;
+	public static ControlerMain cm; 
 	
 	/**
 	 * Créer la ComboBox des département
@@ -30,6 +31,13 @@ public class WindowEmployeeCreator {
 		JComboBox<Object> cb = new JComboBox<Object>(cm.getAllDepartment());
 		cb.setBounds(135,50,150,20);
 		return cb;
+	}
+	
+	public void updateDepts() {
+		cbDepartment.removeAllItems();
+		for (Object s:cm.getAllDepartment()) {
+			cbDepartment.addItem(s);
+		}
 	}
 	
 	/**
@@ -79,12 +87,12 @@ public class WindowEmployeeCreator {
 	 * Créer le bouton pour créer un département
 	 * @return le bouton pour créer un département
 	 */
-	public static JButton createButtonCreateDpt() {
+	public static JButton createButtonCreateDpt(WindowEmployeeCreator wec) {
 		JButton b=new JButton("Create new Department");
 	    b.setBounds(300,50,180,20);
 	    b.addActionListener(new ActionListener(){  
 		    public void actionPerformed(ActionEvent e){
-		    	new WindowDepartmentCreator(cm);
+		    	new WindowDepartmentCreator(cm, wec);
 		    }  
 		}); 
 	    return b;
@@ -93,7 +101,7 @@ public class WindowEmployeeCreator {
 	/**
 	 * Initialise la fenêtre de création d'employé
 	 */
-	public static void setWindow() {
+	public static void setWindow(WindowEmployeeCreator wec) {
 		f = new JFrame("Cr\u00e9ation employé");
 		f.setSize(600,350);
 		
@@ -110,7 +118,7 @@ public class WindowEmployeeCreator {
 		tfName = createTextFieldName();
 		tfFirstName = createTextFieldFirstName();
 		
-		bCreateDepartment = createButtonCreateDpt();
+		bCreateDepartment = createButtonCreateDpt(wec);
 		bCreate = createButtonCreate();
 		
 		f.add(lDepartment);
@@ -127,7 +135,8 @@ public class WindowEmployeeCreator {
 	}
 	
 	public static void main(String[] args) {
-		setWindow();
+		WindowEmployeeCreator wec = new WindowEmployeeCreator();
+		setWindow(wec);
 	}
 	
 	

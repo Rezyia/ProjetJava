@@ -16,9 +16,11 @@ public class WindowDepartmentCreator {
 	public static JLabel lCreate;
 	
 	public static ControlerMain cm;
+	public static WindowEmployeeCreator wec;
 	
-	public WindowDepartmentCreator(ControlerMain cm) {
+	public WindowDepartmentCreator(ControlerMain cm, WindowEmployeeCreator wec) {
 		WindowDepartmentCreator.cm = cm;
+		WindowDepartmentCreator.wec = wec;
 		setWindow();
 	}
 	
@@ -39,6 +41,7 @@ public class WindowDepartmentCreator {
 		    		}
 		    		cm.addDepartment(new Department(tfNameDpt.getText()));
 		    		tfNameDpt.setText("");
+		    		wec.updateDepts();
 		    		lCreate.setText("Ajout r\u00e9ussi");
 		    	}catch(Exception exc) {
 		    		System.out.println(exc+" Invalid or missing argument");
@@ -70,9 +73,5 @@ public class WindowDepartmentCreator {
 		f.setLayout(null);//using no layout managers  
 		f.setVisible(true);//making the frame visible
 	}
-	
-	public static void main(String[] args) {
-		new WindowDepartmentCreator(new ControlerMain());
-	}
-	
+		
 }
