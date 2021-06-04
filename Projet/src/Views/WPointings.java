@@ -7,6 +7,8 @@ package Views;
 
 import java.awt.Panel;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Rezyia
@@ -43,7 +45,7 @@ public class WPointings extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-
+        
         setLayout(new java.awt.GridLayout());
 
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -96,6 +98,19 @@ public class WPointings extends javax.swing.JPanel {
         // TODO add your handling code here:
     }                                          
 
+    
+    public void updatePointings(String[] items) {    	
+    	jPanel1.remove(jScrollPane2);
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            public int getSize() { return items.length; }
+            public String getElementAt(int i) { return items[i]; }
+        });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(jList1);
+
+        jPanel1.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+    }
+    
 
     // Variables declaration - do not modify                     
     private javax.swing.JCheckBox jCheckBox1;

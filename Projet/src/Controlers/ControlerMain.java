@@ -4,7 +4,10 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import javax.swing.JFrame;
+
 import Models.*;
+import Views.MainFrame;
 import Views.WindowMain;
 
 
@@ -13,7 +16,8 @@ import Views.WindowMain;
  */
 public class ControlerMain extends ControlerNetwork{
 
-	private static WindowMain f = new WindowMain();
+	//private static WindowMain f = new WindowMain();
+	private static MainFrame f;
 	
 	
 	private ServerSocket ss = null;
@@ -23,8 +27,8 @@ public class ControlerMain extends ControlerNetwork{
 	private ArrayList<Department> departments = new ArrayList<Department>();
 	private ArrayList<Pointing> pointings = new ArrayList<Pointing>();
 	
-	public static void updateContent(String[] items) {
-		f.getPointings().updateList(items);
+	public static void updatePointings(String[] items) {
+		f.getWindowPointings().updatePointings(items);
 	}
 	
 	private void setSocket() throws IOException {
@@ -117,107 +121,13 @@ public class ControlerMain extends ControlerNetwork{
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException{
-		
-		String[] items = {
-				"oZmzktQwhZ",
-				"BYhIseRLUU",
-				"dsRDzaEXco",
-				"XNqRFeUNOK",
-				"VZidDSletD",
-				"HrxeewKEIY",
-				"NseyZDklcs",
-				"uBsLgSLSfj",
-				"LBPGRHHEZA",
-				"xLvrztlAVH",
-				"uZTKpMucbz",
-				"tEjTGuwWIk",
-				"QtcjqMhlvD",
-				"CZoVzDvidP",
-				"mpIPHyRgFf",
-				"eWHbmxijKz",
-				"UTUBVLIkzk",
-				"iNPgEHxeHC",
-				"kjuaPVJiXv",
-				"TLTnMmrUwQ",
-				"OmtceVpJgV",
-				"rzVcXBPXbr",
-				"kWVvxRSOfe",
-				"TvckNzbAGb",
-				"zQqMKewUOb",
-				"fOXgXvIOVg",
-				"oBgOqoblRk",
-				"ksptgjyzRA",
-				"ZRrirTTEwI",
-				"KQRzSrrLNe",
-				"JbQNrJBYAe",
-				"GmajMSYTrZ",
-				"LJaTtjPTjp",
-				"qsukQkAJge",
-				"IGKPadIpiM",
-				"rkFXKHFBur",
-				"PnYUEqveXj",
-				"YnhlUnrxjg",
-				"GJehJVrVFW",
-				"GMvNTLrkOj",
-				"LfaJLtlwFA",
-				"PFAHnLxDtf",
-				"SSJnoEMAPC",
-				"UnvLhNHVwf",
-				"JBYdwSUqcT",
-				"brDSVoldzn",
-				"XOkpuhdMCx",
-				"MRjrICfuuV",
-				"MIpjWfRTOW",
-				"DhEQeAyecA",
-				"TSQjcYwxSt",
-				"bldUGljZbb",
-				"FtSeBFTAAj",
-				"jUoNnDxPFI",
-				"nWIHBfTafO",
-				"GrOlvXnnNG",
-				"kiLrEXVAxP",
-				"bCZyRhuWZN",
-				"IDtQztlGuo",
-				"OejJIoOLVS",
-				"GlnwUUWozg",
-				"fQKansvlPV",
-				"vCzyJarAyP",
-				"NrRGpIUAuf",
-				"uOZJrUnxZx",
-				"jhwiVSeMQg",
-				"LNACPbkLVf",
-				"EeFDSrEJZU",
-				"EjRLAJLumE",
-				"luSyEDmQgP",
-				"sxrfBvvvgK",
-				"rqRcDFUhWq",
-				"pemFEXnabW",
-				"rnzFAnoxyG",
-				"CbsgDCBYmk",
-				"sutOjvrmIO",
-				"psvTzXQMCn",
-				"FiijCNPmui",
-				"qEaOHgfrtH",
-				"UYTFJiWeZL",
-				"nQcQiYhHGX",
-				"aLXBfQidvd",
-				"wOjBxXbzHD",
-				"qKEZwEziBF",
-				"glXulxYJXP",
-				"qajIWXJVwJ",
-				"AwVoPKAgnJ",
-				"Lfuvrtjkbp",
-				"ocMRdftAqc",
-				"jqGXwLewIu",
-				"knUJhXRjHx",
-				"vdpfvBfIiF",
-				"WrnsPbuCYj",
-				"rmgOAbgKdj",
-				"NNXdSxIjfu",
-				"vKsHvEQpsP",
-				"RKLgdTOJeZ",
-				"TsHGIZGUOL"
-		};
-		updateContent(items);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ControlerMain.f = new MainFrame();
+    			f.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                f.setVisible(true);
+                updatePointings(Toolbox.getRandomString());
+            }
+        });
 	}
 }
