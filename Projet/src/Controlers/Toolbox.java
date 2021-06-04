@@ -1,6 +1,8 @@
 package Controlers;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Toolbox {
 
@@ -125,5 +127,31 @@ public class Toolbox {
 				"TsHGIZGUOL"
 		};
 		return items;
+    }
+    
+    public static ArrayList<LocalTime> getAllTimeBefore(LocalTime time) {
+    	LocalTime t = LocalTime.of(0, 0);
+    	ArrayList<LocalTime> liste = new ArrayList<LocalTime>();
+    	while(t.isBefore(time)) {
+    		liste.add(t);
+    		t = t.plusMinutes(15);
+    	}
+    	return liste;
+    }
+    
+    public static ArrayList<LocalTime> getAllTimeAfter(LocalTime time) {
+    	LocalTime t = LocalTime.of(23, 45);
+    	ArrayList<LocalTime> liste = new ArrayList<LocalTime>();
+    	while(time.isBefore(t)) {
+    		liste.add(time);
+    		time = time.plusMinutes(15);
+    	}
+    	liste.add(LocalTime.of(23, 45));
+    	return liste;
+    }
+    
+    public static void main(String[] args) {
+    	System.out.println(getAllTimeBefore(LocalTime.of(12, 0)));
+    	System.out.println(getAllTimeAfter(LocalTime.of(12, 0)));
     }
 }
