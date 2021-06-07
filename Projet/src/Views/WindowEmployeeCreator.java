@@ -1,9 +1,13 @@
 package Views;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import Controlers.ControlerMain;
 import Models.Department;
@@ -14,7 +18,8 @@ public class WindowEmployeeCreator {
 	public static JLabel lDepartment;
 	public static JLabel lName;
 	public static JLabel lFirstName;
-	public static JComboBox<Object> cbDepartment;
+	public static JLabel lCreate;
+	public static JComboBox<Department> cbDepartment;
 	public static JTextField tfName;
 	public static JTextField tfFirstName;
 	public static JButton bCreate;
@@ -23,19 +28,42 @@ public class WindowEmployeeCreator {
 	
 	public static ControlerMain cm; 
 	
+	static class DepartmentRenderer extends BasicComboBoxRenderer{
+
+		private static final long serialVersionUID = 1L;
+		
+		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+			super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+			Department dpt = (Department) value;
+			if(dpt!=null) {
+				setText(dpt.getnameDep());
+			}
+			return this;
+		}
+		
+	}
+	
+	public static DepartmentRenderer dpr = new DepartmentRenderer();
+	
 	/**
 	 * Créer la ComboBox des département
 	 * @return la ComboBox des département
 	 */
-	public static JComboBox<Object> createComboBoxDepartment() {
-		JComboBox<Object> cb = new JComboBox<Object>(cm.getAllDepartment());
+	public static JComboBox<Department> createComboBoxDepartment() {
+		ArrayList<Department> liste = cm.getAllDepartment();
+		JComboBox<Department> cb = new JComboBox<Department>();
+		Iterator<Department> i = liste.iterator();
+		while(i.hasNext()) {
+			cb.addItem(i.next());
+		}
+		cb.setRenderer(dpr);
 		cb.setBounds(135,50,150,20);
 		return cb;
 	}
 	
 	public void updateDepts() {
 		cbDepartment.removeAllItems();
-		for (Object s:cm.getAllDepartment()) {
+		for (Department s:cm.getAllDepartment()) {
 			cbDepartment.addItem(s);
 		}
 	}
@@ -66,17 +94,22 @@ public class WindowEmployeeCreator {
 	 */
 	public static JButton createButtonCreate() {
 		JButton b=new JButton("Create");
-	    b.setBounds(50,200,95,20);
+	    b.setBounds(50,250,95,20);
 	    b.addActionListener(new ActionListener(){  
 		    public void actionPerformed(ActionEvent e){
 		    	try {
 		    		Department dpt = (Department) cbDepartment.getSelectedItem();
 		    		String name = tfName.getText();
 		    		String firstname = tfFirstName.getText();
+		    		if(dpt==null || name.equals("") || firstname.equals("")) {
+		    			throw new Exception();
+		    		}
 		    		Employee emp = new Employee(dpt, name, firstname);
 		    		cm.addEmploye(emp);
+		    		lCreate.setText("Employ\u00e9 cr\u00e9\u00e9");
 		    	}catch(Exception exc) {
 		    		System.out.println(exc+" Invalid or missing argument");
+		    		lCreate.setText(exc+" Invalid or missing argument");
 		    	}	
 		    }  
 		}); 
@@ -103,7 +136,7 @@ public class WindowEmployeeCreator {
 	 */
 	public static void setWindow(WindowEmployeeCreator wec) {
 		f = new JFrame("Cr\u00e9ation employé");
-		f.setSize(600,350);
+		f.setSize(600,400);
 		
 		cm = new ControlerMain();
 		
@@ -113,6 +146,8 @@ public class WindowEmployeeCreator {
 		lName.setBounds(50, 100, 150, 20);
 		lFirstName = new JLabel("Pr\u00e9nom :");
 		lFirstName.setBounds(50, 150, 150, 20);
+		lCreate = new JLabel("");
+		lCreate.setBounds(50,300,300,20);
 		
 		cbDepartment = createComboBoxDepartment();
 		tfName = createTextFieldName();
@@ -128,6 +163,7 @@ public class WindowEmployeeCreator {
 		f.add(tfName);
 		f.add(lFirstName);
 		f.add(tfFirstName);
+		f.add(lCreate);
 		f.add(bCreate);
 		
 		f.setLayout(null);//using no layout managers  

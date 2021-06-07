@@ -79,8 +79,8 @@ public class ControlerMain extends ControlerNetwork{
 		return find;
 	}
 	
-	public Object[] getAllDepartment() {
-		return departments.toArray();
+	public ArrayList<Department> getAllDepartment() {
+		return departments;
 	}
 	
 	//-------------------------------------------------------------Méthode pour pointings
