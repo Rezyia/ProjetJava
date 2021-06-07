@@ -32,8 +32,9 @@ public class Employee {
 		isWorking = false;
 		overtime = 0;
 		planning = new HashMap<String, LocalTime[]>(5);
-		LocalTime midnight =  LocalTime.of(0,0); 
-		LocalTime tabtime[] = {midnight,midnight};
+		LocalTime begin =  LocalTime.of(0,0);
+		LocalTime end = LocalTime.of(23, 45);
+		LocalTime tabtime[] = {begin,end};
 		planning.put("monday", tabtime);
 		planning.put("tuesday", tabtime);
 		planning.put("wednesday", tabtime);
