@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDateTime;
+
+import Controlers.ControlerEmulator;
+import Controlers.ControlerNetwork;
 import Controlers.Toolbox;
 
 import javax.swing.*;
@@ -18,10 +21,13 @@ public class WindowEmulator {
 	public static JLabel labelTimeRound;
 	public static JTextField tfId;
 	public static JButton bpoint;
+	public static JButton bport;
 	
 	
-	
-	//Fonction pour afficher l'heure du jour
+	/**
+     * Fonction to show the time on parameter on screen
+     * @param Today LocalDateTime to show
+     */
 	public static void ShowTime(LocalDateTime Today) {	
 		
 		int MonthPoint = Today.getMonthValue();
@@ -43,7 +49,9 @@ public class WindowEmulator {
 		
 	}
 	
-	//Fonction type pour crÃ©er un champs pour taper l'id 
+	/**
+     * Create a field to enter an ID
+     */
 	public static JTextField CreateTextField() {
 		final JTextField tf=new JTextField();  
 	    tf.setBounds(50,50, 150,20);  
@@ -51,8 +59,10 @@ public class WindowEmulator {
 	    return tf;
 	}
 	
-	//crÃ©ation de bouton
-	public static JButton CreateButton(){
+	/**
+     * Create the button who take the id on the field and show it on screen
+     */
+	public static JButton CreateButtonPoint(){
 		
 	    JButton b=new JButton("Click Here");
 	    b.setBounds(200,50,95,20);
@@ -75,16 +85,25 @@ public class WindowEmulator {
 	    return b;
 	}
 	
-	//Fonction test pour essayer de rÃ©cuper l'id
-	public int catchId( JTextField tf) {
+	/**
+     * Button to access WindowNetwork
+     */
+public static JButton CreateButtonPort(){
 		
-		String Sid = tf.getText();
-		int Iid=Integer.parseInt(Sid);  
-		
-		return Iid;
-	}
+	    JButton b=new JButton("Change Port");
+	    b.setBounds(300,50,110,20);
+	    b.addActionListener(new ActionListener(){  
+		    public void actionPerformed(ActionEvent e){  
+		    	WindowNetwork WNet = new WindowNetwork();
+		    	//Attention Controleur temporaire pour voir le bon fonctionnement de la fonction
+		    	ControlerEmulator CtrlEmu = new ControlerEmulator();
+		    	WNet.setWindow(CtrlEmu);
+		    }
+	    });
+	    return b;
+}
 	
-	
+
 	
 	
 	public static void main(String[] args) throws IOException{
@@ -92,7 +111,7 @@ public class WindowEmulator {
 		f.setSize(1920,1080);
 		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
-		//texte s'affichant quand on rÃ©cupÃ¨re l'id
+		//texte s'affichant quand on rÃƒÂ©cupÃƒÂ¨re l'id
 		labelId = new JLabel(); 
 		labelId.setBounds(50,100, 300,20);  
 		
@@ -108,9 +127,10 @@ public class WindowEmulator {
 		tfId= CreateTextField();
 		tfId.setText("Veuillez rentrer votre ID");
 		
-		bpoint = CreateButton();
+		bpoint = CreateButtonPoint();
+		bport = CreateButtonPort();
 		 
-	    f.add(bpoint);f.add(tfId); f.add(labelId) ;f.add(labelTime);f.add(labelTimeRound);
+	    f.add(bpoint);f.add(bport);f.add(tfId); f.add(labelId) ;f.add(labelTime);f.add(labelTimeRound);
 		
 		f.setLayout(null);//using no layout managers  
 		f.setVisible(true);//making the frame visible  
