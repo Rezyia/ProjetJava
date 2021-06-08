@@ -143,6 +143,7 @@ public class WindowEmployeeCreator {
 	 */
 	public static JTextField createTextFieldName() {
 		final JTextField tf = new JTextField();
+		tf.setToolTipText("Nom");
 		tf.setBounds(100,100, 150,20);
 		return tf;
 	}
@@ -153,6 +154,7 @@ public class WindowEmployeeCreator {
 	 */
 	public static JTextField createTextFieldFirstName() {
 		final JTextField tf = new JTextField();
+		tf.setToolTipText("Pr\u00e9nom");
 		tf.setBounds(105,150, 150,20);
 		return tf;
 	}
