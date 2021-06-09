@@ -102,24 +102,8 @@ public class Employee {
 		}
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
 	public void setDepartment(Department dpt) {
 		this.departement = dpt;
-	}
-
-	public String getName() {
-		return name;
-	}
-	
-	public String getFirstname() {
-		return firstname;
 	}
 
 	public Department getDepartment() {
