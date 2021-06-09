@@ -153,5 +153,7 @@ public class Toolbox {
     public static void main(String[] args) {
     	System.out.println(getAllTimeBefore(LocalTime.of(12, 0)));
     	System.out.println(getAllTimeAfter(LocalTime.of(12, 0)));
+    	System.out.println(getAllTimeAfter(LocalTime.of(0, 0)));
+    	System.out.println(getAllTimeBefore(LocalTime.of(23, 45)));
     }
 }

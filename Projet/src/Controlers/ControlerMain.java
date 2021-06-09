@@ -57,6 +57,26 @@ public class ControlerMain extends ControlerNetwork{
 		return find;
 	}
 	
+	public Employee getEmployee(int idEmp) {
+		Employee emp = null;
+		try {
+			boolean find = false;
+			Iterator<Employee> i = employees.iterator();
+			while(i.hasNext() && !find) {
+				emp = i.next();
+				if(emp.getId() == idEmp) {
+					find = true;
+				}
+			}
+			if(!find) {
+				throw new Exception();
+			}
+		}catch(Exception e) {
+			System.out.println("L'employé n'existe pas");
+		}
+		return emp;
+	}
+	
 	//-------------------------------------------------------------Méthode pour departments
 	
 	public void addDepartment(Department d) {
