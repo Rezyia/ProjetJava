@@ -5,6 +5,8 @@
  */
 package Views;
 
+import javax.swing.SwingUtilities;
+
 import Controlers.ControlerMain;
 
 /**
@@ -16,6 +18,11 @@ public class MainFrame extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
 	private static ControlerMain controler;
 	
+	private enum windowType {
+		WINDOW_EMPLOYEES,
+		WINDOW_POINTINGS,
+		WINDOW_SETTINGS
+	}
 	
     public MainFrame() {
         initComponents();
@@ -42,6 +49,8 @@ public class MainFrame extends javax.swing.JFrame {
         bHelp = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         windowPointings = new WPointings(controler);
+        windowEmployees = new WEmployees(controler);
+        windowSettings = new WPointings(controler);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -145,8 +154,22 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
+    public void changeWindow(windowType w) {
+    	if (windowEmployees.getParent() != null) jPanel2.remove(windowEmployees);
+    	if (windowSettings.getParent() != null)jPanel2.remove(windowSettings);
+    	if (windowPointings.getParent() != null)jPanel2.remove(windowPointings);
+    	
+    	if (w==windowType.WINDOW_EMPLOYEES) jPanel2.add(windowEmployees);
+    	else if (w==windowType.WINDOW_POINTINGS) jPanel2.add(windowPointings);
+    	else if (w==windowType.WINDOW_SETTINGS) jPanel2.add(windowSettings);
+    	
+    	SwingUtilities.updateComponentTreeUI(this);
+    }
+    
+
     private void bPointingsActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
+    	changeWindow(windowType.WINDOW_POINTINGS);
     }                                          
 
     private void bHelpMouseEntered(java.awt.event.MouseEvent evt) {                                   
@@ -155,10 +178,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void bEmployeesActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
+    	changeWindow(windowType.WINDOW_EMPLOYEES);
     }                                          
 
     private void bSettingsActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
+    	changeWindow(windowType.WINDOW_SETTINGS);
     }                                         
 
     private void bHelpActionPerformed(java.awt.event.ActionEvent evt) {                                      
@@ -187,5 +212,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private WPointings windowPointings;
+    private WPointings windowSettings;
+    private WEmployees windowEmployees;
+
     // End of variables declaration                   
 }
