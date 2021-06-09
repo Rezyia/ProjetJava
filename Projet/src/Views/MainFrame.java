@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
 import Controlers.ControlerMain;
+import Controlers.ControlerNetwork;
 
 
 public class MainFrame extends javax.swing.JFrame {
@@ -44,8 +45,10 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         windowPointings = new WPointings(controler);
         windowEmployees = new WEmployees(controler);
-        windowSettings = new WSettings(controler);
-
+        //windowSettings = new WSettings(controler);
+        windowSettings = new WindowNetwork();
+        windowSettings.setWindow(controler);
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setExtendedState(1);
@@ -160,7 +163,7 @@ public class MainFrame extends javax.swing.JFrame {
 		resetButtonStyle(bSettings);
         
     	if (windowEmployees.getParent() != null) jPanel2.remove(windowEmployees);
-    	if (windowSettings.getParent() != null)jPanel2.remove(windowSettings);
+    	//if (windowSettings.getParent() != null)jPanel2.remove(windowSettings);
     	if (windowPointings.getParent() != null)jPanel2.remove(windowPointings);
     	
     	if (w==windowType.WINDOW_EMPLOYEES) {
@@ -175,9 +178,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     	}
     	else if (w==windowType.WINDOW_SETTINGS) {
-    		jPanel2.add(windowSettings);
+    		/*jPanel2.add(windowSettings);*/
     		bSettings.setBackground(new java.awt.Color(238, 238, 238));
     		bSettings.setForeground(new java.awt.Color(0, 0, 0));
+    		WindowNetwork wn = new WindowNetwork();
+    		wn.setWindow(new ControlerNetwork());
     	}
     	
     	SwingUtilities.updateComponentTreeUI(this);
@@ -229,8 +234,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private WPointings windowPointings;
-    private WSettings windowSettings;
     private WEmployees windowEmployees;
-
+    //private WSettings windowSettings;
+    private WindowNetwork windowSettings;
+    
     // End of variables declaration                   
 }

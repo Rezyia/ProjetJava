@@ -7,6 +7,7 @@ import javax.swing.*;
 import Controlers.ControlerNetwork;
 
 public class WindowNetwork {
+	
 	private static JFrame f;
 	public static JTextField tfPort;
 	public static JTextField tfAddress;
