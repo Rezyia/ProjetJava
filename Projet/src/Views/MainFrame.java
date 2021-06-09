@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Views;
 
 import javax.swing.JButton;
@@ -10,10 +6,7 @@ import javax.swing.SwingUtilities;
 
 import Controlers.ControlerMain;
 
-/**
- *
- * @author Rezyia
- */
+
 public class MainFrame extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -51,7 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         windowPointings = new WPointings(controler);
         windowEmployees = new WEmployees(controler);
-        windowSettings = new WPointings(controler);
+        windowSettings = new WSettings(controler);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -236,7 +229,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private WPointings windowPointings;
-    private WPointings windowSettings;
+    private WSettings windowSettings;
     private WEmployees windowEmployees;
 
     // End of variables declaration                   
