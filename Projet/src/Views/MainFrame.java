@@ -46,8 +46,6 @@ public class MainFrame extends javax.swing.JFrame {
         windowPointings = new WPointings(controler);
         windowEmployees = new WEmployees(controler);
         //windowSettings = new WSettings(controler);
-        windowSettings = new WindowNetwork();
-        windowSettings.setWindow(controler);
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -236,7 +234,7 @@ public class MainFrame extends javax.swing.JFrame {
     private WPointings windowPointings;
     private WEmployees windowEmployees;
     //private WSettings windowSettings;
-    private WindowNetwork windowSettings;
+
     
     // End of variables declaration                   
 }
