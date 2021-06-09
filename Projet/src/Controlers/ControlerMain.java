@@ -56,6 +56,44 @@ public class ControlerMain extends ControlerNetwork{
 		}
 		return find;
 	}
+
+	/**
+	 * 
+	 * @param id of the employee to get
+	 * @return null or the Employee with the inputed id 
+	 */
+	public Employee getEmp(int id) {
+		Employee emp = null, current = null;
+		
+		Iterator<Employee> ite = employees.iterator();
+		while (ite.hasNext()) {
+			current = ite.next();
+			if (current.getId() == id) {
+				emp = current;
+				break; // break out of the while loop if employee is found
+			}
+		}
+		
+		return emp;
+	}
+	
+	public String[] getEmployees() {
+		// Declarations & inits:
+		ArrayList<String> pts = new ArrayList<String>();
+		Employee currentEmployee = null;
+		Iterator<Employee> ite = employees.iterator();
+		
+		// Iterating pointings list : 
+		while(ite.hasNext()) {
+			currentEmployee = ite.next();
+			pts.add((currentEmployee.getId() + " : " + currentEmployee.getFirstname() + " " + currentEmployee.getName()));
+		}
+		
+		// Convert ArrayList to String array :
+		String[] res = new String[pts.size()];
+		res = pts.toArray(res);
+		return res;
+	}
 	
 	//-------------------------------------------------------------Méthode pour departments
 	
@@ -114,6 +152,29 @@ public class ControlerMain extends ControlerNetwork{
 		return null;
 	}
 	
+	
+	public String[] getPointings() {
+		// Declarations & inits:
+		ArrayList<String> pts = new ArrayList<String>();
+		Pointing currentPointing = null;
+		Iterator<Pointing> ite = pointings.iterator();
+		
+		// Iterating pointings list : 
+		while(ite.hasNext()) {
+			currentPointing = ite.next();
+			pts.add((currentPointing.getTime().toString() + currentPointing.getIdEmp()));
+		}
+		
+		// Convert ArrayList to String array :
+		String[] res = new String[pts.size()];
+		res = pts.toArray(res);
+		return res;
+	}
+	
+	
+	//-------------------------------------------------------------Main program
+
+	
 	/**
 	 * Main program
 	 * @param args	String Array for called arguments
@@ -131,7 +192,6 @@ public class ControlerMain extends ControlerNetwork{
                 f.setVisible(true);
                 
                 
-                updatePointings(Toolbox.getRandomString());
             }
         });
         

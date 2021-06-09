@@ -37,12 +37,12 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        header = new javax.swing.JPanel();
         bPointings = new javax.swing.JButton();
         bEmployees = new javax.swing.JButton();
         bSettings = new javax.swing.JButton();
         bHelp = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        content = new javax.swing.JPanel();
         windowPointings = new WPointings(controler);
         windowEmployees = new WEmployees(controler);
         //windowSettings = new WSettings(controler);
@@ -52,10 +52,10 @@ public class MainFrame extends javax.swing.JFrame {
         setExtendedState(1);
         setPreferredSize(new java.awt.Dimension(720, 480));
 
-        jPanel1.setBackground(new java.awt.Color(238, 238, 238));
-        jPanel1.setForeground(new java.awt.Color(238, 238, 238));
-        jPanel1.setPreferredSize(new java.awt.Dimension(572, 40));
-        jPanel1.setLayout(new java.awt.GridLayout());
+        header.setBackground(new java.awt.Color(238, 238, 238));
+        header.setForeground(new java.awt.Color(238, 238, 238));
+        header.setPreferredSize(new java.awt.Dimension(572, 40));
+        header.setLayout(new java.awt.GridLayout());
 
         bPointings.setBackground(new java.awt.Color(238, 238, 238));
         bPointings.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -74,7 +74,7 @@ public class MainFrame extends javax.swing.JFrame {
                 bPointingsActionPerformed(evt);
             }
         });
-        jPanel1.add(bPointings);
+        header.add(bPointings);
 
         bEmployees.setBackground(new java.awt.Color(153, 153, 153));
         bEmployees.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -93,7 +93,7 @@ public class MainFrame extends javax.swing.JFrame {
                 bEmployeesActionPerformed(evt);
             }
         });
-        jPanel1.add(bEmployees);
+        header.add(bEmployees);
 
         bSettings.setBackground(new java.awt.Color(153, 153, 153));
         bSettings.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -112,7 +112,7 @@ public class MainFrame extends javax.swing.JFrame {
                 bSettingsActionPerformed(evt);
             }
         });
-        jPanel1.add(bSettings);
+        header.add(bSettings);
 
         bHelp.setBackground(new java.awt.Color(153, 153, 153));
         bHelp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -126,24 +126,24 @@ public class MainFrame extends javax.swing.JFrame {
                 bHelpActionPerformed(evt);
             }
         });
-        jPanel1.add(bHelp);
+        header.add(bHelp);
 
-        jPanel2.setLayout(new java.awt.BorderLayout());
-        jPanel2.add(windowPointings, java.awt.BorderLayout.CENTER);
+        content.setLayout(new java.awt.BorderLayout());
+        content.add(windowPointings, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
+                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,17 +160,17 @@ public class MainFrame extends javax.swing.JFrame {
 		resetButtonStyle(bPointings);
 		resetButtonStyle(bSettings);
         
-    	if (windowEmployees.getParent() != null) jPanel2.remove(windowEmployees);
+    	if (windowEmployees.getParent() != null) content.remove(windowEmployees);
     	//if (windowSettings.getParent() != null)jPanel2.remove(windowSettings);
-    	if (windowPointings.getParent() != null)jPanel2.remove(windowPointings);
+    	if (windowPointings.getParent() != null)content.remove(windowPointings);
     	
     	if (w==windowType.WINDOW_EMPLOYEES) {
-    		jPanel2.add(windowEmployees);
+    		content.add(windowEmployees);
     		bEmployees.setBackground(new java.awt.Color(238, 238, 238));
     		bEmployees.setForeground(new java.awt.Color(0, 0, 0));
 
     	} else if (w==windowType.WINDOW_POINTINGS) {
-    		jPanel2.add(windowPointings);
+    		content.add(windowPointings);
     		bPointings.setBackground(new java.awt.Color(238, 238, 238));
     		bPointings.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -229,8 +229,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton bHelp;
     private javax.swing.JButton bPointings;
     private javax.swing.JButton bSettings;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel header;
+    private javax.swing.JPanel content;
     private WPointings windowPointings;
     private WEmployees windowEmployees;
     //private WSettings windowSettings;

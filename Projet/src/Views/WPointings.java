@@ -9,6 +9,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Controlers.ControlerMain;
+import Models.Employee;
 
 
 public class WPointings extends javax.swing.JPanel {
@@ -35,63 +36,65 @@ public class WPointings extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        main = new javax.swing.JPanel();
+        scrollList = new javax.swing.JScrollPane();
+        list = new javax.swing.JList<>();
+        checkBox = new javax.swing.JCheckBox();
+        
+        header = new javax.swing.JPanel();
+        lHeader = new javax.swing.JLabel(); // "Pointing " + <ID Pointing> + " - Employee " + <ID Employee> + " - Date : " + "<Date>"
+        
+        info = new javax.swing.JPanel();
+        lInOut = new javax.swing.JLabel();
+        lPointedTime = new javax.swing.JLabel();
+        lPlannedTime = new javax.swing.JLabel();
         
         setLayout(new java.awt.GridLayout());
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        main.setLayout(new java.awt.BorderLayout());
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+        list.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = controler.getPointings();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane2.setViewportView(jList1);
+        list.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scrollList.setViewportView(list);
 
-        jPanel1.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        main.add(scrollList, java.awt.BorderLayout.CENTER);
 
-        jCheckBox1.setText("Show all pointings");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        checkBox.setText("Show all pointings");
+        checkBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox1, java.awt.BorderLayout.PAGE_END);
+        main.add(checkBox, java.awt.BorderLayout.PAGE_END);
 
-        add(jPanel1);
+        add(main);
 
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        header.setLayout(new java.awt.BorderLayout());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Pointing <IDEmp> - <Date>");
-        jLabel4.setPreferredSize(new java.awt.Dimension(34, 40));
-        jPanel3.add(jLabel4, java.awt.BorderLayout.NORTH);
+        lHeader.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lHeader.setText("Pointing <IDEmp> - <Date>");
+        lHeader.setPreferredSize(new java.awt.Dimension(34, 40));
+        header.add(lHeader, java.awt.BorderLayout.NORTH);
 
-        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.Y_AXIS));
+        info.setLayout(new javax.swing.BoxLayout(info, javax.swing.BoxLayout.Y_AXIS));
 
-        jLabel1.setText(" In/Out : ");
-        jPanel4.add(jLabel1);
+        lInOut.setText(" In/Out : ");
+        info.add(lInOut);
 
-        jLabel2.setText(" Hour pointed :");
-        jPanel4.add(jLabel2);
+        lPointedTime.setText(" Hour pointed :");
+        info.add(lPointedTime);
 
-        jLabel3.setText(" Hour planned : ");
-        jPanel4.add(jLabel3);
+        lPlannedTime.setText(" Hour planned : ");
+        info.add(lPlannedTime);
 
-        jPanel3.add(jPanel4, java.awt.BorderLayout.CENTER);
+        header.add(info, java.awt.BorderLayout.CENTER);
 
-        add(jPanel3);
+        add(header);
     }// </editor-fold>                        
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -99,38 +102,48 @@ public class WPointings extends javax.swing.JPanel {
     }                                          
 
     
+    private void loadInfo(Employee emp) {
+    	
+    }
+    
+    
     public void updatePointings(String[] items) {    	
-    	jPanel1.remove(jScrollPane2);
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+    	main.remove(scrollList);
+        list.setModel(new javax.swing.AbstractListModel<String>() {
             public int getSize() { return items.length; }
             public String getElementAt(int i) { return items[i]; }
         });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        list.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         
-        ListSelectionModel selectionModel = jList1.getSelectionModel();
+        ListSelectionModel selectionModel = list.getSelectionModel();
         selectionModel.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 		        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
 		        int index = lsm.getSelectedIndices()[0];
-		        jLabel4.setText("Pointing " + jList1.getSelectedValue() + " - <Date>");
+		        
+		        Employee emp = controler.getEmp(index);
+		        
+		        lHeader.setText("Pointing " + list.getSelectedValue() + " - Employee " + emp.getId() + " - Date : " + "<Date>");
+		        
+		        loadInfo(emp);
 			}
 		});
         
-        jScrollPane2.setViewportView(jList1);
-        jPanel1.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        scrollList.setViewportView(list);
+        main.add(scrollList, java.awt.BorderLayout.CENTER);
     }
     
 
     // Variables declaration - do not modify                     
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JCheckBox checkBox;
+    private javax.swing.JLabel lInOut;
+    private javax.swing.JLabel lPointedTime;
+    private javax.swing.JLabel lPlannedTime;
+    private javax.swing.JLabel lHeader;
+    private javax.swing.JList<String> list;
+    private javax.swing.JPanel main;
+    private javax.swing.JPanel header;
+    private javax.swing.JPanel info;
+    private javax.swing.JScrollPane scrollList;
     // End of variables declaration                   
 }

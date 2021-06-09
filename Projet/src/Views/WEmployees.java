@@ -22,90 +22,105 @@ public class WEmployees extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        main = new javax.swing.JPanel();
+        scrollList = new javax.swing.JScrollPane();
+        list = new javax.swing.JList<>();
+        
+        header = new javax.swing.JPanel();
+        lHeader = new javax.swing.JLabel();
+        
+        info = new javax.swing.JPanel();
+        lID = new javax.swing.JLabel();
+        lFirstName = new javax.swing.JLabel();
+        lLastName = new javax.swing.JLabel();
+        lDept = new javax.swing.JLabel();
+        lIsWorking = new javax.swing.JLabel();
+        lPlanning = new javax.swing.JLabel();
+        lOvertime = new javax.swing.JLabel();
+        
+        buttons = new javax.swing.JPanel();
+        bAdd = new javax.swing.JButton();
+        bModify = new javax.swing.JButton();
+        bDelete = new javax.swing.JButton();
 
         setLayout(new java.awt.GridLayout());
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        main.setLayout(new java.awt.BorderLayout());
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        list.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane2.setViewportView(jList1);
+        list.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scrollList.setViewportView(list);
 
-        jPanel1.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        main.add(scrollList, java.awt.BorderLayout.CENTER);
 
-        add(jPanel1);
+        add(main);
 
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        header.setLayout(new java.awt.BorderLayout());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Pointing <IDEmp> - <Date>");
-        jLabel4.setPreferredSize(new java.awt.Dimension(34, 40));
-        jPanel3.add(jLabel4, java.awt.BorderLayout.NORTH);
+        lHeader.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lHeader.setText("Pointing <IDEmp> - <Date>");
+        lHeader.setPreferredSize(new java.awt.Dimension(34, 40));
+        header.add(lHeader, java.awt.BorderLayout.NORTH);
 
-        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.Y_AXIS));
+        info.setLayout(new javax.swing.BoxLayout(info, javax.swing.BoxLayout.Y_AXIS));
 
-        jLabel1.setText(" First name :");
-        jPanel4.add(jLabel1);
+        lID.setText(" ID :");
+        info.add(lID);
 
-        jLabel2.setText(" Last Name :");
-        jPanel4.add(jLabel2);
+        lFirstName.setText(" First name :");
+        info.add(lFirstName);
 
-        jLabel3.setText(" Department :");
-        jPanel4.add(jLabel3);
+        lLastName.setText(" Last name :");
+        info.add(lLastName);
 
-        jLabel5.setText(" Total overtime :");
-        jPanel4.add(jLabel5);
+        lDept.setText(" Department :");
+        info.add(lDept);
+        
+        lIsWorking.setText(" Is working :");
+        info.add(lIsWorking);
+        
+        lPlanning.setText(" Planning :");
+        info.add(lPlanning);
+        
+        lOvertime.setText(" Total overtime :");
+        info.add(lOvertime);
 
-        jPanel3.add(jPanel4, java.awt.BorderLayout.CENTER);
+        header.add(info, java.awt.BorderLayout.CENTER);
 
-        jPanel2.setLayout(new java.awt.GridLayout());
+        buttons.setLayout(new java.awt.GridLayout());
 
-        jButton1.setText("Add...");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bAdd.setText("Add...");
+        bAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1);
+        buttons.add(bAdd);
 
-        jButton2.setText("Modify...");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bModify.setText("Modify...");
+        bModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2);
+        buttons.add(bModify);
 
-        jButton3.setText("Delete...");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bDelete.setText("Delete...");
+        bDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3);
+        buttons.add(bDelete);
 
-        jPanel3.add(jPanel2, java.awt.BorderLayout.SOUTH);
+        header.add(buttons, java.awt.BorderLayout.SOUTH);
 
-        add(jPanel3);
+        add(header);
     }// </editor-fold>                        
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -122,19 +137,26 @@ public class WEmployees extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton bAdd;
+    private javax.swing.JButton bModify;
+    private javax.swing.JButton bDelete;
+    
+    private javax.swing.JLabel lHeader;
+    
+    private javax.swing.JLabel lID;
+    private javax.swing.JLabel lFirstName;
+    private javax.swing.JLabel lLastName;
+    private javax.swing.JLabel lDept;
+    private javax.swing.JLabel lIsWorking;
+    private javax.swing.JLabel lPlanning;
+    private javax.swing.JLabel lOvertime;
+
+    private javax.swing.JList<String> list;
+    private javax.swing.JScrollPane scrollList;
+
+    private javax.swing.JPanel main;
+    private javax.swing.JPanel buttons;
+    private javax.swing.JPanel header;
+    private javax.swing.JPanel info;
     // End of variables declaration                   
 }

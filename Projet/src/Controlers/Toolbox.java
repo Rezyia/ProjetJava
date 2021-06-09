@@ -3,6 +3,9 @@ package Controlers;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Random;
+
+import Models.*;
 
 public class Toolbox {
 
@@ -23,6 +26,22 @@ public class Toolbox {
 		tqh = tqh.minusNanos(tqh.getNano());
 		return tqh;
 	}
+    
+    
+    /**
+     * 
+     * @param c : controler to generate employees in
+     * @param nbToGenerate : integer number of employees to generate
+     */
+    public static void generateEmployees(ControlerMain c, int nbToGenerate) {
+    	ArrayList<Employee> list = new ArrayList<Employee>();
+    	int rand;
+    	
+    	for (int i=0; i<nbToGenerate; i++) {
+    		rand = new Random().nextInt();
+    		list.add(new Employee(null, null, null));
+    	}
+    }
     
     
     public static String[] getRandomString() {
