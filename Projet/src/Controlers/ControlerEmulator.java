@@ -8,15 +8,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import Models.Pointing;
+import Views.WindowEmulator;
 
 public class ControlerEmulator extends ControlerNetwork{
 	
 	private ArrayList<Pointing> pointings;
-	
+	/**
+     * MÃ©thode pour ajouter un pointeur
+     * @param p le pointeur
+     */
 	public void addPointing(Pointing p) {
 		pointings.add(p);
 	}
-	
+	/**
+     * MÃ©thode pour retirer un pointeur
+     * @param p le pointeur
+     */
 	public void rmPointing(Pointing p) {
 		pointings.remove(p);
 	}
@@ -27,10 +34,10 @@ public class ControlerEmulator extends ControlerNetwork{
     }
     
     /**
-     * Méthode pour créer et envoyer à l'application principale des pointages
-     * @param idEmp Identifiant de l'employé qui crée le pointage
-     * @param time Date et heure à laquel le poinatge a été fait
-     * @throws IOException si les sockets sont pas/mal initialisés
+     * MÃ©thode pour crÃ©er et envoyer Ã  l'application principale des pointages
+     * @param idEmp Identifiant de l'employÃ© qui crÃ©e le pointage
+     * @param time Date et heure Ã  laquel le poinatge a Ã©tÃ© fait
+     * @throws IOException si les sockets sont pas/mal initialisÃ©s
      */
     public void sendPointing(int idEmp, LocalDateTime time) {
     	try{
@@ -52,5 +59,10 @@ public class ControlerEmulator extends ControlerNetwork{
         }catch(IOException e){
             System.out.println("IOException TCPClientObjet");
         }
+    }
+    
+    public static void main(String[] args) throws IOException{
+    	ControlerEmulator CtrlEmu = new ControlerEmulator();
+    	WindowEmulator.setWindowEmu(CtrlEmu);
     }
 }
