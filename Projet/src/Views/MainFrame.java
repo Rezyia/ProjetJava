@@ -5,6 +5,7 @@
  */
 package Views;
 
+import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
 import Controlers.ControlerMain;
@@ -154,14 +155,37 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    public void changeWindow(windowType w) {
+    public void resetButtonStyle(JButton b) {
+    	b.setBackground(new java.awt.Color(153, 153, 153));
+    	b.setForeground(new java.awt.Color(255, 255, 255));
+    }
+    
+    public void changeWindow(windowType w) {        
+        resetButtonStyle(bEmployees);
+		resetButtonStyle(bHelp);
+		resetButtonStyle(bPointings);
+		resetButtonStyle(bSettings);
+        
     	if (windowEmployees.getParent() != null) jPanel2.remove(windowEmployees);
     	if (windowSettings.getParent() != null)jPanel2.remove(windowSettings);
     	if (windowPointings.getParent() != null)jPanel2.remove(windowPointings);
     	
-    	if (w==windowType.WINDOW_EMPLOYEES) jPanel2.add(windowEmployees);
-    	else if (w==windowType.WINDOW_POINTINGS) jPanel2.add(windowPointings);
-    	else if (w==windowType.WINDOW_SETTINGS) jPanel2.add(windowSettings);
+    	if (w==windowType.WINDOW_EMPLOYEES) {
+    		jPanel2.add(windowEmployees);
+    		bEmployees.setBackground(new java.awt.Color(238, 238, 238));
+    		bEmployees.setForeground(new java.awt.Color(0, 0, 0));
+
+    	} else if (w==windowType.WINDOW_POINTINGS) {
+    		jPanel2.add(windowPointings);
+    		bPointings.setBackground(new java.awt.Color(238, 238, 238));
+    		bPointings.setForeground(new java.awt.Color(0, 0, 0));
+
+    	}
+    	else if (w==windowType.WINDOW_SETTINGS) {
+    		jPanel2.add(windowSettings);
+    		bSettings.setBackground(new java.awt.Color(238, 238, 238));
+    		bSettings.setForeground(new java.awt.Color(0, 0, 0));
+    	}
     	
     	SwingUtilities.updateComponentTreeUI(this);
     }
