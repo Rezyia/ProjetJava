@@ -45,7 +45,7 @@ public class WindowEmployeeCreator {
 	public static JButton bCancel;
 	
 	public static ControlerMain cm;
-	protected static Employee emp_modif;
+	protected static Employee emp_modif = null;
 	
 	static class DepartmentRenderer extends BasicComboBoxRenderer{
 
@@ -275,35 +275,35 @@ public class WindowEmployeeCreator {
 		
 		lMonday = new JLabel("Lundi");
 		lMonday.setBounds(50, 180, 100, 20);
-		cbMondayBegin = createComboBoxPlanningBegin(LocalTime.of(0, 0));
+		cbMondayBegin = createComboBoxPlanningBegin(LocalTime.of(23, 45));
 		cbMondayBegin.setBounds(50, 200, 100, 20);
 		cbMondayEnd = createComboBoxPlanningEnd(LocalTime.of(0, 0));
 		cbMondayEnd.setBounds(50, 220, 100, 20);
 		
 		lTuesday = new JLabel("Mardi");
 		lTuesday.setBounds(150, 180, 100, 20);
-		cbTuesdayBegin = createComboBoxPlanningBegin(LocalTime.of(0, 0));
+		cbTuesdayBegin = createComboBoxPlanningBegin(LocalTime.of(23, 45));
 		cbTuesdayBegin.setBounds(150, 200, 100, 20);
 		cbTuesdayEnd = createComboBoxPlanningEnd(LocalTime.of(0, 0));
 		cbTuesdayEnd.setBounds(150, 220, 100, 20);
 		
 		lWednesday = new JLabel("Mercredi");
 		lWednesday.setBounds(250, 180, 100, 20);
-		cbWednesdayBegin = createComboBoxPlanningBegin(LocalTime.of(0, 0));
+		cbWednesdayBegin = createComboBoxPlanningBegin(LocalTime.of(23, 45));
 		cbWednesdayBegin.setBounds(250, 200, 100, 20);
 		cbWednesdayEnd = createComboBoxPlanningEnd(LocalTime.of(0, 0));
 		cbWednesdayEnd.setBounds(250, 220, 100, 20);
 		
 		lThursday = new JLabel("Jeudi");
 		lThursday.setBounds(350, 180, 100, 20);
-		cbThursdayBegin = createComboBoxPlanningBegin(LocalTime.of(0, 0));
+		cbThursdayBegin = createComboBoxPlanningBegin(LocalTime.of(23, 45));
 		cbThursdayBegin.setBounds(350, 200, 100, 20);
 		cbThursdayEnd = createComboBoxPlanningEnd(LocalTime.of(0, 0));
 		cbThursdayEnd.setBounds(350, 220, 100, 20);
 		
 		lFriday = new JLabel("Vendredi");
 		lFriday.setBounds(450, 180, 100, 20);
-		cbFridayBegin = createComboBoxPlanningBegin(LocalTime.of(0, 0));
+		cbFridayBegin = createComboBoxPlanningBegin(LocalTime.of(23, 45));
 		cbFridayBegin.setBounds(450, 200, 100, 20);
 		cbFridayEnd = createComboBoxPlanningEnd(LocalTime.of(0, 0));
 		cbFridayEnd.setBounds(450, 220, 100, 20);
@@ -344,102 +344,32 @@ public class WindowEmployeeCreator {
 	public static void setWindow(WindowEmployeeCreator wec, Employee emp, ControlerMain ctrlmain) {
 		emp_modif = emp;
 		f = new JFrame("Modification employé");
-		f.setSize(600,400);
-		
-		cm = ctrlmain;
-		
-		lDepartment = new JLabel("D\u00e9partement :");
-		lDepartment.setBounds(50,50,150,20);
-		lName = new JLabel("Nom :");
-		lName.setBounds(50, 100, 150, 20);
-		lFirstName = new JLabel("Pr\u00e9nom :");
-		lFirstName.setBounds(50, 150, 150, 20);
-		lCreate = new JLabel("");
-		lCreate.setBounds(50,300,300,20);
-		
-		cbDepartment = createComboBoxDepartment();
-		cbDepartment.setSelectedItem(emp_modif.getDepartment());
-		tfName = createTextFieldName();
-		tfName.setText(emp_modif.getName());
-		tfFirstName = createTextFieldFirstName();
-		tfFirstName.setText(emp_modif.getFirstname());
-		
-		bCreateDepartment = createButtonCreateDpt(wec);
-		bModify = createButtonModify();
-		
-		lMonday = new JLabel("Lundi");
-		lMonday.setBounds(50, 180, 100, 20);
-		cbMondayBegin = createComboBoxPlanningBegin(emp_modif.getPlanningDay("monday")[1]);
-		cbMondayBegin.setBounds(50, 200, 100, 20);
+		setWindow(wec, ctrlmain);
+		f.setVisible(false);
 		cbMondayBegin.setSelectedItem(emp_modif.getPlanningDay("monday")[0]);
-		cbMondayEnd = createComboBoxPlanningEnd(emp_modif.getPlanningDay("monday")[0]);
-		cbMondayEnd.setBounds(50, 220, 100, 20);
 		cbMondayEnd.setSelectedItem(emp_modif.getPlanningDay("monday")[1]);
 		
-		lTuesday = new JLabel("Mardi");
-		lTuesday.setBounds(150, 180, 100, 20);
-		cbTuesdayBegin = createComboBoxPlanningBegin(emp_modif.getPlanningDay("tuesday")[1]);
-		cbTuesdayBegin.setBounds(150, 200, 100, 20);
 		cbTuesdayBegin.setSelectedItem(emp_modif.getPlanningDay("tuesday")[0]);
-		cbTuesdayEnd = createComboBoxPlanningEnd(emp_modif.getPlanningDay("tuesday")[0]);
-		cbTuesdayEnd.setBounds(150, 220, 100, 20);
 		cbTuesdayEnd.setSelectedItem(emp_modif.getPlanningDay("tuesday")[1]);
 		
-		lWednesday = new JLabel("Mercredi");
-		lWednesday.setBounds(250, 180, 100, 20);
-		cbWednesdayBegin = createComboBoxPlanningBegin(emp_modif.getPlanningDay("wednesday")[1]);
-		cbWednesdayBegin.setBounds(250, 200, 100, 20);
 		cbWednesdayBegin.setSelectedItem(emp_modif.getPlanningDay("wednesday")[0]);
-		cbWednesdayEnd = createComboBoxPlanningEnd(emp_modif.getPlanningDay("wednesday")[0]);
-		cbWednesdayEnd.setBounds(250, 220, 100, 20);
 		cbWednesdayEnd.setSelectedItem(emp_modif.getPlanningDay("wednesday")[1]);
 		
-		lThursday = new JLabel("Jeudi");
-		lThursday.setBounds(350, 180, 100, 20);
-		cbThursdayBegin = createComboBoxPlanningBegin(emp_modif.getPlanningDay("thursday")[1]);
-		cbThursdayBegin.setBounds(350, 200, 100, 20);
 		cbThursdayBegin.setSelectedItem(emp_modif.getPlanningDay("thursday")[0]);
-		cbThursdayEnd = createComboBoxPlanningEnd(emp_modif.getPlanningDay("thursday")[0]);
-		cbThursdayEnd.setBounds(350, 220, 100, 20);
 		cbThursdayEnd.setSelectedItem(emp_modif.getPlanningDay("thursday")[1]);
 		
-		lFriday = new JLabel("Vendredi");
-		lFriday.setBounds(450, 180, 100, 20);
-		cbFridayBegin = createComboBoxPlanningBegin(emp_modif.getPlanningDay("friday")[1]);
-		cbFridayBegin.setBounds(450, 200, 100, 20);
 		cbFridayBegin.setSelectedItem(emp_modif.getPlanningDay("friday")[0]);
-		cbFridayEnd = createComboBoxPlanningEnd(emp_modif.getPlanningDay("friday")[0]);
-		cbFridayEnd.setBounds(450, 220, 100, 20);
 		cbFridayEnd.setSelectedItem(emp_modif.getPlanningDay("friday")[1]);
 		
+		tfName.setText(emp_modif.getName());
+		tfFirstName.setText(emp_modif.getFirstname());
+		cbDepartment.setSelectedItem(emp_modif.getDepartment());
 		
-		f.add(lDepartment);
-		f.add(cbDepartment);
-		f.add(bCreateDepartment);
-		f.add(lName);
-		f.add(tfName);
-		f.add(lFirstName);
-		f.add(tfFirstName);
-		f.add(lCreate);
+		f.remove(bCreate);
+		bModify = createButtonModify();
 		f.add(bModify);
-		f.add(lMonday);
-		f.add(cbMondayBegin);
-		f.add(cbMondayEnd);
-		f.add(lTuesday);
-		f.add(cbTuesdayBegin);
-		f.add(cbTuesdayEnd);
-		f.add(lWednesday);
-		f.add(cbWednesdayBegin);
-		f.add(cbWednesdayEnd);
-		f.add(lThursday);
-		f.add(cbThursdayBegin);
-		f.add(cbThursdayEnd);
-		f.add(lFriday);
-		f.add(cbFridayBegin);
-		f.add(cbFridayEnd);
-		
-		f.setLayout(null);//using no layout managers  
-		f.setVisible(true);//making the frame visible
+		f.setName("Modifier employé");
+		f.setVisible(true);
 	}
 	
 	public static void main(String[] args) {
@@ -451,7 +381,7 @@ public class WindowEmployeeCreator {
 		Employee emp = new Employee(dpt, "Vinet", "Dylan");
 		cm.addEmploye(emp);
 		
-		setWindow(wec, emp, cm);
+		setWindow(wec, cm);
 	}
 	
 	

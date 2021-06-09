@@ -90,7 +90,10 @@ public class Employee {
 		}
 	}
 	
-	public void setPlanning(LocalTime begin, LocalTime end, String day) {
+	public void setPlanning(LocalTime begin, LocalTime end, String day) throws Exception {
+		if(end.isBefore(begin)) {
+			throw new Exception();
+		}
 		LocalTime tabtime[] = {begin, end};
 		planning.put(day, tabtime);
 	}
