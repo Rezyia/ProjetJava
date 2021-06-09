@@ -1,6 +1,9 @@
 
 package Views;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -73,7 +76,7 @@ public class WEmployees extends javax.swing.JPanel {
 		        lLastName.setText(" Last name : " + emp.getName());
 		        lDept.setText(" Department : " + emp.getDepartment().getnameDep());
 		        lIsWorking.setText(" Is working : ");
-		        lPlanning.setText(" Planning : ");
+		        lPlanning.setText(" Planning : " + emp.getPlanningDay(LocalDate.now().getDayOfWeek().toString().toLowerCase()));
 		        lOvertime.setText(" Overtime : ");
 			}
 		});
