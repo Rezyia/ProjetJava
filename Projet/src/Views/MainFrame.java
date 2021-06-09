@@ -203,7 +203,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void bSettingsActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-    	changeWindow(windowType.WINDOW_SETTINGS);
+		WindowNetwork wn = new WindowNetwork();
+		wn.setWindow(new ControlerNetwork());
     }                                         
 
     private void bHelpActionPerformed(java.awt.event.ActionEvent evt) {                                      

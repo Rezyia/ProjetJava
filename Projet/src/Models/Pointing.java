@@ -3,6 +3,8 @@ package Models;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import Controlers.Toolbox;
+
 public class Pointing implements Serializable{
 	/**
 	 * 
@@ -14,12 +16,12 @@ public class Pointing implements Serializable{
 	
 	public Pointing(int i) {
 		idEmp = i;
-		time = LocalDateTime.now();
+		time = Toolbox.roundToNearestQuarter(LocalDateTime.now());
 	}
 	
 	public Pointing(int i, LocalDateTime time) {
 		idEmp = i;
-		this.time = time;
+		this.time = Toolbox.roundToNearestQuarter(time);
 	}
 	
 	public LocalDateTime getTime() {

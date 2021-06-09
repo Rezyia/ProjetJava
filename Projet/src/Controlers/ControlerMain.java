@@ -2,6 +2,7 @@ package Controlers;
 
 import java.io.*;
 import java.net.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import javax.swing.JFrame;
@@ -177,6 +178,11 @@ public class ControlerMain extends ControlerNetwork{
 	}
 	
 	
+	public String toListString(LocalDateTime time) {
+		return time.getYear() + " " + time.getMonth() + " " + time.getDayOfMonth() + " " + time.getHour() + ":" + time.getMinute();
+	}
+	
+	
 	public String[] getPointings() {
 		// Declarations & inits:
 		ArrayList<String> pts = new ArrayList<String>();
@@ -186,9 +192,9 @@ public class ControlerMain extends ControlerNetwork{
 		// Iterating pointings list : 
 		while(ite.hasNext()) {
 			currentPointing = ite.next();
-			pts.add((currentPointing.getTime().toString() + currentPointing.getIdEmp()));
+			pts.add((toListString(currentPointing.getTime()) + " - " + currentPointing.getIdEmp()));
 		}
-		
+		pts.sort(null);
 		// Convert ArrayList to String array :
 		String[] res = new String[pts.size()];
 		res = pts.toArray(res);
@@ -213,6 +219,7 @@ public class ControlerMain extends ControlerNetwork{
         		
                 Toolbox.generateDepartments(controler, 4);
                 Toolbox.generateEmployees(controler, 20);
+                Toolbox.generatePointings(controler, 40);
 
                 ControlerMain.f = new MainFrame(controler);
                 

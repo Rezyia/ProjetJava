@@ -63,8 +63,8 @@ public class Toolbox {
     
     /**
      * 
-     * @param c : controler to generate employees in
-     * @param nbToGenerate : integer number of employees to generate
+     * @param c : controler to generate departments in
+     * @param nbToGenerate : integer number of departments to generate
      */
     public static void generateDepartments(ControlerMain c, int nbToGenerate) {
     	int randDept;
@@ -96,6 +96,25 @@ public class Toolbox {
     		
     		Employee emp = new Employee(c.getDepartment(randDept), names[randName1], names[randName2]);
         	c.addEmploye(emp);
+    	}
+    	
+    }
+    
+    /**
+     * 
+     * @param c : controler to generate pointings in
+     * @param nbToGenerate : integer number of pointings to generate
+     */
+    public static void generatePointings(ControlerMain c, int nbToGenerate) {
+    	int randTime, randDay, randEmp;
+    	int sizeEmps = c.getEmployees().length;
+    	
+    	for (int i=0; i<nbToGenerate; i++) {
+    		randEmp = new Random().nextInt(sizeEmps);
+    		randTime = new Random().nextInt(3600*10);
+    		randDay = new Random().nextInt(14);
+    		Pointing pt = new Pointing(randEmp, LocalDateTime.now().plusSeconds(randTime).plusDays(randDay));
+    		c.addPointing(pt);
     	}
     	
     }
