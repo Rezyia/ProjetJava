@@ -136,6 +136,10 @@ public class ControlerMain extends ControlerNetwork{
 		return find;
 	}
 	
+	public Department getDepartment(int id) {
+		return departments.get(id);
+	}
+	
 	public ArrayList<Department> getAllDepartment() {
 		return departments;
 	}
@@ -206,11 +210,14 @@ public class ControlerMain extends ControlerNetwork{
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
         		ControlerMain controler = new ControlerMain();
+        		
+                Toolbox.generateDepartments(controler, 4);
+                Toolbox.generateEmployees(controler, 20);
+
                 ControlerMain.f = new MainFrame(controler);
                 
         		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 f.setVisible(true);
-                
                 
             }
         });

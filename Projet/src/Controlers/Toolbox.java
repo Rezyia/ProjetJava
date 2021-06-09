@@ -9,6 +9,39 @@ import Models.*;
 
 public class Toolbox {
 
+	public static String[] names = {
+			"Scarlette",
+			"Elliott",
+			"Neel",
+			"Mayur",
+			"Valentino",
+			"Kelvin",
+			"Juniper",
+			"Cameron",
+			"Miruna",
+			"Kaiden",
+			"Shane",
+			"Hal",
+			"Aaron",
+			"Maxine",
+			"Ivy ",
+			"Jeffrey", 
+			"Mirza ",
+			"Sultan ",
+			"Ehsan ",
+			"Rafferty" 
+	};
+	
+	public static String[] deptNames = {
+		"Human Resources",
+		"Engineering",
+		"Interns",
+		"Security",
+		"Janitoring",
+		"Communication",
+		"Maintenance"
+	};
+ 	
 	/**
      * Méthode pour arrondir au quart d'heure un LocalDateTime
      * @param t Le temps qu'on veut arrondir
@@ -33,15 +66,38 @@ public class Toolbox {
      * @param c : controler to generate employees in
      * @param nbToGenerate : integer number of employees to generate
      */
-    public static void generateEmployees(ControlerMain c, int nbToGenerate) {
-    	ArrayList<Employee> list = new ArrayList<Employee>();
-    	int rand;
+    public static void generateDepartments(ControlerMain c, int nbToGenerate) {
+    	int randDept;
+    	int sizeDepts = deptNames.length;
     	
     	for (int i=0; i<nbToGenerate; i++) {
-    		rand = new Random().nextInt();
+    		randDept = new Random().nextInt(sizeDepts);
     		
-    		list.add(new Employee(null, null, null));
+    		Department dept = new Department(deptNames[randDept]);
+        	c.addDepartment(dept);
     	}
+    }
+    
+    
+    /**
+     * 
+     * @param c : controler to generate employees in
+     * @param nbToGenerate : integer number of employees to generate
+     */
+    public static void generateEmployees(ControlerMain c, int nbToGenerate) {
+    	int randDept, randName1, randName2;
+    	int sizeDepts = c.getAllDepartment().size();
+    	int sizeNames = names.length;
+    	
+    	for (int i=0; i<nbToGenerate; i++) {
+    		randDept = new Random().nextInt(sizeDepts);
+    		randName1 = new Random().nextInt(sizeNames);
+    		randName2 = new Random().nextInt(sizeNames);
+    		
+    		Employee emp = new Employee(c.getDepartment(randDept), names[randName1], names[randName2]);
+        	c.addEmploye(emp);
+    	}
+    	
     }
     
     
@@ -148,6 +204,7 @@ public class Toolbox {
 		};
 		return items;
     }
+    
     
     public static ArrayList<LocalTime> getAllTimeBefore(LocalTime time) {
     	LocalTime t = LocalTime.of(0, 0);
