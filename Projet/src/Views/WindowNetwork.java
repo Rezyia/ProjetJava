@@ -66,8 +66,8 @@ public class WindowNetwork {
 		this.cn = cn;
 		
 		f = new JFrame("Option réseau");
-		f.setSize(1920,1080);
-		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		f.setSize(720,480);
+		//f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		lAddress = new JLabel("Adresse");
 		lAddress.setBounds(50,50, 150,20);
