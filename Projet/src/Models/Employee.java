@@ -46,22 +46,6 @@ public class Employee {
 		return id;
 	}
 	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
 	public String toString() {
 		return "Employé "+id+" : "+firstname+" "+name;
 	}

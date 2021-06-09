@@ -39,6 +39,7 @@ public class Toolbox {
     	
     	for (int i=0; i<nbToGenerate; i++) {
     		rand = new Random().nextInt();
+    		
     		list.add(new Employee(null, null, null));
     	}
     }
