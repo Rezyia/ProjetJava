@@ -61,8 +61,9 @@ public class WindowEmulator {
 	
 	/**
      * Create the button who take the id on the field and show it on screen
+     * @param CtrlEmu : to obtain the method of pointing
      */
-	public static JButton CreateButtonPoint(){
+	public static JButton CreateButtonPoint(ControlerEmulator CtrlEmu){
 		
 	    JButton b=new JButton("Click Here");
 	    b.setBounds(200,50,95,20);
@@ -71,8 +72,7 @@ public class WindowEmulator {
 		    		LocalDateTime LDTnow = LocalDateTime.now();
 		    		try {
 					int id = Integer.parseInt(tfId.getText());
-			    		//CtrlEmu = new ControlerEmulator();
-			    		//CtrlEmu.sendPointing(id, LDTnow);
+			    		CtrlEmu.sendPointing(id, LDTnow);
 			    		labelId.setText("employ\u00e9 avec l'ID : "+id+" a \u00e9t\u00e9 point\u00e9");
 		    		}
 		    		catch(NumberFormatException e1) {
@@ -87,16 +87,15 @@ public class WindowEmulator {
 	
 	/**
      * Button to access WindowNetwork
+     * @param CtrlEmu : to obtain the method of create the window network
      */
-public static JButton CreateButtonPort(){
+public static JButton CreateButtonPort(ControlerEmulator CtrlEmu){
 		
 	    JButton b=new JButton("Change Port");
 	    b.setBounds(300,50,110,20);
 	    b.addActionListener(new ActionListener(){  
 		    public void actionPerformed(ActionEvent e){  
 		    	WindowNetwork WNet = new WindowNetwork();
-		    	//Attention Controleur temporaire pour voir le bon fonctionnement de la fonction
-		    	ControlerEmulator CtrlEmu = new ControlerEmulator();
 		    	WNet.setWindow(CtrlEmu);
 		    }
 	    });
@@ -105,13 +104,16 @@ public static JButton CreateButtonPort(){
 	
 
 	
-	
-	public static void main(String[] args) throws IOException{
+	/**
+	 * Principal Method to create the principal window of the Emulator
+	 * @param CtrlEmu : to obtain different method
+	 */
+	public static void setWindowEmu(ControlerEmulator CtrlEmu) throws IOException{
 		f = new JFrame("Emulateur Pointeuse");
 		f.setSize(1920,1080);
 		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
-		//texte s'affichant quand on rÃƒÂ©cupÃƒÂ¨re l'id
+		//texte s'affichant quand on recupere l'id
 		labelId = new JLabel(); 
 		labelId.setBounds(50,100, 300,20);  
 		
@@ -127,8 +129,8 @@ public static JButton CreateButtonPort(){
 		tfId= CreateTextField();
 		tfId.setText("Veuillez rentrer votre ID");
 		
-		bpoint = CreateButtonPoint();
-		bport = CreateButtonPort();
+		bpoint = CreateButtonPoint(CtrlEmu);
+		bport = CreateButtonPort(CtrlEmu);
 		 
 	    f.add(bpoint);f.add(bport);f.add(tfId); f.add(labelId) ;f.add(labelTime);f.add(labelTimeRound);
 		

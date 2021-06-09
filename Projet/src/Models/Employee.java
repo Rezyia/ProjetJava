@@ -90,12 +90,39 @@ public class Employee {
 		}
 	}
 	
-	
+	public void setPlanning(LocalTime begin, LocalTime end, String day) {
+		LocalTime tabtime[] = {begin, end};
+		planning.put(day, tabtime);
+	}
 	
 	public static void main(String[] args) {
 		Department dpt = new Department("Dpt");
 		for(int i = 0 ; i < 5 ; i++) {
 			System.out.println(new Employee(dpt, "Nom", "Sans"));
 		}
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public void setDepartment(Department dpt) {
+		this.departement = dpt;
+	}
+
+	public String getName() {
+		return name;
+	}
+	
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public Department getDepartment() {
+		return departement;
 	}
 }
