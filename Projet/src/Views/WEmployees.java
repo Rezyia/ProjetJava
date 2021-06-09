@@ -1,7 +1,12 @@
 
 package Views;
 
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import Controlers.ControlerMain;
+import Models.Employee;
 
 
 public class WEmployees extends javax.swing.JPanel {
@@ -53,6 +58,27 @@ public class WEmployees extends javax.swing.JPanel {
             public String getElementAt(int i) { return strings[i]; }
         });
         list.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        
+        ListSelectionModel selectionModel = list.getSelectionModel();
+        selectionModel.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+		        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+		        int index = lsm.getSelectedIndices()[0];
+		        
+		        Employee emp = controler.getEmp(index);
+		        
+		        lHeader.setText("Employee " + emp.getId() + " :");
+		        lID.setText(" ID : " + emp.getId());
+		        lFirstName.setText(" First name : " + emp.getFirstname());
+		        lLastName.setText(" Last name : " + emp.getName());
+		        lDept.setText(" Department : " + emp.getDepartment().getnameDep());
+		        lIsWorking.setText(" Is working : ");
+		        lPlanning.setText(" Planning : ");
+		        lOvertime.setText(" Overtime : ");
+			}
+		});
+
+        
         scrollList.setViewportView(list);
 
         main.add(scrollList, java.awt.BorderLayout.CENTER);
@@ -63,7 +89,7 @@ public class WEmployees extends javax.swing.JPanel {
 
         lHeader.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lHeader.setText("Pointing <IDEmp> - <Date>");
+        lHeader.setText("Employee :");
         lHeader.setPreferredSize(new java.awt.Dimension(34, 40));
         header.add(lHeader, java.awt.BorderLayout.NORTH);
 
