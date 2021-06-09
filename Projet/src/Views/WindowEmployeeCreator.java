@@ -47,6 +47,11 @@ public class WindowEmployeeCreator {
 	public static ControlerMain cm;
 	protected static Employee emp_modif = null;
 	
+	/**
+	 * Classe utilisé pour affiché correctement les départements dans un ComboBox
+	 * @author dylan
+	 *
+	 */
 	static class DepartmentRenderer extends BasicComboBoxRenderer{
 
 		private static final long serialVersionUID = 1L;
@@ -62,6 +67,11 @@ public class WindowEmployeeCreator {
 		
 	}
 	
+	/**
+	 * Classe utilisé pour affiché correctement un LocalTime dans un ComboBox
+	 * @author dylan
+	 *
+	 */
 	static class TimeRenderer extends BasicComboBoxRenderer{
 
 		private static final long serialVersionUID = 1L;
@@ -96,7 +106,7 @@ public class WindowEmployeeCreator {
 	
 	/**
 	 * Créer la ComboBox des département
-	 * @return la ComboBox des département
+	 * @return Un ComboBox<Department> contenant tout les département du controleur principale
 	 */
 	public static JComboBox<Department> createComboBoxDepartment() {
 		ArrayList<Department> dptListe = cm.getAllDepartment();
@@ -110,8 +120,12 @@ public class WindowEmployeeCreator {
 		return cb;
 	}
 	
-	public static JComboBox<LocalTime> createComboBoxPlanningBegin(LocalTime lt){
-		ArrayList<LocalTime> timeBefore = Toolbox.getAllTimeBefore(lt);
+	/**
+	 * Créer la ComboBox des Plannings
+	 * @return Un ComboBox<LocalTime> contenant tout les heures arrondi au quart d'heure
+	 */
+	public static JComboBox<LocalTime> createComboBoxPlanning(){
+		ArrayList<LocalTime> timeBefore = Toolbox.getAllTimeAfter(LocalTime.of(0, 0));
 		JComboBox<LocalTime> cb = new JComboBox<LocalTime>();
 		Iterator<LocalTime> i = timeBefore.iterator();
 		while(i.hasNext()) {
@@ -121,19 +135,9 @@ public class WindowEmployeeCreator {
 		return cb;
 	}
 	
-	public static JComboBox<LocalTime> createComboBoxPlanningEnd(LocalTime lt){
-		ArrayList<LocalTime> timeBefore = Toolbox.getAllTimeAfter(lt);
-		JComboBox<LocalTime> cb = new JComboBox<LocalTime>();
-		Iterator<LocalTime> i = timeBefore.iterator();
-		while(i.hasNext()) {
-			cb.addItem(i.next());
-		}
-		cb.setRenderer(ltr);
-		return cb;
-	}
-
-	
-	
+	/**
+	 * Permet d'update la ComboBox des Departement lorsqu'on en ajoute un via la fenêtre de création de département
+	 */
 	public void updateDepts() {
 		cbDepartment.removeAllItems();
 		for (Department s:cm.getAllDepartment()) {
@@ -222,8 +226,6 @@ public class WindowEmployeeCreator {
 		    		emp_modif.setPlanning((LocalTime)cbFridayBegin.getSelectedItem(), (LocalTime)cbFridayEnd.getSelectedItem(), "friday");
 		    		lCreate.setText("Employ\u00e9 modifi\u00e9");
 		    		
-		    		//Pour voir si l'employé est correctement modifier dans le controleur
-		    		System.out.println(cm.getEmployee(emp_modif.getId()));
 		    	}catch(Exception exc) {
 		    		System.out.println(exc+" Invalid or missing argument");
 		    		lCreate.setText(exc+" Invalid or missing argument");
@@ -275,37 +277,37 @@ public class WindowEmployeeCreator {
 		
 		lMonday = new JLabel("Lundi");
 		lMonday.setBounds(50, 180, 100, 20);
-		cbMondayBegin = createComboBoxPlanningBegin(LocalTime.of(23, 45));
+		cbMondayBegin = createComboBoxPlanning();
 		cbMondayBegin.setBounds(50, 200, 100, 20);
-		cbMondayEnd = createComboBoxPlanningEnd(LocalTime.of(0, 0));
+		cbMondayEnd = createComboBoxPlanning();
 		cbMondayEnd.setBounds(50, 220, 100, 20);
 		
 		lTuesday = new JLabel("Mardi");
 		lTuesday.setBounds(150, 180, 100, 20);
-		cbTuesdayBegin = createComboBoxPlanningBegin(LocalTime.of(23, 45));
+		cbTuesdayBegin = createComboBoxPlanning();
 		cbTuesdayBegin.setBounds(150, 200, 100, 20);
-		cbTuesdayEnd = createComboBoxPlanningEnd(LocalTime.of(0, 0));
+		cbTuesdayEnd = createComboBoxPlanning();
 		cbTuesdayEnd.setBounds(150, 220, 100, 20);
 		
 		lWednesday = new JLabel("Mercredi");
 		lWednesday.setBounds(250, 180, 100, 20);
-		cbWednesdayBegin = createComboBoxPlanningBegin(LocalTime.of(23, 45));
+		cbWednesdayBegin = createComboBoxPlanning();
 		cbWednesdayBegin.setBounds(250, 200, 100, 20);
-		cbWednesdayEnd = createComboBoxPlanningEnd(LocalTime.of(0, 0));
+		cbWednesdayEnd = createComboBoxPlanning();
 		cbWednesdayEnd.setBounds(250, 220, 100, 20);
 		
 		lThursday = new JLabel("Jeudi");
 		lThursday.setBounds(350, 180, 100, 20);
-		cbThursdayBegin = createComboBoxPlanningBegin(LocalTime.of(23, 45));
+		cbThursdayBegin = createComboBoxPlanning();
 		cbThursdayBegin.setBounds(350, 200, 100, 20);
-		cbThursdayEnd = createComboBoxPlanningEnd(LocalTime.of(0, 0));
+		cbThursdayEnd = createComboBoxPlanning();
 		cbThursdayEnd.setBounds(350, 220, 100, 20);
 		
 		lFriday = new JLabel("Vendredi");
 		lFriday.setBounds(450, 180, 100, 20);
-		cbFridayBegin = createComboBoxPlanningBegin(LocalTime.of(23, 45));
+		cbFridayBegin = createComboBoxPlanning();
 		cbFridayBegin.setBounds(450, 200, 100, 20);
-		cbFridayEnd = createComboBoxPlanningEnd(LocalTime.of(0, 0));
+		cbFridayEnd = createComboBoxPlanning();
 		cbFridayEnd.setBounds(450, 220, 100, 20);
 		
 		
@@ -343,9 +345,9 @@ public class WindowEmployeeCreator {
 	 */
 	public static void setWindow(WindowEmployeeCreator wec, Employee emp, ControlerMain ctrlmain) {
 		emp_modif = emp;
-		f = new JFrame("Modification employé");
 		setWindow(wec, ctrlmain);
 		f.setVisible(false);
+		f.setTitle("Modifier employ\u00e9");
 		cbMondayBegin.setSelectedItem(emp_modif.getPlanningDay("monday")[0]);
 		cbMondayEnd.setSelectedItem(emp_modif.getPlanningDay("monday")[1]);
 		
@@ -368,7 +370,6 @@ public class WindowEmployeeCreator {
 		f.remove(bCreate);
 		bModify = createButtonModify();
 		f.add(bModify);
-		f.setName("Modifier employé");
 		f.setVisible(true);
 	}
 	
@@ -381,7 +382,7 @@ public class WindowEmployeeCreator {
 		Employee emp = new Employee(dpt, "Vinet", "Dylan");
 		cm.addEmploye(emp);
 		
-		setWindow(wec, cm);
+		setWindow(wec, emp, cm);
 	}
 	
 	
