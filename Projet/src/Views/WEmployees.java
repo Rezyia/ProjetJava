@@ -71,13 +71,7 @@ public class WEmployees extends javax.swing.JPanel {
         selectionModel.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 		        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
-<<<<<<< HEAD
 		        int index = lsm.getMinSelectionIndex(), id;
-=======
-		        int index = lsm.getSelectedIndices()[0];
-			String id = list.getModel().getElementAt(index);           
-            		index = Integer.parseInt(id.replaceAll("[\\D]", ""));
->>>>>>> 6a7ef6f2bfdfe3f1f14cefd0b00339b90edda9a9
 		        
 		        if (index == -1) {
 			        bModify.setEnabled(false);
