@@ -22,6 +22,7 @@ public class WPointings extends javax.swing.JPanel {
 	private static final long serialVersionUID = -5326257363166640986L;
 	
 	private static ControlerMain controler;
+	public static int test = 0;
 	
 
 	public WPointings() {
@@ -107,47 +108,18 @@ public class WPointings extends javax.swing.JPanel {
     private void checkboxActionPerformed(ItemEvent evt) {                                           
     	if (evt.getStateChange() == ItemEvent.SELECTED) updatePointings(controler.getPointings());
     	else updatePointings(controler.getPointingsOfTheDay());
-    }                                          
-
-    
-    /**
-     * Loads the information from the selected Pointing to the right JPanel.
-     * @param index index of the selected item in the JList.
-     */
-    private void loadPointingData(int index) {
-    	Pointing p = controler.getPointingFromString(list.getModel().getElementAt(index));
-    	Employee emp = controler.getEmployee(p.getIdEmp());
-    	String day = p.getTime().getDayOfWeek().toString().toLowerCase();
-    	    
-    	if (Toolbox.isDayOfWeekend(p.getTime())){
-            lPointedTime.setText(" Hour pointed : WEEKEND, no pointing data");
-    		lPlannedTime.setText(" Hour planned : WEEKEND, no pointing data");
-    	} else {
-    		lPointedTime.setText(" Hour pointed : " + p.getTime().getHour() + " : " + p.getTime().getMinute());
-
-        	if (p.getTime().getHour()<12) {
-        		lInOut.setText(" In/Out : In");
-        		lPlannedTime.setText(" Hour planned : " + emp.getPlanningDay(day)[0]);
-        	}
-        	else {
-        		lInOut.setText(" In/Out : Out");
-        		lPlannedTime.setText(" Hour planned : " + emp.getPlanningDay(day)[1]);
-        	}
-
-    	}	
-    	
-    	
-
-
-    }
-    
+    }                         
     
     public void updateList() {
     	if (checkBox.isEnabled()) updatePointings(controler.getPointings());
     	else updatePointings(controler.getPointingsOfTheDay());
-    }
+    }    
     
     
+    /**
+     * Updates the list of pointings
+     * @param items String[] of items to load into the list
+     */
     public void updatePointings(String[] items) {
     	list = new JList<String>();
         list.setModel(new javax.swing.AbstractListModel<String>() {
@@ -162,17 +134,40 @@ public class WPointings extends javax.swing.JPanel {
 			public void valueChanged(ListSelectionEvent e) {
 				ListSelectionModel lsm = (ListSelectionModel)e.getSource();
 			    if (!lsm.isSelectionEmpty()) {
-			    	int index = lsm.getMinSelectionIndex();
-			    	
-			    	loadPointingData(index);
-			        
 			        lHeader.setText("Pointing " + list.getSelectedValue());
+			    	loadPointingData(list.getSelectedIndex());
 			    }
 			}
 		});
-        
         scrollList.setViewportView(list);
         SwingUtilities.updateComponentTreeUI(scrollList);
+    }
+    
+    
+    /**
+     * Loads the information from the selected Pointing to the right JPanel.
+     * @param index index of the selected item in the JList.
+     */
+    private void loadPointingData(int index) {
+    	Pointing p = controler.getPointingFromString(list.getModel().getElementAt(index));
+    	Employee emp = controler.getEmployee(p.getIdEmp());
+    	String day = p.getTime().getDayOfWeek().toString().toLowerCase();
+    	    	
+    	if (Toolbox.isDayOfWeekend(p.getTime())){ // Should never happen
+            lPointedTime.setText(" Hour pointed : WEEKEND, no pointing data");
+    		lPlannedTime.setText(" Hour planned : WEEKEND, no pointing data");
+    	} else {
+    		lPointedTime.setText(" Hour pointed : " + p.getTime().getHour() + ":" + p.getTime().getMinute());
+
+        	if (p.getTime().getHour()<12) {
+        		lInOut.setText(" In/Out : In");
+        		lPlannedTime.setText(" Hour planned : " + emp.getPlanningDay(day)[0]);
+        	}
+        	else {
+        		lInOut.setText(" In/Out : Out");
+        		lPlannedTime.setText(" Hour planned : " + emp.getPlanningDay(day)[1]);
+        	}
+    	}	
     }
     
 

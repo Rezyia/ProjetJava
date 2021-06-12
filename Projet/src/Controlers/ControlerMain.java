@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.*;
 
@@ -46,13 +47,6 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 		f.updateLists();
 	}
 	
-	/**
-	 * Updates the pointing list
-	 * @param items String[] of items to load in the list
-	 */
-	public static void updatePointings(String[] items) {
-		f.getWindowPointings().updatePointings(items);
-	}
 	
 	
 	private void setSocket() throws IOException {
@@ -362,11 +356,11 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	 */
 	public Pointing getPointingFromString(String str) {
 		Pointing pt = null;
-		
+				
 		String[] res = str.split(" |:|-"); // Parse selected String :
 		//for (String r : res) System.out.println(r);
 		int year = Integer.parseInt(res[0]);
-		String month = res[1];
+		Month month = Month.valueOf(res[1]);
 		int day = Integer.parseInt(res[2]);
 		int hour = Integer.parseInt(res[3]);
 		int minute = Integer.parseInt(res[4]);
