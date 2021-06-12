@@ -47,7 +47,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Updates the pointing list
-	 * @param items : String[] of items to load in the list
+	 * @param items String[] of items to load in the list
 	 */
 	public static void updatePointings(String[] items) {
 		f.getWindowPointings().updatePointings(items);
@@ -64,7 +64,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 
 	/**
 	 * Adds an Employee to the ArrayList
-	 * @param e : Employee to add
+	 * @param e Employee to add
 	 */
 	public void addEmploye(Employee e) {
 		employees.add(e);
@@ -72,7 +72,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Removes an employee from the ArrayList
-	 * @param e : Employee to remove
+	 * @param e Employee to remove
 	 */
 	public void rmEmploye(Employee e) {
 		employees.remove(e);
@@ -80,7 +80,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Checks if the given employee already exists
-	 * @param idEmp : id of the employee to check
+	 * @param idEmp id of the employee to check
 	 * @return boolean true if employee exists, false otherwise
 	 */
 	public boolean isEmployeExist(int idEmp) {
@@ -175,7 +175,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Adds a department to the ArrayList
-	 * @param d : Department to add.
+	 * @param d Department to add.
 	 */
 	public void addDepartment(Department d) {
 		departments.add(d);
@@ -183,7 +183,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Removes a department from the ArrayList
-	 * @param d : Department to remove.
+	 * @param d Department to remove.
 	 */
 	public void rmDepartment(Department d) {
 		departments.remove(d);
@@ -191,7 +191,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Check if department exists
-	 * @param str : Title of the department 
+	 * @param str Title of the department 
 	 * @return boolean true if exists, false otherwise
 	 */
 	public boolean isDepartmentExist(String str) {
@@ -207,7 +207,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Returns the Department at the index <code>id</code> in the ArrayList 
-	 * @param id : index of the department to get
+	 * @param id index of the department to get
 	 * @return Department at the index <code>id</code>
 	 */
 	public Department getDepartment(int id) {
@@ -226,8 +226,8 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Compares the dates of 2 LocalDateTime objects.
-	 * @param o1 : First LocalDateTime object to compare
-	 * @param o2 : Second LocalDateTime object to compare
+	 * @param o1 First LocalDateTime object to compare
+	 * @param o2 Second LocalDateTime object to compare
 	 * @return int difference of years or difference of days if in the same year.
 	 */
 	public int compareTime(LocalDateTime o1, LocalDateTime o2) {
@@ -239,7 +239,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Add a pointing to the array, change employee working status and calculate their new overtime.
-	 * @param p : Pointing to add
+	 * @param p Pointing to add
 	 */
 	public void addPointing(Pointing p) {
 		pointings.add(p);
@@ -290,7 +290,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Convert a LocalDateTime object to a String
-	 * @param time : LocalDateTime to convert
+	 * @param time LocalDateTime to convert
 	 * @return String of the time (formated). 
 	 */
 	public String toListString(LocalDateTime time) {
@@ -363,7 +363,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
     
 	/**
 	 * Serializes the ArrayLists and settings of the ControlerMain
-	 * @param c : ControlerMain to save
+	 * @param c ControlerMain to save
 	 */
 	public static void serialize(ControlerMain c) {
 		try {
@@ -401,7 +401,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Deserializes the ArrayLists and settings of the ControlerMain
-	 * @param c : ControlerMain to load to
+	 * @param c ControlerMain to load to
 	 */
 	public static void deserialize(ControlerMain c) {
 		try {
@@ -427,7 +427,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	/**
 	 * Main program
-	 * @param args	String Array for called arguments
+	 * @param args String Array for called arguments
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException{
