@@ -16,6 +16,14 @@ public class Employee implements Serializable {
 	
 	private boolean isWorking;		//Booléen qui indique si l'employé est en train de travailler ou pas
 	
+	public static String[] workingDays = {
+		"monday",
+		"tuesday",
+		"wednesday",
+		"thursday",
+		"friday"
+	};
+	
 	private HashMap<String, LocalTime[]> planning;
 	//La clé représente la journée (lundi, mardi, etc.)
 	//La valeur est un tableau de LocalDateTime de 2 case

@@ -91,9 +91,14 @@ public class WEmployees extends javax.swing.JPanel {
 			        lLastName.setText(" Last name : " + emp.getName());
 			        lDept.setText(" Department : " + emp.getDepartment().getnameDep());
 			        lIsWorking.setText(" Is working : ");
-			        LocalTime timeBegin = emp.getPlanningDay("monday")[0];
-			        LocalTime timeEnd = emp.getPlanningDay("monday")[1];
-			        lPlanning.setText(" Planning : " + timeBegin + " to " + timeEnd);
+			        
+			        lPlanning.setText(" Planning : \n");
+			        for (String day : Employee.workingDays) {
+				        LocalTime timeBegin = emp.getPlanningDay(day)[0];
+				        LocalTime timeEnd = emp.getPlanningDay(day)[1];
+				        lPlanning.setText(lPlanning.getText() + " " + day + " : " + timeBegin + " to " + timeEnd + " - ");
+
+			        }
 			        lOvertime.setText(" Overtime : ");
 			        
 			        // Enable modify and delete buttons :
