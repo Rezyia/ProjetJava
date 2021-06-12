@@ -50,7 +50,10 @@ public class WEmployees extends javax.swing.JPanel {
         bAdd = new javax.swing.JButton();
         bModify = new javax.swing.JButton();
         bDelete = new javax.swing.JButton();
-
+        
+        selectedEmp = null;
+        wec = new WindowEmployeeCreator();
+        
         setLayout(new java.awt.GridLayout());
 
         main.setLayout(new java.awt.BorderLayout());
@@ -69,17 +72,23 @@ public class WEmployees extends javax.swing.JPanel {
 		        int index = lsm.getSelectedIndices()[0];
 		        
 		        Employee emp = controler.getEmp(index);
+		        selectedEmp = emp;
 		        
+		        // Display details on the right panel :
 		        lHeader.setText("Employee " + emp.getId() + " :");
 		        lID.setText(" ID : " + emp.getId());
 		        lFirstName.setText(" First name : " + emp.getFirstname());
 		        lLastName.setText(" Last name : " + emp.getName());
 		        lDept.setText(" Department : " + emp.getDepartment().getnameDep());
 		        lIsWorking.setText(" Is working : ");
-		        LocalTime timeBegin = emp.getPlanningDay(LocalDate.now().getDayOfWeek().toString().toLowerCase())[0];
-		        LocalTime timeEnd = emp.getPlanningDay(LocalDate.now().getDayOfWeek().toString().toLowerCase())[1];
+		        LocalTime timeBegin = emp.getPlanningDay("monday")[0];
+		        LocalTime timeEnd = emp.getPlanningDay("monday")[1];
 		        lPlanning.setText(" Planning : " + timeBegin + " to " + timeEnd);
 		        lOvertime.setText(" Overtime : ");
+		        
+		        // Enable modify and delete buttons :
+		        bModify.setEnabled(true);
+		        bDelete.setEnabled(true);
 			}
 		});
 
@@ -128,23 +137,25 @@ public class WEmployees extends javax.swing.JPanel {
         bAdd.setText("Add...");
         bAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bAddActionPerformed(evt);
             }
         });
         buttons.add(bAdd);
 
         bModify.setText("Modify...");
+        bModify.setEnabled(false);
         bModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bModifyActionPerformed(evt);
             }
         });
         buttons.add(bModify);
 
         bDelete.setText("Delete...");
+        bDelete.setEnabled(false);
         bDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bDeleteActionPerformed(evt);
             }
         });
         buttons.add(bDelete);
@@ -154,15 +165,16 @@ public class WEmployees extends javax.swing.JPanel {
         add(header);
     }// </editor-fold>                        
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    private void bAddActionPerformed(java.awt.event.ActionEvent evt) { 
+		WindowEmployeeCreator.setWindow(wec, controler);
+
     }                                        
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    private void bModifyActionPerformed(java.awt.event.ActionEvent evt) {
+		WindowEmployeeCreator.setWindow(wec, selectedEmp, controler);
     }                                        
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void bDeleteActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
     }                                        
 
@@ -189,5 +201,9 @@ public class WEmployees extends javax.swing.JPanel {
     private javax.swing.JPanel buttons;
     private javax.swing.JPanel header;
     private javax.swing.JPanel info;
+    
+	private WindowEmployeeCreator wec;
+    Employee selectedEmp;
+
     // End of variables declaration                   
 }

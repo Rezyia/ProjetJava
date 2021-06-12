@@ -201,6 +201,55 @@ public class ControlerMain extends ControlerNetwork{
 		return res;
 	}
 	
+	public String[] getPointingsOfTheDay() {
+		// Declarations & inits:
+		ArrayList<String> pts = new ArrayList<String>();
+		Pointing currentPointing = null;
+		Iterator<Pointing> ite = pointings.iterator();
+		
+		// Iterating pointings list : 
+		while(ite.hasNext()) {
+			currentPointing = ite.next();
+			if (currentPointing.getTime().getDayOfMonth() == LocalDateTime.now().getDayOfMonth() && currentPointing.getTime().getMonthValue() == LocalDateTime.now().getMonthValue())
+				pts.add((toListString(currentPointing.getTime()) + " - Employee " + currentPointing.getIdEmp()));
+		}
+		// Convert ArrayList to String array :
+		String[] res = new String[pts.size()];
+		res = pts.toArray(res);
+		return res;
+	}
+	
+	//-------------------------------------------------------------Serialize :
+	
+	public static void serialize(ControlerMain c) {
+		try {
+			FileOutputStream file = new FileOutputStream("data.ser");
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			out.writeObject(c);
+			out.close();
+			System.out.println("Main controler data saved.");
+		} catch(IOException err) {
+			err.printStackTrace();
+		}
+	}
+	
+	
+	//-------------------------------------------------------------Deserialize :
+	
+	public static void deserialize(ControlerMain c) {
+		try {
+			FileInputStream file = new FileInputStream("data.ser");
+			ObjectInputStream in = new ObjectInputStream(file);
+			c = (ControlerMain) in.readObject();
+			in.close();
+			System.out.println("Main controler data saved.");
+		} catch(IOException ioe) {
+			ioe.printStackTrace();
+		} catch (ClassNotFoundException cnfe) {
+			cnfe.printStackTrace();
+		}
+	}
+	
 	
 	//-------------------------------------------------------------Main program
 

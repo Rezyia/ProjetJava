@@ -10,36 +10,59 @@ import Models.*;
 public class Toolbox {
 
 	public static String[] names = {
-			"Scarlette",
-			"Elliott",
-			"Neel",
-			"Mayur",
-			"Valentino",
-			"Kelvin",
-			"Juniper",
-			"Cameron",
-			"Miruna",
-			"Kaiden",
-			"Shane",
-			"Hal",
 			"Aaron",
-			"Maxine",
+			"Cameron",
+			"Ehsan ",
+			"Elliott",
+			"Hal",
 			"Ivy ",
 			"Jeffrey", 
+			"Juniper",
+			"Kaiden",
+			"Kelvin",
+			"Maxine",
+			"Mayur",
+			"Miruna",
 			"Mirza ",
+			"Neel",
 			"Sultan ",
-			"Ehsan ",
-			"Rafferty" 
+			"Rafferty",
+			"Scarlette",
+			"Shane",
+			"Valentino"
+	};
+	
+	public static String[] lastNames = {
+			"Barnett ",
+			"Bernard",
+			"Graham",
+			"Griffith",
+			"Holt", 
+			"Hopkins ",
+			"Jennings",
+			"Kennedy",
+			"Lee",
+			"Love",
+			"Mccoy",
+			"Middleton",
+			"Owen",
+			"Ramsey",
+			"Reilly",
+			"Robertson",
+			"Rodgers ",
+			"Scott",
+			"Turner ",
+			"Walters"
 	};
 	
 	public static String[] deptNames = {
-		"Human Resources",
-		"Engineering",
-		"Interns",
-		"Security",
-		"Janitoring",
 		"Communication",
-		"Maintenance"
+		"Engineering",
+		"Human Resources",
+		"Interns",
+		"Janitoring",
+		"Maintenance",
+		"Security"
 	};
  	
 	/**
@@ -94,7 +117,7 @@ public class Toolbox {
     		randName1 = new Random().nextInt(sizeNames);
     		randName2 = new Random().nextInt(sizeNames);
     		
-    		Employee emp = new Employee(c.getDepartment(randDept), names[randName1], names[randName2]);
+    		Employee emp = new Employee(c.getDepartment(randDept), names[randName1], lastNames[randName2]);
         	c.addEmploye(emp);
     	}
     	
@@ -106,15 +129,26 @@ public class Toolbox {
      * @param nbToGenerate : integer number of pointings to generate
      */
     public static void generatePointings(ControlerMain c, int nbToGenerate) {
-    	int randTime, randDay, randEmp;
+    	int randTime, randDay, randEmp, randWorktime;
     	int sizeEmps = c.getEmployees().length;
     	
     	for (int i=0; i<nbToGenerate; i++) {
     		randEmp = new Random().nextInt(sizeEmps);
-    		randTime = new Random().nextInt(3600*10);
+    		randTime = new Random().nextInt(3600*6);
+    		randWorktime = new Random().nextInt(3600*10);
+    		randWorktime += 3600;
     		randDay = new Random().nextInt(14);
-    		Pointing pt = new Pointing(randEmp, LocalDateTime.now().plusSeconds(randTime).plusDays(randDay));
-    		c.addPointing(pt);
+    		
+    		LocalDateTime time = LocalDateTime.now().plusSeconds(randTime).plusDays(randDay);
+    		while (time.getHour() >= 12) { // Check if second half of the day
+        		randTime = new Random().nextInt(3600*6);
+        		time = LocalDateTime.now().plusSeconds(randTime).plusDays(randDay);
+    		}
+    		
+    		Pointing pt = new Pointing(randEmp, time);
+    		Pointing pt2 = new Pointing(randEmp, time.plusSeconds(randWorktime));
+    		c.addPointing(pt);    		
+    		c.addPointing(pt2);
     	}
     	
     }

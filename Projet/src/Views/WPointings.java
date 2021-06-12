@@ -4,9 +4,13 @@ package Views;
 import java.awt.Panel;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import com.sun.source.tree.Scope;
 
 import Controlers.ControlerMain;
 import Models.Employee;
@@ -38,7 +42,7 @@ public class WPointings extends javax.swing.JPanel {
 
         main = new javax.swing.JPanel();
         scrollList = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<>();
+        list = new javax.swing.JList<String>();
         checkBox = new javax.swing.JCheckBox();
         
         header = new javax.swing.JPanel();
@@ -53,20 +57,15 @@ public class WPointings extends javax.swing.JPanel {
 
         main.setLayout(new java.awt.BorderLayout());
 
-        list.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = controler.getPointings();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        list.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         scrollList.setViewportView(list);
-
         main.add(scrollList, java.awt.BorderLayout.CENTER);
 
+        updatePointings(controler.getPointingsOfTheDay());
+        
         checkBox.setText("Show all pointings");
         checkBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                checkboxActionPerformed(evt);
             }
         });
         main.add(checkBox, java.awt.BorderLayout.PAGE_END);
@@ -97,40 +96,42 @@ public class WPointings extends javax.swing.JPanel {
         add(header);
     }// </editor-fold>                        
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+    
+    private void checkboxActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    	if (checkBox.isEnabled()) updatePointings(controler.getPointings());
+    	else if (!checkBox.isEnabled()) updatePointings(controler.getPointingsOfTheDay());
     }                                          
 
     
-    private void loadInfo(Employee emp) {
+    private void loadPointingData(int id) {
     	
     }
     
-    
-    public void updatePointings(String[] items) {    	
-    	main.remove(scrollList);
+    public void updatePointings(String[] items) {
+    	list = new JList<String>();
         list.setModel(new javax.swing.AbstractListModel<String>() {
             public int getSize() { return items.length; }
             public String getElementAt(int i) { return items[i]; }
         });
         list.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        list.clearSelection();
         
         ListSelectionModel selectionModel = list.getSelectionModel();
         selectionModel.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-		        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
-		        int index = lsm.getSelectedIndices()[0];
-		        
-		        Employee emp = controler.getEmp(index);
-		        
-		        lHeader.setText("Pointing " + list.getSelectedValue() + " - Employee " + emp.getId() + " - Date : " + "<Date>");
-		        
-		        loadInfo(emp);
+				ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+			    if (!lsm.isSelectionEmpty()) {
+			    	int index = lsm.getMinSelectionIndex();
+			    	
+			    	loadPointingData(index);
+			        
+			        lHeader.setText("Pointing " + list.getSelectedValue());
+			    }
 			}
 		});
         
         scrollList.setViewportView(list);
-        main.add(scrollList, java.awt.BorderLayout.CENTER);
+        SwingUtilities.updateComponentTreeUI(scrollList);
     }
     
 
