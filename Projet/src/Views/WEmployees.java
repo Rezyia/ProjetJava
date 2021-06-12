@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -155,6 +156,27 @@ public class WEmployees extends javax.swing.JPanel {
         bDelete.setEnabled(false);
         bDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+		    
+		int index = selectionModel.getSelectedIndices()[0];
+		System.out.println(index);
+		if(controler.isEmployeExist(index)) {
+			Employee emp = controler.getEmp(index);
+			controler.rmEmploye(emp);
+
+			//TODO Attention probleme avec les nouveaux indices 
+			list.setModel(new javax.swing.AbstractListModel<String>() {
+		    String[] strings = controler.getEmployees();
+		    public int getSize() { return strings.length; }
+		    public String getElementAt(int i) { return strings[i]; }
+		});
+			scrollList.setViewportView(list);
+			SwingUtilities.updateComponentTreeUI(scrollList);
+			System.out.println("suppression reussi");
+
+		}
+		else {
+			System.out.println("deja supprime");
+		}    
                 bDeleteActionPerformed(evt);
             }
         });
@@ -175,26 +197,7 @@ public class WEmployees extends javax.swing.JPanel {
     }                                        
 
     private void bDeleteActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        int index = selectionModel.getSelectedIndices()[0];
-				System.out.println(index);
-				if(controler.isEmployeExist(index)) {
-					Employee emp = controler.getEmp(index);
-					controler.rmEmploye(emp);
-					
-					//TODO Attention probleme avec les nouveaux indices 
-					list.setModel(new javax.swing.AbstractListModel<String>() {
-			            String[] strings = controler.getEmployees();
-			            public int getSize() { return strings.length; }
-			            public String getElementAt(int i) { return strings[i]; }
-			        });
-					scrollList.setViewportView(list);
-					SwingUtilities.updateComponentTreeUI(scrollList);
-					System.out.println("suppression reussi");
-
-				}
-				else {
-					System.out.println("deja supprime");
-				}
+        
 	    
 	    
     }                                        
