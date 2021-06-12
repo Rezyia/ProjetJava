@@ -71,26 +71,35 @@ public class WEmployees extends javax.swing.JPanel {
         selectionModel.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 		        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
-		        int index = lsm.getSelectedIndices()[0];
+		        int index = lsm.getMinSelectionIndex(), id;
 		        
-		        Employee emp = controler.getEmp(index);
-		        selectedEmp = emp;
-		        
-		        // Display details on the right panel :
-		        lHeader.setText("Employee " + emp.getId() + " :");
-		        lID.setText(" ID : " + emp.getId());
-		        lFirstName.setText(" First name : " + emp.getFirstname());
-		        lLastName.setText(" Last name : " + emp.getName());
-		        lDept.setText(" Department : " + emp.getDepartment().getnameDep());
-		        lIsWorking.setText(" Is working : ");
-		        LocalTime timeBegin = emp.getPlanningDay("monday")[0];
-		        LocalTime timeEnd = emp.getPlanningDay("monday")[1];
-		        lPlanning.setText(" Planning : " + timeBegin + " to " + timeEnd);
-		        lOvertime.setText(" Overtime : ");
-		        
-		        // Enable modify and delete buttons :
-		        bModify.setEnabled(true);
-		        bDelete.setEnabled(true);
+		        if (index == -1) {
+			        bModify.setEnabled(false);
+			        bDelete.setEnabled(false);
+
+		        } else {
+					String idS = list.getModel().getElementAt(index);
+					id = Integer.parseInt(idS.replaceAll("[\\D]", ""));
+
+		        	Employee emp = controler.getEmp(id);
+			        selectedEmp = emp;
+			        
+			        // Display details on the right panel :
+			        lHeader.setText("Employee " + emp.getId() + " :");
+			        lID.setText(" ID : " + emp.getId());
+			        lFirstName.setText(" First name : " + emp.getFirstname());
+			        lLastName.setText(" Last name : " + emp.getName());
+			        lDept.setText(" Department : " + emp.getDepartment().getnameDep());
+			        lIsWorking.setText(" Is working : ");
+			        LocalTime timeBegin = emp.getPlanningDay("monday")[0];
+			        LocalTime timeEnd = emp.getPlanningDay("monday")[1];
+			        lPlanning.setText(" Planning : " + timeBegin + " to " + timeEnd);
+			        lOvertime.setText(" Overtime : ");
+			        
+			        // Enable modify and delete buttons :
+			        bModify.setEnabled(true);
+			        bDelete.setEnabled(true);
+		        }
 			}
 		});
 
@@ -134,6 +143,7 @@ public class WEmployees extends javax.swing.JPanel {
 
         header.add(info, java.awt.BorderLayout.CENTER);
 
+        
         buttons.setLayout(new java.awt.GridLayout());
 
         bAdd.setText("Add...");
@@ -157,33 +167,8 @@ public class WEmployees extends javax.swing.JPanel {
         bDelete.setEnabled(false);
         bDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-		    
-				int index = selectionModel.getMinSelectionIndex();
-				String id = list.getModel().getElementAt(index);
-				
-				index = Integer.parseInt(id.replaceAll("[\\D]", ""));
-				
-				System.out.println(index);
-				if(controler.isEmployeExist(index)) {
-					Employee emp = controler.getEmp(index);
-					controler.rmEmploye(emp);
-		
-					//TODO Attention probleme avec les nouveaux indices 
-					list.setModel(new javax.swing.AbstractListModel<String>() {
-				    String[] strings = controler.getEmployees();
-				    public int getSize() { return strings.length; }
-				    public String getElementAt(int i) { return strings[i]; }
-				});
-					scrollList.setViewportView(list);
-					SwingUtilities.updateComponentTreeUI(scrollList);
-					System.out.println("suppression reussi");
-		
-				}
-				else {
-					System.out.println("deja supprime");
-				}    
-		                bDeleteActionPerformed(evt);
-		            }
+                bDeleteActionPerformed(evt);
+            }
         });
         buttons.add(bDelete);
 
@@ -192,6 +177,8 @@ public class WEmployees extends javax.swing.JPanel {
         add(header);
     }// </editor-fold>                        
 
+    
+    
     private void bAddActionPerformed(java.awt.event.ActionEvent evt) { 
 		WindowEmployeeCreator.setWindow(wec, controler);
 
@@ -202,12 +189,33 @@ public class WEmployees extends javax.swing.JPanel {
     }                                        
 
     private void bDeleteActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        
-	    
-	    
+		int index = list.getSelectionModel().getMinSelectionIndex(), id;
+		String idS = list.getModel().getElementAt(index);
+		
+		id = Integer.parseInt(idS.replaceAll("[\\D]", ""));
+		
+		if(controler.isEmployeExist(id)) {
+			Employee emp = controler.getEmp(id);
+			controler.rmEmploye(emp);
+
+			list.clearSelection();
+			
+			list.setModel(new javax.swing.AbstractListModel<String>() {
+			    String[] strings = controler.getEmployees();
+			    public int getSize() { return strings.length; }
+			    public String getElementAt(int i) { return strings[i]; }
+			});
+			scrollList.setViewportView(list);
+			SwingUtilities.updateComponentTreeUI(scrollList);
+			System.out.println("Delete successful : " + emp + "at id : " + index);
+		}
+		else {
+			System.out.println("deja supprime");
+		}     
     }                                        
 
 
+    
     // Variables declaration - do not modify                     
     private javax.swing.JButton bAdd;
     private javax.swing.JButton bModify;
