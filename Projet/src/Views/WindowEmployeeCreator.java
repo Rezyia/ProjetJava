@@ -191,6 +191,9 @@ public class WindowEmployeeCreator {
 		    		emp.setPlanning((LocalTime)cbFridayBegin.getSelectedItem(), (LocalTime)cbFridayEnd.getSelectedItem(), "friday");
 		    		cm.addEmploye(emp);
 		    		lCreate.setText("Employ\u00e9 cr\u00e9\u00e9");
+		    		
+		    		cm.updateLists();
+			    	
 		    	}catch(Exception exc) {
 		    		System.out.println(exc+" Invalid or missing argument");
 		    		lCreate.setText(exc+" Invalid or missing argument");
@@ -226,7 +229,7 @@ public class WindowEmployeeCreator {
 		    		emp_modif.setPlanning((LocalTime)cbFridayBegin.getSelectedItem(), (LocalTime)cbFridayEnd.getSelectedItem(), "friday");
 		    		lCreate.setText("Employ\u00e9 modifi\u00e9");
 		    		
-		    		SwingUtilities.updateComponentTreeUI(cm.getFrame());
+		    		cm.updateLists();
 		    		
 		    	}catch(Exception exc) {
 		    		System.out.println(exc+" Invalid or missing argument");

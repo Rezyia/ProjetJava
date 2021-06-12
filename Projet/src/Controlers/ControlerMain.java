@@ -34,6 +34,11 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	}
 	
 	
+	public void updateLists() {
+		f.updateLists();
+	}
+	
+	
 	public static void updatePointings(String[] items) {
 		f.getWindowPointings().updatePointings(items);
 	}

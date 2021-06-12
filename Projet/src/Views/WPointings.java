@@ -100,15 +100,20 @@ public class WPointings extends javax.swing.JPanel {
     
     private void checkboxActionPerformed(java.awt.event.ActionEvent evt) {                                           
     	if (checkBox.isEnabled()) updatePointings(controler.getPointings());
-    	else if (!checkBox.isEnabled()) updatePointings(controler.getPointingsOfTheDay());
-    	System.out.println(controler.getPointings()[0]);
-    	System.out.println(controler.getPointingsOfTheDay()[0]);
+    	else updatePointings(controler.getPointingsOfTheDay());
     }                                          
 
     
-    private void loadPointingData(int id) {
+    private void loadPointingData(int index) {
     	
     }
+    
+    
+    public void updateList() {
+    	if (checkBox.isEnabled()) updatePointings(controler.getPointings());
+    	else updatePointings(controler.getPointingsOfTheDay());
+    }
+    
     
     public void updatePointings(String[] items) {
     	list = new JList<String>();

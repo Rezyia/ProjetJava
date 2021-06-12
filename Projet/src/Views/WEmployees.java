@@ -27,7 +27,7 @@ public class WEmployees extends javax.swing.JPanel {
     	controler = c;
         initComponents();
     }
-
+    
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
@@ -207,7 +207,7 @@ public class WEmployees extends javax.swing.JPanel {
 			});
 			scrollList.setViewportView(list);
 			SwingUtilities.updateComponentTreeUI(scrollList);
-			System.out.println("Delete successful : " + emp + "at index : " + index + "with id : " + id);
+			System.out.println("Delete successful : " + emp + "at index : " + index + " with id : " + id);
 		}
 		else {
 			System.out.println("deja supprime");
@@ -215,6 +215,17 @@ public class WEmployees extends javax.swing.JPanel {
     }                                        
 
 
+    public void updateList() {
+		list.clearSelection();
+		
+		list.setModel(new javax.swing.AbstractListModel<String>() {
+		    String[] strings = controler.getEmployees();
+		    public int getSize() { return strings.length; }
+		    public String getElementAt(int i) { return strings[i]; }
+		});
+
+    }
+    
     
     // Variables declaration - do not modify                     
     private javax.swing.JButton bAdd;

@@ -187,11 +187,13 @@ public class MainFrame extends javax.swing.JFrame {
     		content.add(windowEmployees);
     		bEmployees.setBackground(new java.awt.Color(238, 238, 238));
     		bEmployees.setForeground(new java.awt.Color(0, 0, 0));
+    		windowEmployees.updateUI();
 
     	} else if (w==windowType.WINDOW_POINTINGS) {
     		content.add(windowPointings);
     		bPointings.setBackground(new java.awt.Color(238, 238, 238));
     		bPointings.setForeground(new java.awt.Color(0, 0, 0));
+    		windowPointings.updateUI();
 
     	}
     	else if (w==windowType.WINDOW_SETTINGS) {
@@ -238,6 +240,12 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
     }
 
+    
+    public void updateLists() {
+    	windowEmployees.updateList();
+    	windowPointings.updateList();
+    }
+     
     
     public WPointings getWindowPointings() {
     	return windowPointings;
