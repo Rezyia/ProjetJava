@@ -72,6 +72,8 @@ public class WEmployees extends javax.swing.JPanel {
 			public void valueChanged(ListSelectionEvent e) {
 		        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
 		        int index = lsm.getSelectedIndices()[0];
+			String id = list.getModel().getElementAt(index);           
+            		index = Integer.parseInt(id.replaceAll("[\\D]", ""));
 		        
 		        Employee emp = controler.getEmp(index);
 		        selectedEmp = emp;
