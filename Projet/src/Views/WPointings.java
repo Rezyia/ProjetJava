@@ -27,7 +27,7 @@ public class WPointings extends javax.swing.JPanel {
 
 	public WPointings() {
         initComponents();
-    }
+    } 
     
 	
     public WPointings(ControlerMain c) {
