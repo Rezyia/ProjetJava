@@ -139,41 +139,39 @@ public class Toolbox {
     }
     
     /**
-     * Generates randomly <code>nbToGenerate</code> Pointings and a pointings of the day for half the Employees in the ControlerMain 
+     * Generates randomly <code>nbToGenerate</code> Pointings and 1 current pointing for half the Employees in the ControlerMain 
      * @param c : controler to generate pointings in
      * @param nbToGenerate : integer number of pointings to generate
      */
     public static void generatePointings(ControlerMain c, int nbToGenerate) {
-    	int randTime, randDay, randEmp, randWorktime;
+    	int randTime1, randTime2, randDay, randEmp, randWorktime;
     	int sizeEmps = c.getEmployees().length;
 
     	// Generate previous pointings :
     	for (int i=0; i<nbToGenerate; i++) {
     		randEmp = new Random().nextInt(sizeEmps);
-    		randTime = new Random().nextInt(3600);
+    		randTime1 = new Random().nextInt(3600*5) + 6*3600; // Length + begining
+    		randTime2 = new Random().nextInt(3600*9) + 12*3600; // Length = begining
     		randWorktime = new Random().nextInt(3600*9);
     		randWorktime += 3600; // Au moins 1 heure
     		randDay = new Random().nextInt(14);
 
-    		LocalDateTime time = LocalDateTime.now().plusSeconds(randTime).minusDays(randDay+1); 
+    		LocalDateTime time1 = LocalDateTime.now().withHour(0).plusSeconds(randTime1).minusDays(randDay+1); 
+    		LocalDateTime time2 = LocalDateTime.now().withHour(0).plusSeconds(randTime2).minusDays(randDay+1);
 
-    		if (time.getHour() >= 12) { // Check if second half of the day
-    			time = time.withHour(time.getHour()%12+8);
-    		}
-
-    		Pointing pt = new Pointing(randEmp, time);
-    		Pointing pt2 = new Pointing(randEmp, time.plusSeconds(randWorktime));
+    		Pointing pt = new Pointing(randEmp, time1);
+    		Pointing pt2 = new Pointing(randEmp, time2);
     		c.addPointing(pt);    		
     		c.addPointing(pt2);
     	}
     	
     	// Generate pointings for the current day :
     	for (int i=0; i<Math.ceil(c.getNbEmps()/2); i++) {
-    		randTime = new Random().nextInt(3600);
+    		randTime1 = new Random().nextInt(3600);
     		LocalDateTime now = LocalDateTime.now();
     		if (now.getHour() == 23) now.minusHours(1);
     		
-    		c.addPointing(new Pointing(i, now.plusSeconds(randTime)));
+    		c.addPointing(new Pointing(i, now.plusSeconds(randTime1)));
     	}
     	
     	
