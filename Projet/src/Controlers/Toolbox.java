@@ -10,6 +10,7 @@ import Models.*;
 
 public class Toolbox {
 
+	// Random list of first names 
 	public static String[] names = {
 			"Aaron",
 			"Cameron",
@@ -33,6 +34,7 @@ public class Toolbox {
 			"Valentino"
 	};
 	
+	// Random list of last names
 	public static String[] lastNames = {
 			"Barnett ",
 			"Bernard",
@@ -56,6 +58,7 @@ public class Toolbox {
 			"Walters"
 	};
 	
+	// Random list of department names
 	public static String[] deptNames = {
 		"Communication",
 		"Engineering",
@@ -86,9 +89,9 @@ public class Toolbox {
     
     
     /**
-     * 
-     * @param c : controler to generate departments in
-     * @param nbToGenerate : integer number of departments to generate
+     * Generates randomly <code>nbToGenerate</code> Departments in a ControlerMain
+     * @param c : ControlerMain to generate departments in
+     * @param nbToGenerate : int number of departments to generate
      */
     public static void generateDepartments(ControlerMain c, int nbToGenerate) {
     	int randDept;
@@ -105,7 +108,7 @@ public class Toolbox {
     
     
     /**
-     * 
+     * Generates randomly <code>nbToGenerate</code> Employees in a ControlerMain
      * @param c : controler to generate employees in
      * @param nbToGenerate : integer number of employees to generate
      */
@@ -136,7 +139,7 @@ public class Toolbox {
     }
     
     /**
-     * 
+     * Generates randomly <code>nbToGenerate</code> Pointings and a pointings of the day for half the Employees in the ControlerMain 
      * @param c : controler to generate pointings in
      * @param nbToGenerate : integer number of pointings to generate
      */

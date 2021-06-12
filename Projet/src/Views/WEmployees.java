@@ -29,7 +29,9 @@ public class WEmployees extends javax.swing.JPanel {
     }
     
     
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    /**
+     * Initializes the compnents of the WEmployees
+     */
     private void initComponents() {
 
         main = new javax.swing.JPanel();
@@ -220,6 +222,9 @@ public class WEmployees extends javax.swing.JPanel {
     }                                        
 
 
+    /**
+     * Updates the displayed list of Employees
+     */
     public void updateList() {
 		list.clearSelection();
 		
@@ -232,7 +237,6 @@ public class WEmployees extends javax.swing.JPanel {
     }
     
     
-    // Variables declaration - do not modify                     
     private javax.swing.JButton bAdd;
     private javax.swing.JButton bModify;
     private javax.swing.JButton bDelete;
