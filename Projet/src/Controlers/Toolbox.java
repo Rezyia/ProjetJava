@@ -110,7 +110,7 @@ public class Toolbox {
      * @param nbToGenerate : integer number of employees to generate
      */
     public static void generateEmployees(ControlerMain c, int nbToGenerate) {
-    	int randDept, randName1, randName2;
+    	int randDept, randName1, randName2, randTime1, randTime2;
     	int sizeDepts = c.getAllDepartment().size();
     	int sizeNames = names.length;
     	
@@ -120,6 +120,16 @@ public class Toolbox {
     		randName2 = new Random().nextInt(sizeNames);
     		
     		Employee emp = new Employee(c.getDepartment(randDept), names[randName1], lastNames[randName2]);
+    		LocalDateTime t = LocalDateTime.now().withHour(0);
+    		
+    		for (String day : Employee.workingDays) {
+        		randTime1= new Random().nextInt(3600*5) + 3600*6; // from 6:00 to 10:59
+        		randTime2 = new Random().nextInt(3600*9) + 3600*12; // from 12:00 to 20:59
+        		LocalDateTime tBegin = roundToNearestQuarter(t.plusSeconds(randTime1));
+        		LocalDateTime tEnd = roundToNearestQuarter(t.plusSeconds(randTime2));
+    			emp.setplanning(tBegin.getHour(), tEnd.getHour(), tBegin.getMinute(), tEnd.getMinute(), day);
+    		}
+    		
         	c.addEmploye(emp);
     	}
         System.out.println("Finished generating employees");

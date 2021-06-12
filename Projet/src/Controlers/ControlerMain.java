@@ -182,8 +182,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 			
 			while (ite.hasNext()) {
 				Pointing currentPt = ite.next();
-				int dayOffset = compareTime(p.getTime(), currentPt.getTime());
-				if (dayOffset == 0 && currentPt.getIdEmp() == emp.getId()) {
+				if (compareTime(p.getTime(), currentPt.getTime()) == 0 && currentPt.getIdEmp() == emp.getId()) {
 					int ot = p.getTime().getMinute() - currentPt.getTime().getMinute() + 60 * (p.getTime().getHour() - currentPt.getTime().getHour());
 					emp.setOvertime(emp.getOvertime() + ot);
 					emp.setWorking(false);
