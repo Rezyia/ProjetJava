@@ -33,7 +33,10 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
             	ControlerMain.serialize(c);
+            	
                 e.getWindow().dispose();
+                
+                System.out.println("Closing application.");
                 System.exit(0);
             }
             

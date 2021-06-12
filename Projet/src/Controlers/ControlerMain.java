@@ -3,6 +3,7 @@ package Controlers;
 import java.io.*;
 import java.net.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.*;
 
@@ -255,6 +256,10 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 				if (compareTime(p.getTime(), currentPt.getTime()) == 0 && currentPt.getIdEmp() == emp.getId()) { 
 					// Calculate overtime : 
 					int ot = p.getTime().getMinute() - currentPt.getTime().getMinute() + 60 * (p.getTime().getHour() - currentPt.getTime().getHour());
+					LocalTime[] planning = emp.getPlanningDay(p.getTime().getDayOfWeek().toString().toLowerCase());
+					
+					ot = ot - ( planning[1].getMinute() - planning[0].getMinute() + 60 * (planning[1].getHour() - planning[0].getHour()) );
+					
 					emp.setOvertime(emp.getOvertime() + ot);
 					emp.setWorking(false);
 					// Then break out from while loop
@@ -263,6 +268,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 			}
 		}
 	}
+	
 	
 	public void rmPointing(Pointing p) {
 		pointings.remove(p);
@@ -464,6 +470,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+            	System.out.println("App starting...");
 
         		ControlerMain controler = new ControlerMain();
 

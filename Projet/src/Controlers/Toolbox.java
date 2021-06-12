@@ -1,5 +1,6 @@
 package Controlers;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -94,6 +95,7 @@ public class Toolbox {
      * @param nbToGenerate : int number of departments to generate
      */
     public static void generateDepartments(ControlerMain c, int nbToGenerate) {
+    	System.out.println("Generating departments...");
     	int randDept;
     	int sizeDepts = deptNames.length;
     	
@@ -113,6 +115,8 @@ public class Toolbox {
      * @param nbToGenerate : integer number of employees to generate
      */
     public static void generateEmployees(ControlerMain c, int nbToGenerate) {
+    	System.out.println("Generating employees...");
+
     	int randDept, randName1, randName2, randTime1, randTime2;
     	int sizeDepts = c.getAllDepartment().size();
     	int sizeNames = names.length;
@@ -144,6 +148,8 @@ public class Toolbox {
      * @param nbToGenerate : integer number of pointings to generate
      */
     public static void generatePointings(ControlerMain c, int nbToGenerate) {
+    	System.out.println("Generating pointings...");
+
     	int randTime1, randTime2, randDay, randEmp, randWorktime;
     	int sizeEmps = c.getEmployees().length;
 
@@ -155,10 +161,15 @@ public class Toolbox {
     		randWorktime = new Random().nextInt(3600*9);
     		randWorktime += 3600; // Au moins 1 heure
     		randDay = new Random().nextInt(14);
+    		
+    		LocalDateTime time1 = LocalDateTime.now().withHour(0).plusSeconds(randTime1).minusDays(randDay+1); // At least 1 day offset
+    		LocalDateTime time2 = LocalDateTime.now().withHour(0).plusSeconds(randTime2).minusDays(randDay+1); // At least 1 day offset
 
-    		LocalDateTime time1 = LocalDateTime.now().withHour(0).plusSeconds(randTime1).minusDays(randDay+1); 
-    		LocalDateTime time2 = LocalDateTime.now().withHour(0).plusSeconds(randTime2).minusDays(randDay+1);
-
+    		if (isDayOfWeekend(time1)) {
+    			time1 = time1.minusDays(2);
+    			time2 = time2.minusDays(2);
+    		}
+    		    		
     		Pointing pt = new Pointing(randEmp, time1);
     		Pointing pt2 = new Pointing(randEmp, time2);
     		c.addPointing(pt);    		
@@ -171,6 +182,10 @@ public class Toolbox {
     		LocalDateTime now = LocalDateTime.now();
     		if (now.getHour() == 23) now.minusHours(1);
     		
+    		if (isDayOfWeekend(now)) {
+    			now = now.minusDays(2);
+    		}
+
     		c.addPointing(new Pointing(i, now.plusSeconds(randTime1)));
     	}
     	
@@ -178,6 +193,14 @@ public class Toolbox {
         System.out.println("Finished generating pointings");
     }
 
+    /**
+     * 
+     * @param time LocalDateTime to check
+     * @return boolean true if day of week is SATURDAY OR SUNDAY
+     */
+    public static boolean isDayOfWeekend(LocalDateTime time) {
+    	return (time.getDayOfWeek().equals(DayOfWeek.SATURDAY) || time.getDayOfWeek().equals(DayOfWeek.SUNDAY));
+    }
     
     
     public static ArrayList<LocalTime> getAllTimeBefore(LocalTime time) {

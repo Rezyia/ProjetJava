@@ -3,6 +3,8 @@ package Views;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -10,6 +12,7 @@ import javax.swing.event.*;
 import com.sun.source.tree.Scope;
 
 import Controlers.ControlerMain;
+import Controlers.Toolbox;
 import Models.Employee;
 import Models.Pointing;
 
@@ -113,8 +116,29 @@ public class WPointings extends javax.swing.JPanel {
      */
     private void loadPointingData(int index) {
     	Pointing p = controler.getPointingFromString(list.getModel().getElementAt(index));
-    	if (p.getTime().getHour()<12) lInOut.setText(" In/Out : In");
-    	else lInOut.setText(" In/Out : Out");
+    	Employee emp = controler.getEmployee(p.getIdEmp());
+    	String day = p.getTime().getDayOfWeek().toString().toLowerCase();
+    	    
+    	if (Toolbox.isDayOfWeekend(p.getTime())){
+            lPointedTime.setText(" Hour pointed : WEEKEND, no pointing data");
+    		lPlannedTime.setText(" Hour planned : WEEKEND, no pointing data");
+    	} else {
+    		lPointedTime.setText(" Hour pointed : " + p.getTime().getHour() + " : " + p.getTime().getMinute());
+
+        	if (p.getTime().getHour()<12) {
+        		lInOut.setText(" In/Out : In");
+        		lPlannedTime.setText(" Hour planned : " + emp.getPlanningDay(day)[0]);
+        	}
+        	else {
+        		lInOut.setText(" In/Out : Out");
+        		lPlannedTime.setText(" Hour planned : " + emp.getPlanningDay(day)[1]);
+        	}
+
+    	}	
+    	
+    	
+
+
     }
     
     
