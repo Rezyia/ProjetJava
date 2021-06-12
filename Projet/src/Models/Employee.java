@@ -82,8 +82,16 @@ public class Employee implements Serializable {
 		return isWorking;
 	}
 	
+	public void setWorking(boolean b) {
+		isWorking = b;
+	}
+	
 	public int getOvertime() {
 		return  overtime;
+	}
+	
+	public void setOvertime(int ot) {
+		overtime = ot;
 	}
 	
 	public LocalTime[] getPlanningDay(String day) {

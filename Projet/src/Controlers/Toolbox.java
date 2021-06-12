@@ -133,7 +133,8 @@ public class Toolbox {
     public static void generatePointings(ControlerMain c, int nbToGenerate) {
     	int randTime, randDay, randEmp, randWorktime;
     	int sizeEmps = c.getEmployees().length;
-    	
+
+    	// Generate previous pointings :
     	for (int i=0; i<nbToGenerate; i++) {
     		randEmp = new Random().nextInt(sizeEmps);
     		randTime = new Random().nextInt(3600);
@@ -141,7 +142,7 @@ public class Toolbox {
     		randWorktime += 3600; // Au moins 1 heure
     		randDay = new Random().nextInt(14);
 
-    		LocalDateTime time = LocalDateTime.now().plusSeconds(randTime).minusDays(randDay);
+    		LocalDateTime time = LocalDateTime.now().plusSeconds(randTime).minusDays(randDay+1); 
 
     		if (time.getHour() >= 12) { // Check if second half of the day
     			time = time.withHour(time.getHour()%12+8);
@@ -152,6 +153,17 @@ public class Toolbox {
     		c.addPointing(pt);    		
     		c.addPointing(pt2);
     	}
+    	
+    	// Generate pointings for the current day :
+    	for (int i=0; i<Math.ceil(c.getNbEmps()/2); i++) {
+    		randTime = new Random().nextInt(3600);
+    		LocalDateTime now = LocalDateTime.now();
+    		if (now.getHour() == 23) now.minusHours(1);
+    		
+    		c.addPointing(new Pointing(i, now.plusSeconds(randTime)));
+    	}
+    	
+    	
         System.out.println("Finished generating pointings");
     }
 

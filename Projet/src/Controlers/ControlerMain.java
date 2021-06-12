@@ -3,6 +3,7 @@ package Controlers;
 import java.io.*;
 import java.net.*;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.*;
 
 import javax.swing.JFrame;
@@ -129,6 +130,10 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 		return emp;
 	}
 	
+	public int getNbEmps() {
+		return employees.size();
+	}
+	
 	//-------------------------------------------------------------Methods departments
 	
 	public void addDepartment(Department d) {
@@ -160,8 +165,31 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	//-------------------------------------------------------------Methods pointings
 	
+	public int compareTime(LocalDateTime o1, LocalDateTime o2) {
+		if (o1.getYear() != o2.getDayOfYear()) return o1.getYear()-o2.getYear();
+		if (o1.getDayOfYear() != o2.getDayOfYear()) return o1.getDayOfYear()-o2.getDayOfYear();
+		return 0;
+	}
+	
+	
 	public void addPointing(Pointing p) {
 		pointings.add(p);
+		Employee emp = this.getEmployee(p.getIdEmp());
+		
+		if (!emp.isWorking()) emp.setWorking(true);
+		else {
+			Iterator<Pointing> ite = pointings.iterator();
+			
+			while (ite.hasNext()) {
+				Pointing currentPt = ite.next();
+				int dayOffset = compareTime(p.getTime(), currentPt.getTime());
+				if (dayOffset == 0 && currentPt.getIdEmp() == emp.getId()) {
+					int ot = p.getTime().getMinute() - currentPt.getTime().getMinute() + 60 * (p.getTime().getHour() - currentPt.getTime().getHour());
+					emp.setOvertime(emp.getOvertime() + ot);
+					emp.setWorking(false);
+				}
+			}
+		}
 	}
 	
 	public void rmPointing(Pointing p) {
@@ -235,6 +263,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 		res = pts.toArray(res);
 		return res;
 	}
+	
 	
 	//-------------------------------------------------------------Serialize :
 	

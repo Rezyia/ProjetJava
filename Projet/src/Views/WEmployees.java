@@ -90,7 +90,7 @@ public class WEmployees extends javax.swing.JPanel {
 			        lFirstName.setText(" First name : " + emp.getFirstname());
 			        lLastName.setText(" Last name : " + emp.getName());
 			        lDept.setText(" Department : " + emp.getDepartment().getnameDep());
-			        lIsWorking.setText(" Is working : ");
+			        lIsWorking.setText(" Is working : " + emp.isWorking());
 			        
 			        lPlanning.setText(" Planning : \n");
 			        for (String day : Employee.workingDays) {
@@ -99,7 +99,7 @@ public class WEmployees extends javax.swing.JPanel {
 				        lPlanning.setText(lPlanning.getText() + " " + day + " : " + timeBegin + " to " + timeEnd + " - ");
 
 			        }
-			        lOvertime.setText(" Overtime : ");
+			        lOvertime.setText(" Overtime : " + emp.getOvertime());
 			        
 			        // Enable modify and delete buttons :
 			        bModify.setEnabled(true);
