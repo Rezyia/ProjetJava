@@ -235,8 +235,10 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	public static void serialize(ControlerMain c) {
 		try {
-			FileOutputStream file = new FileOutputStream("data.ser");
-			ObjectOutputStream out = new ObjectOutputStream(file);
+			File file = new File("data.ser");
+			file.createNewFile();
+			FileOutputStream oFile = new FileOutputStream(file, false);
+			ObjectOutputStream out = new ObjectOutputStream(oFile);
 			out.writeObject(c);
 			out.close();
 			System.out.println("Main controler data saved.");
@@ -278,11 +280,11 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
             public void run() {
         		ControlerMain controler = new ControlerMain();
         		
-                Toolbox.generateDepartments(controler, 4);
-                Toolbox.generateEmployees(controler, 20);
-                Toolbox.generatePointings(controler, 40);
+                //Toolbox.generateDepartments(controler, 4);
+                //Toolbox.generateEmployees(controler, 20);
+                //Toolbox.generatePointings(controler, 40);
 
-                ControlerMain.deserialize(controler);
+                //ControlerMain.deserialize(controler);
                 
                 ControlerMain.f = new MainFrame(controler);
                 

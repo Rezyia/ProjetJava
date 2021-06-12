@@ -1,17 +1,16 @@
 
 package Views;
 
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
 
-import javax.swing.JButton;
+import javax.swing.*;
 import javax.swing.SwingUtilities;
 
 import Controlers.ControlerMain;
 import Controlers.ControlerNetwork;
 
 
-public class MainFrame extends javax.swing.JFrame implements WindowListener{
+public class MainFrame extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static ControlerMain controler;
@@ -24,11 +23,28 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener{
 	
     public MainFrame() {
         initComponents();
+    	setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     
     public MainFrame(ControlerMain c) {
     	controler = c;
         initComponents();
+    	setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    	addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+            	ControlerMain.serialize(controler);
+                e.getWindow().dispose();
+                System.exit(0);
+            }
+            
+            @Override
+            public void windowOpened(WindowEvent e) {
+            	ControlerMain.deserialize(controler);
+            	SwingUtilities.updateComponentTreeUI(c.getFrame());
+            	System.out.println(c.getPointings());
+            }
+    	});    	
     }
 
     /**
@@ -241,47 +257,51 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener{
     
     // End of variables declaration                   
 
-    
+    /*
    // Window default actions :
 	@Override
 	public void windowOpened(WindowEvent e) {
+		System.out.println("App starting...");
 		ControlerMain.deserialize(controler);
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e) {
+		System.out.println("App closing...");
 		ControlerMain.serialize(controler);		
+		this.dispose();
+		System.out.println("Serialized.");
 	}
 
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("App closed");
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("test ico");
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("test unico");
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("test activ");
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
+		System.out.println("test disactiv");
+	}*/
 
     
 }
