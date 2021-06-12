@@ -14,7 +14,13 @@ import Views.MainFrame;
 /**
  * Class to control the main application
  */
-public class ControlerMain extends ControlerNetwork{
+public class ControlerMain extends ControlerNetwork implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6850799842025316456L;
+
 
 	//private static WindowMain f = new WindowMain();
 	private static MainFrame f;
@@ -26,6 +32,12 @@ public class ControlerMain extends ControlerNetwork{
 	private ArrayList<Employee> employees = new ArrayList<Employee>();
 	private ArrayList<Department> departments = new ArrayList<Department>();
 	private ArrayList<Pointing> pointings = new ArrayList<Pointing>();
+	
+	
+	public JFrame getFrame() {
+		return f;
+	}
+	
 	
 	public static void updatePointings(String[] items) {
 		f.getWindowPointings().updatePointings(items);
@@ -242,7 +254,7 @@ public class ControlerMain extends ControlerNetwork{
 			ObjectInputStream in = new ObjectInputStream(file);
 			c = (ControlerMain) in.readObject();
 			in.close();
-			System.out.println("Main controler data saved.");
+			System.out.println("Main controler data loaded.");
 		} catch(IOException ioe) {
 			ioe.printStackTrace();
 		} catch (ClassNotFoundException cnfe) {
@@ -270,11 +282,14 @@ public class ControlerMain extends ControlerNetwork{
                 Toolbox.generateEmployees(controler, 20);
                 Toolbox.generatePointings(controler, 40);
 
+                ControlerMain.deserialize(controler);
+                
                 ControlerMain.f = new MainFrame(controler);
                 
         		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 f.setVisible(true);
                 
+                //ControlerMain.serialize(controler);
             }
         });
         

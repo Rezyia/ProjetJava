@@ -226,6 +226,8 @@ public class WindowEmployeeCreator {
 		    		emp_modif.setPlanning((LocalTime)cbFridayBegin.getSelectedItem(), (LocalTime)cbFridayEnd.getSelectedItem(), "friday");
 		    		lCreate.setText("Employ\u00e9 modifi\u00e9");
 		    		
+		    		SwingUtilities.updateComponentTreeUI(cm.getFrame());
+		    		
 		    	}catch(Exception exc) {
 		    		System.out.println(exc+" Invalid or missing argument");
 		    		lCreate.setText(exc+" Invalid or missing argument");

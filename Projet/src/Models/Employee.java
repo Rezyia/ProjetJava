@@ -1,8 +1,12 @@
 package Models;
+import java.io.Serializable;
 import java.time.*;
 import java.util.*;
 
-public class Employee {
+public class Employee implements Serializable {
+
+	private static final long serialVersionUID = -2416428736464744808L;
+	
 	//Le nombre d'employé dans l'entreprise
 	private static int nbEmploye = 0;
 	private int id;					//L'ID de l'employé								
