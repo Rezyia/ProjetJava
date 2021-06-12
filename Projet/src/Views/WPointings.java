@@ -11,6 +11,7 @@ import com.sun.source.tree.Scope;
 
 import Controlers.ControlerMain;
 import Models.Employee;
+import Models.Pointing;
 
 
 public class WPointings extends javax.swing.JPanel {
@@ -106,8 +107,14 @@ public class WPointings extends javax.swing.JPanel {
     }                                          
 
     
+    /**
+     * Loads the information from the selected Pointing to the right JPanel.
+     * @param index index of the selected item in the JList.
+     */
     private void loadPointingData(int index) {
-    	
+    	Pointing p = controler.getPointingFromString(list.getModel().getElementAt(index));
+    	if (p.getTime().getHour()<12) lInOut.setText(" In/Out : In");
+    	else lInOut.setText(" In/Out : Out");
     }
     
     

@@ -251,11 +251,14 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 			
 			while (ite.hasNext()) {
 				Pointing currentPt = ite.next();
-				if (compareTime(p.getTime(), currentPt.getTime()) == 0 && currentPt.getIdEmp() == emp.getId()) { // If same day & same employee
+				// If same day & same employee
+				if (compareTime(p.getTime(), currentPt.getTime()) == 0 && currentPt.getIdEmp() == emp.getId()) { 
 					// Calculate overtime : 
 					int ot = p.getTime().getMinute() - currentPt.getTime().getMinute() + 60 * (p.getTime().getHour() - currentPt.getTime().getHour());
 					emp.setOvertime(emp.getOvertime() + ot);
 					emp.setWorking(false);
+					// Then break out from while loop
+					break; 
 				}
 			}
 		}
@@ -346,6 +349,32 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 		return res;
 	}
 	
+	/**
+	 * Return the reference to the Pointing
+	 * @param str
+	 * @return
+	 */
+	public Pointing getPointingFromString(String str) {
+		Pointing pt = null;
+		
+		String[] res = str.split(" |:|-"); // Parse selected String :
+		//for (String r : res) System.out.println(r);
+		int year = Integer.parseInt(res[0]);
+		String month = res[1];
+		int day = Integer.parseInt(res[2]);
+		int hour = Integer.parseInt(res[3]);
+		int minute = Integer.parseInt(res[4]);
+		int idEmp = Integer.parseInt(res[res.length-1]); // <- Last item of array
+		
+		Iterator<Pointing> ite = pointings.iterator();
+		while (ite.hasNext()) {
+			pt = ite.next();
+			LocalDateTime t = pt.getTime();
+			if (t.getYear() == year && t.getMonth().equals(month) && t.getHour() == hour) break;
+		}
+		
+		return pt;
+	}
 	
 	//-------------------------------------------------------------Serialize :
 	
