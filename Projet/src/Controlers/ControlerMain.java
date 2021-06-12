@@ -16,23 +16,18 @@ import Views.MainFrame;
  */
 public class ControlerMain extends ControlerNetwork implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6850799842025316456L;
 
 
-	//private static WindowMain f = new WindowMain();
 	private static MainFrame f;
-	
-	
 	private ServerSocket ss = null;
-	
-	
+
 	private ArrayList<Employee> employees = new ArrayList<Employee>();
 	private ArrayList<Department> departments = new ArrayList<Department>();
 	private ArrayList<Pointing> pointings = new ArrayList<Pointing>();
 	
+	
+	//-------------------------------------------------------------Methods
 	
 	public JFrame getFrame() {
 		return f;
@@ -49,8 +44,8 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
         s = ss.accept();
     }
 	
-	//-------------------------------------------------------------Méthode pour employees
-	
+	//-------------------------------------------------------------Methods employees
+
 	public void addEmploye(Employee e) {
 		employees.add(e);
 	}
@@ -128,7 +123,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 		return emp;
 	}
 	
-	//-------------------------------------------------------------Méthode pour departments
+	//-------------------------------------------------------------Methods departments
 	
 	public void addDepartment(Department d) {
 		departments.add(d);
@@ -157,7 +152,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 		return departments;
 	}
 	
-	//-------------------------------------------------------------Méthode pour pointings
+	//-------------------------------------------------------------Methods pointings
 	
 	public void addPointing(Pointing p) {
 		pointings.add(p);
@@ -204,7 +199,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 		// Iterating pointings list : 
 		while(ite.hasNext()) {
 			currentPointing = ite.next();
-			pts.add((toListString(currentPointing.getTime()) + " - " + currentPointing.getIdEmp()));
+			pts.add((toListString(currentPointing.getTime()) + " - Employee " + currentPointing.getIdEmp()));
 		}
 		pts.sort(null);
 		// Convert ArrayList to String array :
@@ -233,15 +228,33 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	
 	//-------------------------------------------------------------Serialize :
 	
+	/*
+	@SuppressWarnings("unchecked")
+	private void readObject(ObjectInputStream aInputStream) throws ClassNotFoundException, IOException{
+		employees = (ArrayList<Employee>) aInputStream.readObject();
+		departments = (ArrayList<Department>) aInputStream.readObject();
+		pointings = (ArrayList<Pointing>) aInputStream.readObject();
+	}
+	
+    private void writeObject(ObjectOutputStream aOutputStream) throws IOException {
+    	aOutputStream.writeObject(employees);
+    	aOutputStream.writeObject(departments);
+    	aOutputStream.writeObject(pointings);
+    }*/
+	
+	
 	public static void serialize(ControlerMain c) {
 		try {
 			File file = new File("data.ser");
-			file.createNewFile();
-			FileOutputStream oFile = new FileOutputStream(file, false);
+			file.createNewFile(); // Does nothing if file already exists
+			FileOutputStream oFile = new FileOutputStream(file, false); // false -> no append
 			ObjectOutputStream out = new ObjectOutputStream(oFile);
+			
 			out.writeObject(c);
 			out.close();
+			
 			System.out.println("Main controler data saved.");
+			
 		} catch(IOException err) {
 			err.printStackTrace();
 		}
@@ -254,11 +267,15 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 		try {
 			FileInputStream file = new FileInputStream("data.ser");
 			ObjectInputStream in = new ObjectInputStream(file);
+			
 			c = (ControlerMain) in.readObject();
 			in.close();
+			
 			System.out.println("Main controler data loaded.");
+			
 		} catch(IOException ioe) {
 			ioe.printStackTrace();
+			
 		} catch (ClassNotFoundException cnfe) {
 			cnfe.printStackTrace();
 		}
@@ -278,20 +295,17 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-        		ControlerMain controler = new ControlerMain();
-        		
-                //Toolbox.generateDepartments(controler, 4);
-                //Toolbox.generateEmployees(controler, 20);
-                //Toolbox.generatePointings(controler, 40);
 
-                //ControlerMain.deserialize(controler);
-                
+        		ControlerMain controler = new ControlerMain();
+
+        		Toolbox.generateDepartments(controler, 4);
+                Toolbox.generateEmployees(controler, 20);
+                Toolbox.generatePointings(controler, 40);
+
                 ControlerMain.f = new MainFrame(controler);
                 
         		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 f.setVisible(true);
-                
-                //ControlerMain.serialize(controler);
             }
         });
         

@@ -20,4 +20,7 @@ public class Department implements Serializable{
 		nameDep = Sarg;
 	}
 
+	public String toString() {
+		return nameDep;
+	}
 }

@@ -14,7 +14,8 @@ import Models.Employee;
 
 public class WEmployees extends javax.swing.JPanel {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -7929775240787225787L;
+	
 	private static ControlerMain controler;
 
     public WEmployees() {

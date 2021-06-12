@@ -12,10 +12,10 @@ public class Toolbox {
 	public static String[] names = {
 			"Aaron",
 			"Cameron",
-			"Ehsan ",
+			"Ehsan",
 			"Elliott",
 			"Hal",
-			"Ivy ",
+			"Ivy",
 			"Jeffrey", 
 			"Juniper",
 			"Kaiden",
@@ -23,9 +23,9 @@ public class Toolbox {
 			"Maxine",
 			"Mayur",
 			"Miruna",
-			"Mirza ",
+			"Mirza",
 			"Neel",
-			"Sultan ",
+			"Sultan",
 			"Rafferty",
 			"Scarlette",
 			"Shane",
@@ -51,7 +51,7 @@ public class Toolbox {
 			"Robertson",
 			"Rodgers ",
 			"Scott",
-			"Turner ",
+			"Turner",
 			"Walters"
 	};
 	
@@ -99,6 +99,7 @@ public class Toolbox {
     		Department dept = new Department(deptNames[randDept]);
         	c.addDepartment(dept);
     	}
+        System.out.println("Finished generating departments");
     }
     
     
@@ -120,7 +121,7 @@ public class Toolbox {
     		Employee emp = new Employee(c.getDepartment(randDept), names[randName1], lastNames[randName2]);
         	c.addEmploye(emp);
     	}
-    	
+        System.out.println("Finished generating employees");
     }
     
     /**
@@ -134,23 +135,23 @@ public class Toolbox {
     	
     	for (int i=0; i<nbToGenerate; i++) {
     		randEmp = new Random().nextInt(sizeEmps);
-    		randTime = new Random().nextInt(3600*6);
-    		randWorktime = new Random().nextInt(3600*10);
-    		randWorktime += 3600;
+    		randTime = new Random().nextInt(3600);
+    		randWorktime = new Random().nextInt(3600*9);
+    		randWorktime += 3600; // Au moins 1 heure
     		randDay = new Random().nextInt(14);
-    		
-    		LocalDateTime time = LocalDateTime.now().plusSeconds(randTime).plusDays(randDay);
-    		while (time.getHour() >= 12) { // Check if second half of the day
-        		randTime = new Random().nextInt(3600*6);
-        		time = LocalDateTime.now().plusSeconds(randTime).plusDays(randDay);
+
+    		LocalDateTime time = LocalDateTime.now().plusSeconds(randTime).minusDays(randDay);
+
+    		if (time.getHour() >= 12) { // Check if second half of the day
+    			time = time.withHour(time.getHour()%12+8);
     		}
-    		
+
     		Pointing pt = new Pointing(randEmp, time);
     		Pointing pt2 = new Pointing(randEmp, time.plusSeconds(randWorktime));
     		c.addPointing(pt);    		
     		c.addPointing(pt2);
     	}
-    	
+        System.out.println("Finished generating pointings");
     }
 
     

@@ -6,10 +6,8 @@ import java.time.LocalDateTime;
 import Controlers.Toolbox;
 
 public class Pointing implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	
+	private static final long serialVersionUID = 369934536979460449L;
 	
 	private int idEmp;
 	private LocalDateTime time;

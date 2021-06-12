@@ -18,7 +18,8 @@ import Models.Employee;
 
 public class WPointings extends javax.swing.JPanel {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -5326257363166640986L;
+	
 	private static ControlerMain controler;
 	
 
@@ -100,6 +101,8 @@ public class WPointings extends javax.swing.JPanel {
     private void checkboxActionPerformed(java.awt.event.ActionEvent evt) {                                           
     	if (checkBox.isEnabled()) updatePointings(controler.getPointings());
     	else if (!checkBox.isEnabled()) updatePointings(controler.getPointingsOfTheDay());
+    	System.out.println(controler.getPointings()[0]);
+    	System.out.println(controler.getPointingsOfTheDay()[0]);
     }                                          
 
     
