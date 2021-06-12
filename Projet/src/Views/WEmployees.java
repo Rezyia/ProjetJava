@@ -207,7 +207,7 @@ public class WEmployees extends javax.swing.JPanel {
 			});
 			scrollList.setViewportView(list);
 			SwingUtilities.updateComponentTreeUI(scrollList);
-			System.out.println("Delete successful : " + emp + "at id : " + index);
+			System.out.println("Delete successful : " + emp + "at index : " + index + "with id : " + id);
 		}
 		else {
 			System.out.println("deja supprime");
