@@ -137,7 +137,13 @@ public class WEmployees extends javax.swing.JPanel {
         bAdd.setText("Add...");
         bAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+<<<<<<< HEAD
                 bAddActionPerformed(evt);
+=======
+                jButton1ActionPerformed(evt);
+                WindowEmployeeCreator wec = new WindowEmployeeCreator();
+                WindowEmployeeCreator.setWindow(wec, controler);
+>>>>>>> 7c7d8c36cc559fa42ceaaee5b7b3494b1a1637ea
             }
         });
         buttons.add(bAdd);
