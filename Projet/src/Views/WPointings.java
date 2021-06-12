@@ -1,14 +1,11 @@
 
 package Views;
 
-import java.awt.Panel;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingUtilities;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.*;
+import javax.swing.event.*;
 
 import com.sun.source.tree.Scope;
 
@@ -64,10 +61,12 @@ public class WPointings extends javax.swing.JPanel {
         updatePointings(controler.getPointingsOfTheDay());
         
         checkBox.setText("Show all pointings");
-        checkBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxActionPerformed(evt);
-            }
+        checkBox.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+                checkboxActionPerformed(e);
+				
+			}
         });
         main.add(checkBox, java.awt.BorderLayout.PAGE_END);
 
@@ -98,8 +97,8 @@ public class WPointings extends javax.swing.JPanel {
     }// </editor-fold>                        
 
     
-    private void checkboxActionPerformed(java.awt.event.ActionEvent evt) {                                           
-    	if (checkBox.isEnabled()) updatePointings(controler.getPointings());
+    private void checkboxActionPerformed(ItemEvent evt) {                                           
+    	if (evt.getStateChange() == ItemEvent.SELECTED) updatePointings(controler.getPointings());
     	else updatePointings(controler.getPointingsOfTheDay());
     }                                          
 

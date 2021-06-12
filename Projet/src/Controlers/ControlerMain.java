@@ -101,6 +101,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 			currentEmployee = ite.next();
 			pts.add((currentEmployee.getId() + " : " + currentEmployee.getFirstname() + " " + currentEmployee.getName()));
 		}
+		pts.sort(new AlphanumericSortComparator<>(false));
 		
 		// Convert ArrayList to String array :
 		String[] res = new String[pts.size()];
@@ -206,7 +207,9 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 			currentPointing = ite.next();
 			pts.add((toListString(currentPointing.getTime()) + " - Employee " + currentPointing.getIdEmp()));
 		}
-		pts.sort(null);
+		pts.sort(new AlphanumericSortComparator<String>(false));
+
+		
 		// Convert ArrayList to String array :
 		String[] res = new String[pts.size()];
 		res = pts.toArray(res);
@@ -225,6 +228,8 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 			if (currentPointing.getTime().getDayOfMonth() == LocalDateTime.now().getDayOfMonth() && currentPointing.getTime().getMonthValue() == LocalDateTime.now().getMonthValue())
 				pts.add((toListString(currentPointing.getTime()) + " - Employee " + currentPointing.getIdEmp()));
 		}
+		pts.sort(new AlphanumericSortComparator<>(false));
+		
 		// Convert ArrayList to String array :
 		String[] res = new String[pts.size()];
 		res = pts.toArray(res);
