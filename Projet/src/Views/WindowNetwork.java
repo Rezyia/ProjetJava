@@ -19,7 +19,10 @@ public class WindowNetwork {
 	
 	private static ControlerNetwork cn;
 	
-	//Fonction type pour crÃ©er un champs pour taper l'adresse
+	/**
+	 * Fonction type pour crÃ©er un champs pour taper l'adresse
+	 * @return Un TextField pour taper l'adresse
+	 */
 	public static JTextField createTextFieldAddress() {
 		final JTextField tf=new JTextField();  
 	    tf.setText(cn.getAddress());
@@ -27,7 +30,10 @@ public class WindowNetwork {
 	    return tf;
 	}
 	
-	//Fonction type pour crÃ©er un champs pour taper le port
+	/**
+	 * Fonction type pour crÃ©er un champs pour taper le port
+	 * @return Un TextField pour taper le port
+	 */
 		public static JTextField createTextFieldPort() {
 			final JTextField tf=new JTextField();  
 		    tf.setText(cn.getPort()+"");
@@ -35,7 +41,10 @@ public class WindowNetwork {
 		    return tf;
 		}
 
-	//crÃ©ation de boutons
+	/**
+	 * crÃ©ation de boutons d'annulation
+	 * @return Un bouton qui réinitialise les valeurs dans les textfield
+	 */
 	public static JButton createCancelButton(){
 	    JButton b=new JButton("Cancel");
 	    b.setBounds(150,150,95,20);
@@ -49,6 +58,10 @@ public class WindowNetwork {
 	    return b;
 	}
 	
+	/**
+	 * création de boutons de modification
+	 * @return Un bouton qui modifie le port et l'adresse, basé sur le contenu des textfields
+	 */
 	public static JButton createUpdateButton(){
 	    JButton b=new JButton("Update");
 	    b.setBounds(50,150,95,20);
@@ -62,6 +75,10 @@ public class WindowNetwork {
 	    return b;
 	}
 	
+	/**
+	 * Crée et affiche la fenêtre de paramètre réseau
+	 * @param cn Le ControlerNetwork
+	 */
 	public void setWindow(ControlerNetwork cn) {
 		this.cn = cn;
 		
@@ -96,6 +113,10 @@ public class WindowNetwork {
 		f.setVisible(true);//making the frame visible
 	}
 	
+	/**
+	 * Main de test, pour vérifier le fonctionnement
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		WindowNetwork wn = new WindowNetwork();
 		wn.setWindow(new ControlerNetwork());

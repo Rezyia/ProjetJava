@@ -15,6 +15,11 @@ import Controlers.Toolbox;
 import Models.Department;
 import Models.*;
 
+/**
+ * Fenêtre qui permet la création et la modification d'un employé
+ * @author dylan
+ *
+ */
 public class WindowEmployeeCreator {
 	private static JFrame f;
 	public static JLabel lDepartment;
@@ -106,7 +111,7 @@ public class WindowEmployeeCreator {
 	
 	/**
 	 * Créer la ComboBox des département
-	 * @return Un ComboBox<Department> contenant tout les département du controleur principale
+	 * @return Un JComboBox<Department> contenant tout les département du controleur principale
 	 */
 	public static JComboBox<Department> createComboBoxDepartment() {
 		ArrayList<Department> dptListe = cm.getAllDepartment();
@@ -122,7 +127,7 @@ public class WindowEmployeeCreator {
 	
 	/**
 	 * Créer la ComboBox des Plannings
-	 * @return Un ComboBox<LocalTime> contenant tout les heures arrondi au quart d'heure
+	 * @return Un JComboBox<LocalTime> contenant tout les heures arrondi au quart d'heure
 	 */
 	public static JComboBox<LocalTime> createComboBoxPlanning(){
 		ArrayList<LocalTime> timeBefore = Toolbox.getAllTimeAfter(LocalTime.of(0, 0));
@@ -147,7 +152,7 @@ public class WindowEmployeeCreator {
 	
 	/**
 	 * Créer le champ pour le nom de l'employé
-	 * @return le champ pour le nom de l'employé
+	 * @return Un JTextField pour taper le nom de l'employé
 	 */
 	public static JTextField createTextFieldName() {
 		final JTextField tf = new JTextField();
@@ -158,7 +163,7 @@ public class WindowEmployeeCreator {
 	
 	/**
 	 * Créer le champ pour le prénom de l'employé
-	 * @return le champ pour le prénom de l'employé
+	 * @return Un JTextField pour taper le prénom de l'employé
 	 */
 	public static JTextField createTextFieldFirstName() {
 		final JTextField tf = new JTextField();
@@ -169,7 +174,7 @@ public class WindowEmployeeCreator {
 	
 	/**
 	 * Créer le bouton pour créer l'employé
-	 * @return le bouton pour créer l'employé
+	 * @return Un JButton pour créer l'employé
 	 */
 	public static JButton createButtonCreate() {
 		JButton b=new JButton("Create");
@@ -180,10 +185,12 @@ public class WindowEmployeeCreator {
 		    		Department dpt = (Department) cbDepartment.getSelectedItem();
 		    		String name = tfName.getText();
 		    		String firstname = tfFirstName.getText();
+		    		//On ne veut pas crée d'employé sans nom, prénom ou département
 		    		if(dpt==null || name.equals("") || firstname.equals("")) {
 		    			throw new Exception();
 		    		}
 		    		Employee emp = new Employee(dpt, name, firstname);
+		    		//La méthode setPlanning(LocalTime, LocalTime, String) lance une exception si entrée incohérente
 		    		emp.setPlanning((LocalTime)cbMondayBegin.getSelectedItem(), (LocalTime)cbMondayEnd.getSelectedItem(), "monday");
 		    		emp.setPlanning((LocalTime)cbTuesdayBegin.getSelectedItem(), (LocalTime)cbTuesdayEnd.getSelectedItem(), "tuesday");
 		    		emp.setPlanning((LocalTime)cbWednesdayBegin.getSelectedItem(), (LocalTime)cbWednesdayEnd.getSelectedItem(), "wednesday");
@@ -204,8 +211,8 @@ public class WindowEmployeeCreator {
 	}
 	
 	/**
-	 * Créer le bouton pour créer l'employé
-	 * @return le bouton pour créer l'employé
+	 * Créer le bouton pour modifier l'employé
+	 * @return Un JButton pour modifier l'employé
 	 */
 	public static JButton createButtonModify() {
 		JButton b=new JButton("Modify");
@@ -216,12 +223,14 @@ public class WindowEmployeeCreator {
 		    		Department dpt = (Department) cbDepartment.getSelectedItem();
 		    		String name = tfName.getText();
 		    		String firstname = tfFirstName.getText();
+		    		//On ne veut pas rendre incomplet un employé
 		    		if(dpt==null || name.equals("") || firstname.equals("")) {
 		    			throw new Exception();
 		    		}
 		    		emp_modif.setName(name);
 		    		emp_modif.setFirstname(firstname);
 		    		emp_modif.setDepartment(dpt);
+		    		//La méthode setPlanning(LocalTime, LocalTime, String) lance une exception si entrée incohérente
 		    		emp_modif.setPlanning((LocalTime)cbMondayBegin.getSelectedItem(), (LocalTime)cbMondayEnd.getSelectedItem(), "monday");
 		    		emp_modif.setPlanning((LocalTime)cbTuesdayBegin.getSelectedItem(), (LocalTime)cbTuesdayEnd.getSelectedItem(), "tuesday");
 		    		emp_modif.setPlanning((LocalTime)cbWednesdayBegin.getSelectedItem(), (LocalTime)cbWednesdayEnd.getSelectedItem(), "wednesday");
@@ -242,7 +251,7 @@ public class WindowEmployeeCreator {
 	
 	/**
 	 * Créer le bouton pour créer un département
-	 * @return le bouton pour créer un département
+	 * @return Un JButton pour ouvrir la fenêtre de création de département
 	 */
 	public static JButton createButtonCreateDpt(WindowEmployeeCreator wec) {
 		JButton b=new JButton("Create new Department");
@@ -256,7 +265,7 @@ public class WindowEmployeeCreator {
 	}
 	
 	/**
-	 * Initialise la fenêtre de création d'employé
+	 * Initialise et affiche la fenêtre de création d'employé
 	 */
 	public static void setWindow(WindowEmployeeCreator wec, ControlerMain ctrlmain) {
 		f = new JFrame("Cr\u00e9ation employé");
@@ -346,7 +355,7 @@ public class WindowEmployeeCreator {
 	}
 	
 	/**
-	 * Initialise la fenêtre de modification d'un employé donné
+	 * Initialise et affiche la fenêtre de modification d'un employé donné
 	 */
 	public static void setWindow(WindowEmployeeCreator wec, Employee emp, ControlerMain ctrlmain) {
 		emp_modif = emp;
@@ -378,6 +387,10 @@ public class WindowEmployeeCreator {
 		f.setVisible(true);
 	}
 	
+	/**
+	 * Main de test
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		ControlerMain cm = new ControlerMain();
 		WindowEmployeeCreator wec = new WindowEmployeeCreator();

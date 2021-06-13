@@ -8,6 +8,11 @@ import javax.swing.*;
 import Controlers.ControlerMain;
 import Models.Department;
 
+/**
+ * Fenêtre qui permet la création d'un département
+ * @author dylan
+ *
+ */
 public class WindowDepartmentCreator {
 	private static JFrame f;
 	public static JLabel lNameDpt;
@@ -24,12 +29,20 @@ public class WindowDepartmentCreator {
 		setWindow();
 	}
 	
+	/**
+	 * Crée le TextField pour taper le nom du département
+	 * @return Un JTextField permetant de taper le nom du départment
+	 */
 	private static JTextField createTextFieldNameDpt() {
 		final JTextField tf = new JTextField();
 		tf.setBounds(180,50, 150,20);
 		return tf;
 	}
 
+	/**
+	 * Crée le bouton qui permet la création d'un département
+	 * @return Un JButton qui permet de crée un département
+	 */
 	private static JButton createButtonCreate() {
 		JButton b=new JButton("Create");
 	    b.setBounds(50,100,95,20);
@@ -51,7 +64,9 @@ public class WindowDepartmentCreator {
 	    return b;
 	}
 	
-	
+	/**
+	 * Initialise et affiche la fenêtre de création de département
+	 */
 	public static void setWindow() {
 		f = new JFrame("Cr\u00e9ation d\u00e9partement");
 		f.setSize(370,200);
