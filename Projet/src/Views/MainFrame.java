@@ -247,14 +247,6 @@ public class MainFrame extends javax.swing.JFrame {
     	}
     }                                     
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-    	
-        /* Create and display the form */
-    }
-
     
     /**
      * Updates the lists contained in the object

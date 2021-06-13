@@ -120,9 +120,9 @@ public class WindowNetwork {
 	/**
 	 * Main de test, pour vérifier le fonctionnement
 	 * @param args
-	 */
+	 *
 	public static void main(String[] args) {
 		WindowNetwork wn = new WindowNetwork();
 		wn.setWindow(new ControlerNetwork());
-	}
+	}*/
 }

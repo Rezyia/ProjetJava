@@ -391,7 +391,7 @@ public class WindowEmployeeCreator {
 	/**
 	 * Main de test
 	 * @param args
-	 */
+	 *
 	public static void main(String[] args) {
 		ControlerMain cm = new ControlerMain();
 		WindowEmployeeCreator wec = new WindowEmployeeCreator();
@@ -402,7 +402,7 @@ public class WindowEmployeeCreator {
 		cm.addEmploye(emp);
 		
 		setWindow(wec, emp, cm);
-	}
+	}*/
 	
 	
 }

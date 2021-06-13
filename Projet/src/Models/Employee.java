@@ -179,13 +179,6 @@ public class Employee implements Serializable {
 		planning.put(day, tabtime);
 	}
 	
-	public static void main(String[] args) {
-		Department dpt = new Department("Dpt");
-		for(int i = 0 ; i < 5 ; i++) {
-			System.out.println(new Employee(dpt, "Nom", "Sans"));
-		}
-	}
-
 	/**
 	 * Setter de département
 	 * @param dpt

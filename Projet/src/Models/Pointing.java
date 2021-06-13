@@ -45,8 +45,4 @@ public class Pointing implements Serializable{
 	public String toString() {
 		return "Pointage de l'employé "+idEmp+" à "+time;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(new Pointing(0));
-	}
 }
