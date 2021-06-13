@@ -110,6 +110,7 @@ public static JButton CreateButtonPort(ControlerEmulator CtrlEmu){
 	 */
 	public static void setWindowEmu(ControlerEmulator CtrlEmu) throws IOException{
 		f = new JFrame("Emulateur Pointeuse");
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(760,440);
 		
 		//texte s'affichant quand on recupere l'id
