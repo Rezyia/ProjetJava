@@ -15,13 +15,13 @@ import Models.Department;
  */
 public class WindowDepartmentCreator {
 	private static JFrame f;
-	public static JLabel lNameDpt;
-	public static JTextField tfNameDpt;
-	public static JButton bCreate;
-	public static JLabel lCreate;
+	private static JLabel lNameDpt;
+	private static JTextField tfNameDpt;
+	private static JButton bCreate;
+	private static JLabel lCreate;
 	
-	public static ControlerMain cm;
-	public static WindowEmployeeCreator wec;
+	private static ControlerMain cm;
+	private static WindowEmployeeCreator wec;
 	
 	public WindowDepartmentCreator(ControlerMain cm, WindowEmployeeCreator wec) {
 		WindowDepartmentCreator.cm = cm;

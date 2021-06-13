@@ -6,22 +6,27 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import Controlers.ControlerNetwork;
 
+/**
+ * Fenêtre pour éditer les options de réseau
+ * @author dylan
+ *
+ */
 public class WindowNetwork {
 	
 	private static JFrame f;
-	public static JTextField tfPort;
-	public static JTextField tfAddress;
-	public static JLabel lPort;
-	public static JLabel lAddress;
-	public static JLabel lUpdate;
-	public static JButton bUpdate;
-	public static JButton bCancel;
+	private static JTextField tfPort;
+	private static JTextField tfAddress;
+	private static JLabel lPort;
+	private static JLabel lAddress;
+	private static JLabel lUpdate;
+	private static JButton bUpdate;
+	private static JButton bCancel;
 	
 	private static ControlerNetwork cn;
 	
 	/**
 	 * Fonction type pour crÃ©er un champs pour taper l'adresse
-	 * @return Un TextField pour taper l'adresse
+	 * @return Un JTextField pour taper l'adresse
 	 */
 	public static JTextField createTextFieldAddress() {
 		final JTextField tf=new JTextField();  
@@ -32,7 +37,7 @@ public class WindowNetwork {
 	
 	/**
 	 * Fonction type pour crÃ©er un champs pour taper le port
-	 * @return Un TextField pour taper le port
+	 * @return Un JTextField pour taper le port
 	 */
 		public static JTextField createTextFieldPort() {
 			final JTextField tf=new JTextField();  
@@ -43,7 +48,7 @@ public class WindowNetwork {
 
 	/**
 	 * crÃ©ation de boutons d'annulation
-	 * @return Un bouton qui réinitialise les valeurs dans les textfield
+	 * @return Un JButton qui réinitialise les valeurs dans les textfield
 	 */
 	public static JButton createCancelButton(){
 	    JButton b=new JButton("Cancel");
@@ -60,7 +65,6 @@ public class WindowNetwork {
 	
 	/**
 	 * création de boutons de modification
-	 * @return Un bouton qui modifie le port et l'adresse, basé sur le contenu des textfields
 	 */
 	public static JButton createUpdateButton(){
 	    JButton b=new JButton("Update");

@@ -9,10 +9,14 @@ import java.util.Random;
 
 import Models.*;
 
+/**
+ * Classe regroupant certaines méthodes utile ou pouvant être utile à différent endroit du code
+ *
+ */
 public class Toolbox {
 
 	// Random list of first names 
-	public static String[] names = {
+	private static String[] names = {
 			"Aaron",
 			"Cameron",
 			"Ehsan",
@@ -36,7 +40,7 @@ public class Toolbox {
 	};
 	
 	// Random list of last names
-	public static String[] lastNames = {
+	private static String[] lastNames = {
 			"Barnett ",
 			"Bernard",
 			"Graham",
@@ -60,7 +64,7 @@ public class Toolbox {
 	};
 	
 	// Random list of department names
-	public static String[] deptNames = {
+	private static String[] deptNames = {
 		"Communication",
 		"Engineering",
 		"Human Resources",
@@ -202,7 +206,11 @@ public class Toolbox {
     	return (time.getDayOfWeek().equals(DayOfWeek.SATURDAY) || time.getDayOfWeek().equals(DayOfWeek.SUNDAY));
     }
     
-    
+    /**
+     * Récupère une liste des LocalTime avant celui entrée en paramètre
+     * @param time
+     * @return une ArrayList<LocalTime> des LocalTime avant celui entrée en paramètre
+     */
     public static ArrayList<LocalTime> getAllTimeBefore(LocalTime time) {
     	LocalTime t = LocalTime.of(0, 0);
     	ArrayList<LocalTime> liste = new ArrayList<LocalTime>();
@@ -213,6 +221,11 @@ public class Toolbox {
     	return liste;
     }
     
+    /**
+     * Récupère une liste des LocalTime après celui entrée en paramètre
+     * @param time
+     * @return une ArrayList<LocalTime> des LocalTime après celui entrée en paramètre
+     */
     public static ArrayList<LocalTime> getAllTimeAfter(LocalTime time) {
     	LocalTime t = LocalTime.of(23, 45);
     	ArrayList<LocalTime> liste = new ArrayList<LocalTime>();
@@ -224,10 +237,4 @@ public class Toolbox {
     	return liste;
     }
     
-    public static void main(String[] args) {
-    	System.out.println(getAllTimeBefore(LocalTime.of(12, 0)));
-    	System.out.println(getAllTimeAfter(LocalTime.of(12, 0)));
-    	System.out.println(getAllTimeAfter(LocalTime.of(0, 0)));
-    	System.out.println(getAllTimeBefore(LocalTime.of(23, 45)));
-    }
 }

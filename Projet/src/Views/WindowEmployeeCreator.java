@@ -22,32 +22,32 @@ import Models.*;
  */
 public class WindowEmployeeCreator {
 	private static JFrame f;
-	public static JLabel lDepartment;
-	public static JLabel lName;
-	public static JLabel lFirstName;
-	public static JLabel lCreate;
-	public static JLabel lMonday;
-	public static JLabel lTuesday;
-	public static JLabel lWednesday;
-	public static JLabel lThursday;
-	public static JLabel lFriday;
-	public static JComboBox<Department> cbDepartment;
-	public static JComboBox<LocalTime> cbMondayBegin;
-	public static JComboBox<LocalTime> cbMondayEnd;
-	public static JComboBox<LocalTime> cbTuesdayBegin;
-	public static JComboBox<LocalTime> cbTuesdayEnd;
-	public static JComboBox<LocalTime> cbWednesdayBegin;
-	public static JComboBox<LocalTime> cbWednesdayEnd;
-	public static JComboBox<LocalTime> cbThursdayBegin;
-	public static JComboBox<LocalTime> cbThursdayEnd;
-	public static JComboBox<LocalTime> cbFridayBegin;
-	public static JComboBox<LocalTime> cbFridayEnd;
-	public static JTextField tfName;
-	public static JTextField tfFirstName;
-	public static JButton bCreate;
-	public static JButton bModify;
-	public static JButton bCreateDepartment;
-	public static JButton bCancel;
+	private static JLabel lDepartment;
+	private static JLabel lName;
+	private static JLabel lFirstName;
+	private static JLabel lCreate;
+	private static JLabel lMonday;
+	private static JLabel lTuesday;
+	private static JLabel lWednesday;
+	private static JLabel lThursday;
+	private static JLabel lFriday;
+	private static JComboBox<Department> cbDepartment;
+	private static JComboBox<LocalTime> cbMondayBegin;
+	private static JComboBox<LocalTime> cbMondayEnd;
+	private static JComboBox<LocalTime> cbTuesdayBegin;
+	private static JComboBox<LocalTime> cbTuesdayEnd;
+	private static JComboBox<LocalTime> cbWednesdayBegin;
+	private static JComboBox<LocalTime> cbWednesdayEnd;
+	private static JComboBox<LocalTime> cbThursdayBegin;
+	private static JComboBox<LocalTime> cbThursdayEnd;
+	private static JComboBox<LocalTime> cbFridayBegin;
+	private static JComboBox<LocalTime> cbFridayEnd;
+	private static JTextField tfName;
+	private static JTextField tfFirstName;
+	private static JButton bCreate;
+	private static JButton bModify;
+	private static JButton bCreateDepartment;
+	private static JButton bCancel;
 	
 	public static ControlerMain cm;
 	protected static Employee emp_modif = null;
@@ -252,6 +252,7 @@ public class WindowEmployeeCreator {
 	/**
 	 * Créer le bouton pour créer un département
 	 * @return Un JButton pour ouvrir la fenêtre de création de département
+	 * @see WindowDepartmentCreator
 	 */
 	public static JButton createButtonCreateDpt(WindowEmployeeCreator wec) {
 		JButton b=new JButton("Create new Department");

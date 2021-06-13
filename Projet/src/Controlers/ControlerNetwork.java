@@ -7,6 +7,10 @@ import java.io.Serializable;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+/**
+ * Controleur des options de réseau
+ *
+ */
 public class ControlerNetwork implements Serializable {
 
 	private static final long serialVersionUID = 7514011770100233285L;
@@ -22,20 +26,36 @@ public class ControlerNetwork implements Serializable {
 		port = 8085;
 	}
 	
+	/**
+	 * Getter de l'adresse
+	 * @return son adresse
+	 */
 	public String getAddress() {
 		return address;
 	}
 	
+	/**
+	 * Getter du port
+	 * @return son port
+	 */
 	public int getPort() {
 		return port;
 	}
 	
-	public void setAddress(String str) {
-		address = str;
+	/**
+	 * Setter de l'adresse
+	 * @param adr La nouvelle adresse
+	 */
+	public void setAddress(String adr) {
+		address = adr;
 	}
 	
-	public void setPort(int i) {
-		port = i;
+	/**
+	 * Setter du port
+	 * @param p Le nouveau port
+	 */
+	public void setPort(int p) {
+		port = p;
 	}
 	
 	

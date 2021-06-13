@@ -3,6 +3,11 @@ import java.io.Serializable;
 import java.time.*;
 import java.util.*;
 
+/**
+ * Classe représentant un employé
+ * @author dylan
+ *
+ */
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = -2416428736464744808L;
@@ -54,22 +59,42 @@ public class Employee implements Serializable {
 		planning.put("friday", tabtime);
 	}
 	
+	/**
+	 * Getter de l'ID
+	 * @return l'ID de cet employé
+	 */
 	public int getId() {
 		return id;
 	}
 	
+	/**
+	 * Getter de nom
+	 * @return Le nom de cet employé
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Setter de nom
+	 * @param name le nouveau nom de l'employé
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Getter de prénom
+	 * @return Le prénom de cet employé
+	 */
 	public String getFirstname() {
 		return firstname;
 	}
 
+	/**
+	 * Setter de prénom
+	 * @param firstname
+	 */
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
@@ -78,26 +103,55 @@ public class Employee implements Serializable {
 		return "Employé "+id+" : "+firstname+" "+name;
 	}
 	
+	/**
+	 * Est ce que l'employé est en train de travailler ? (Getter de la variable isWorking)
+	 * @return un boolean correspondant à la question
+	 */
 	public boolean isWorking() {
 		return isWorking;
 	}
 	
+	/**
+	 * Setter de isWorking
+	 * @param b
+	 */
 	public void setWorking(boolean b) {
 		isWorking = b;
 	}
 	
+	/**
+	 * Getter de overtime
+	 * @return Le temps de travail en trop ou manquant de cet employé
+	 */
 	public int getOvertime() {
 		return  overtime;
 	}
 	
+	/**
+	 * Setter de overtime
+	 * @param ot
+	 */
 	public void setOvertime(int ot) {
 		overtime = ot;
 	}
 	
+	/**
+	 * Getter de planning, en fonction du jour
+	 * @param day Le jour de la semaine (en anglais)
+	 * @return Les horaires de début de journée (LocalTime[0]) et de fin de journée (LocalTime[1])
+	 */
 	public LocalTime[] getPlanningDay(String day) {
 		return planning.get(day);
 	}
 	
+	/**
+	 * Modifie le planning d'un employé via des int
+	 * @param hourBegin
+	 * @param hourFinish
+	 * @param minBegin
+	 * @param minFinish
+	 * @param day
+	 */
 	public void setplanning(int hourBegin , int hourFinish, int minBegin, int minFinish, String day) {
 		if(day != "monday" || day != "tuesday" || day != "wednesday" || day != "thursday" || day != "friday" ) { //attention Ã  gÃ©rer les exceptions
 			if(	(hourBegin < 24 && hourBegin >= 0) || (hourFinish < 24 && hourFinish >= 0) || 
@@ -110,6 +164,13 @@ public class Employee implements Serializable {
 		}
 	}
 	
+	/**
+	 * Modifie le planning d'un employé via des LocalTime
+	 * @param begin
+	 * @param end
+	 * @param day
+	 * @throws Exception Si end < begin
+	 */
 	public void setPlanning(LocalTime begin, LocalTime end, String day) throws Exception {
 		if(end.isBefore(begin)) {
 			throw new Exception();
@@ -125,10 +186,18 @@ public class Employee implements Serializable {
 		}
 	}
 
+	/**
+	 * Setter de département
+	 * @param dpt
+	 */
 	public void setDepartment(Department dpt) {
 		this.departement = dpt;
 	}
 
+	/**
+	 * Getter de département
+	 * @return
+	 */
 	public Department getDepartment() {
 		return departement;
 	}
