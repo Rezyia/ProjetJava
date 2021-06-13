@@ -2,6 +2,7 @@
 package Views;
 
 import java.awt.event.*;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.SwingUtilities;
@@ -142,7 +143,11 @@ public class MainFrame extends javax.swing.JFrame {
         bHelp.setLabel("Documentation");
         bHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bHelpActionPerformed(evt);
+                try {
+					bHelpActionPerformed(evt);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
             }
         });
         header.add(bHelp);
@@ -203,13 +208,6 @@ public class MainFrame extends javax.swing.JFrame {
     		windowPointings.updateUI();
 
     	}
-    	/*
-    	else if (w==windowType.WINDOW_SETTINGS) {
-    		bSettings.setBackground(new java.awt.Color(238, 238, 238));
-    		bSettings.setForeground(new java.awt.Color(0, 0, 0));
-    		WindowNetwork wn = new WindowNetwork();
-    		wn.setWindow(controler);
-    	}*/
     	
     	SwingUtilities.updateComponentTreeUI(this);
     }
@@ -235,8 +233,18 @@ public class MainFrame extends javax.swing.JFrame {
 		wn.setWindow(controler);
     }                                         
 
-    private void bHelpActionPerformed(java.awt.event.ActionEvent evt) {                                      
-        // TODO add your handling code here:
+    private void bHelpActionPerformed(java.awt.event.ActionEvent evt) throws IOException {                                      
+    	if (System.getProperty("os.name").toLowerCase().indexOf("win") >=0) { // If Windows OS :
+    		System.out.println("Windows OS detected, opening documentation...");
+        	Runtime.getRuntime().exec("Explorer.exe javadoc\\index.html");
+        	
+    	} else if (System.getProperty("os.name").toLowerCase().indexOf("mac") >=0) { // If Mac OS :	
+    		System.out.println("MacOS");
+    		Runtime.getRuntime().exec("open javadoc/index.html");
+    		
+    	} else { // If other OS : not supported
+    		System.out.println("Current OS not supported for this action.");
+    	}
     }                                     
 
     /**
