@@ -203,12 +203,13 @@ public class MainFrame extends javax.swing.JFrame {
     		windowPointings.updateUI();
 
     	}
+    	/*
     	else if (w==windowType.WINDOW_SETTINGS) {
     		bSettings.setBackground(new java.awt.Color(238, 238, 238));
     		bSettings.setForeground(new java.awt.Color(0, 0, 0));
     		WindowNetwork wn = new WindowNetwork();
     		wn.setWindow(controler);
-    	}
+    	}*/
     	
     	SwingUtilities.updateComponentTreeUI(this);
     }
@@ -231,7 +232,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void bSettingsActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
 		WindowNetwork wn = new WindowNetwork();
-		wn.setWindow(new ControlerNetwork());
+		wn.setWindow(controler);
     }                                         
 
     private void bHelpActionPerformed(java.awt.event.ActionEvent evt) {                                      
