@@ -28,8 +28,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	private ArrayList<Employee> employees = new ArrayList<Employee>();
 	private ArrayList<Department> departments = new ArrayList<Department>();
 	private ArrayList<Pointing> pointings = new ArrayList<Pointing>();
-	
-	
+		
 	//-------------------------------------------------------------Methods
 	
 	/**
@@ -39,6 +38,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
 	public JFrame getFrame() {
 		return f;
 	}
+	
 	
 	/**
 	 * Updates the lists contained in the JFrame of the ControlerMain used
@@ -467,7 +467,7 @@ public class ControlerMain extends ControlerNetwork implements Serializable{
             	System.out.println("App starting...");
 
         		ControlerMain controler = new ControlerMain();
-
+        		
         		Toolbox.generateDepartments(controler, 4);
                 Toolbox.generateEmployees(controler, 20);
                 Toolbox.generatePointings(controler, 40);

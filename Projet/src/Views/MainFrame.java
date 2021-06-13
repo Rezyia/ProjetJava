@@ -188,7 +188,6 @@ public class MainFrame extends javax.swing.JFrame {
 		resetButtonStyle(bSettings);
         
     	if (windowEmployees.getParent() != null) content.remove(windowEmployees);
-    	//if (windowSettings.getParent() != null)jPanel2.remove(windowSettings);
     	if (windowPointings.getParent() != null)content.remove(windowPointings);
     	
     	if (w==windowType.WINDOW_EMPLOYEES) {
@@ -205,11 +204,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     	}
     	else if (w==windowType.WINDOW_SETTINGS) {
-    		/*jPanel2.add(windowSettings);*/
     		bSettings.setBackground(new java.awt.Color(238, 238, 238));
     		bSettings.setForeground(new java.awt.Color(0, 0, 0));
     		WindowNetwork wn = new WindowNetwork();
-    		wn.setWindow(new ControlerNetwork());
+    		wn.setWindow(controler);
     	}
     	
     	SwingUtilities.updateComponentTreeUI(this);

@@ -83,8 +83,8 @@ public class WindowNetwork {
 	 * Crée et affiche la fenêtre de paramètre réseau
 	 * @param cn Le ControlerNetwork
 	 */
-	public void setWindow(ControlerNetwork cn) {
-		this.cn = cn;
+	public void setWindow(ControlerNetwork ctrln) {
+		cn = ctrln;
 		
 		f = new JFrame("Option réseau");
 		f.setSize(720,480);
