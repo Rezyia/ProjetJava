@@ -115,7 +115,7 @@ public static JButton CreateButtonPort(ControlerEmulator CtrlEmu){
 		
 		//texte s'affichant quand on recupere l'id
 		labelId = new JLabel(); 
-		labelId.setBounds(50,100, 300,20);  
+		labelId.setBounds(50,100, 300,20);
 		
 		labelTime = new JLabel(); 
 		labelTime.setBounds(50,150, 150,20); 
